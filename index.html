@@ -77,21 +77,27 @@
             <span class="lang-en">Architecting Full-Cycle Software & <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">AI Systems</span></span>
             <span class="lang-ru">Создание ИТ-решений полного цикла и <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">Систем ИИ</span></span>
         </h1>
-<nav class="fixed top-0 left-0 w-full bg-[#03020d]/90 backdrop-blur-md z-50 border-b border-purple-500/20 py-2 px-2">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2">
-        
-        <div class="font-cyber text-lg font-black tracking-tighter bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent truncate w-auto">
-            HANY REDA
+    <nav class="fixed top-0 left-0 w-full bg-[#03020d]/80 backdrop-blur-xl z-50 border-b border-purple-500/10 px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="font-cyber text-xl md:text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
+                    HANY REDA
+                </span>
+                <span class="text-[10px] font-mono tracking-widest text-cyan-400 uppercase font-bold">
+                    <span class="lang-ar">لوحة مهندس البرمجيات والألعاب الأقدم</span>
+                    <span class="lang-en">Senior Software & Game Engineer Portfolio</span>
+                    <span class="lang-ru">Портфолио старшего инженера ПО и игр</span>
+                </span>
+            </div>
+            
+            <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-xl">
+                <button onclick="setLanguage('ru')" id="btn-ru" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all bg-purple-600 text-white cursor-pointer">РУ</button>
+                <button onclick="setLanguage('en')" id="btn-en" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer">EN</button>
+                <button onclick="setLanguage('ar')" id="btn-ar" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer">العربية</button>
+            </div>
         </div>
-        
-        <div class="flex items-center bg-slate-900/50 p-0.5 rounded-lg border border-slate-700 shadow-lg">
-            <button onclick="setLanguage('ru')" id="btn-ru" class="px-2 py-1 rounded text-[10px] font-bold transition-all bg-purple-600 text-white">РУ</button>
-            <button onclick="setLanguage('en')" id="btn-en" class="px-2 py-1 rounded text-[10px] font-bold transition-all text-slate-400 hover:text-white">EN</button>
-            <button onclick="setLanguage('ar')" id="btn-ar" class="px-2 py-1 rounded text-[10px] font-bold transition-all text-slate-400 hover:text-white">عربي</button>
-        </div>
-        
-    </div>
-</nav>
+    </nav>
+
 
 <style>
     @media (max-width: 640px) {

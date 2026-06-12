@@ -61,20 +61,7 @@
     <div class="ambient-blur w-[600px] h-[600px] bg-cyan-600 top-[40vh] left-[-100px]"></div>
     <div class="ambient-blur w-[500px] h-[500px] bg-indigo-700 bottom-[10vh] right-[-50px]"></div>
 
-<nav class="fixed top-0 left-0 w-full bg-[#03020d]/80 backdrop-blur-xl z-50 border-b border-purple-500/10 py-2 px-3">
-    <div class="max-w-7xl mx-auto flex flex-col items-center gap-2">
-        <div class="w-full flex justify-between items-center">
-            <span class="font-cyber text-xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
-                HANY REDA
-            </span>
-            <div class="flex bg-slate-950 p-0.5 rounded-lg border border-slate-800 shadow-xl">
-                <button onclick="setLanguage('ru')" id="btn-ru" class="px-2.5 py-1 rounded text-[10px] font-black transition-all bg-purple-600 text-white cursor-pointer">РУ</button>
-                <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded text-[10px] font-black transition-all text-slate-400 hover:text-white cursor-pointer">EN</button>
-                <button onclick="setLanguage('ar')" id="btn-ar" class="px-2.5 py-1 rounded text-[10px] font-black transition-all text-slate-400 hover:text-white cursor-pointer">عربي</button>
-            </div>
-        </div>
-    </div>
-</nav>    <section class="relative pt-36 pb-12 px-4 md:px-8 max-w-7xl mx-auto text-center z-10 flex flex-col items-center justify-center min-h-[85vh]">
+<section class="relative pt-36 pb-12 px-4 md:px-8 max-w-7xl mx-auto text-center z-10 flex flex-col items-center justify-center min-h-[85vh]">
         <div class="gsap-hero inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-6">
             <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]"></span>
             <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول - متاح للتعاقدات الدولية</span>
@@ -87,7 +74,27 @@
             <span class="lang-en">Architecting Full-Cycle Software & <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">AI Systems</span></span>
             <span class="lang-ru">Создание ИТ-решений полного цикла и <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">Систем ИИ</span></span>
         </h1>
+      <nav class="fixed top-0 left-0 w-full bg-[#03020d]/90 backdrop-blur-md z-50 border-b border-purple-500/20 py-2 px-2">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2">
         
+        <div class="font-cyber text-lg font-black tracking-tighter bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent truncate w-auto">
+            HANY REDA
+        </div>
+        
+        <div class="flex items-center bg-slate-900/50 p-0.5 rounded-lg border border-slate-700 shadow-lg">
+            <button onclick="setLanguage('ru')" id="btn-ru" class="px-2 py-1 rounded text-[10px] font-bold transition-all bg-purple-600 text-white">РУ</button>
+            <button onclick="setLanguage('en')" id="btn-en" class="px-2 py-1 rounded text-[10px] font-bold transition-all text-slate-400 hover:text-white">EN</button>
+            <button onclick="setLanguage('ar')" id="btn-ar" class="px-2 py-1 rounded text-[10px] font-bold transition-all text-slate-400 hover:text-white">عربي</button>
+        </div>
+        
+    </div>
+</nav>
+
+<style>
+    @media (max-width: 640px) {
+        section { padding-top: 2rem !important; }
+    }
+</style>  
         <p class="gsap-hero text-slate-300 text-sm md:text-base lg:text-lg max-w-4xl mb-8 leading-relaxed font-medium">
             <span class="lang-ar">خبرة تزيد عن 6 سنوات في هندسة البرمجيات، تطوير ألعاب الفيديو، وتطبيقات الهواتف الذكية وتصميم المجسمات ثلاثية الأبعاد. متميز في إدارة المشاريع تقنياً وتجارياً بدءاً من الفكرة المعمارية وحتى النشر الفعلي في الأسواق وتحليل العائدات وإدارة المفاوضات الكبرى.</span>
             <span class="lang-en">Over 6+ years of verified technical excellence in software development, core game architecture, mobile engineering, and immersive 3D modeling. Specializing in technical project leadership, international B2B client solutions, and commercial scaling.</span>

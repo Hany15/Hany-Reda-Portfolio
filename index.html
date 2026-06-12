@@ -1,855 +1,1312 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="ru" dir="ltr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hany Reda | Executive Portfolio Core</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Hany Reda | Senior Software Engineer Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --cyan: #06b6d4;
+            --purple: #8b5cf6;
+            --fuchsia: #d946ef;
+            --amber: #f59e0b;
+            --emerald: #10b981;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             background-color: #03020d;
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
             overflow-x: hidden;
+            color: #e2e8f0;
         }
+
         .font-cyber { font-family: 'Orbitron', sans-serif; }
-        
-        /* Language toggles - Default is Russian */
+
+        /* ─── Language System ─── */
         .lang-en, .lang-ar { display: none; }
-        .lang-ru { display: inline-block; }
+        .lang-ru { display: inline; }
+        [dir="rtl"] .lang-ar { display: inline; }
 
-        /* Premium Glass Card Style */
-        .premium-card {
-            background: linear-gradient(145deg, rgba(30, 27, 75, 0.25) 0%, rgba(15, 23, 42, 0.45) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .premium-card:hover {
-            border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 0 35px rgba(6, 182, 212, 0.15);
-            transform: translateY(-5px);
-        }
+        /* ─── Scrollbar ─── */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0914; }
+        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
 
-        /* TV & Large Screen Optimizations */
-        @media (min-width: 1920px) {
-            html { font-size: 18px; }
-            .max-w-7xl { max-w: 85%; }
-        }
-
-        /* Ambient Glow System */
-        .ambient-blur {
-            position: absolute;
+        /* ─── Ambient Blobs (fixed, not absolute, so they don't affect layout) ─── */
+        .blob {
+            position: fixed;
             border-radius: 50%;
-            filter: blur(150px);
+            filter: blur(120px);
             pointer-events: none;
             z-index: 0;
-            opacity: 0.25;
+            opacity: 0.18;
+            will-change: transform;
+        }
+
+        /* ─── Navbar ─── */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(3, 2, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.12);
+            padding: 0.875rem 1.25rem;
+            transition: background 0.3s;
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-brand { flex-shrink: 0; }
+
+        .nav-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--fuchsia));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .nav-sub {
+            font-size: 9px;
+            font-family: monospace;
+            letter-spacing: 0.1em;
+            color: var(--cyan);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: #050414;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            padding: 5px 10px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #64748b;
+            background: transparent;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        /* ─── Hero ─── */
+        #hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 1.25rem 3rem;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #67e8f9;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--fuchsia) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+            color: #94a3b8;
+            max-width: 680px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .target-box {
+            background: rgba(109, 40, 217, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .target-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: #a78bfa;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .target-text {
+            font-size: clamp(0.78rem, 2vw, 0.9rem);
+            color: #e2e8f0;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* ─── Buttons ─── */
+        .btn-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 520px; }
+
+        .btn-row { display: flex; gap: 10px; }
+
+        .btn-primary {
+            flex: 1;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: clamp(11px, 2.5vw, 13px);
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.25s;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .btn-cyan {
+            background: linear-gradient(135deg, var(--cyan), #3b82f6);
+            color: #000;
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, var(--purple), #ec4899);
+            color: #fff;
+        }
+
+        .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+        .btn-contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+        .btn-contact {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 12px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            font-family: monospace;
+            transition: all 0.25s;
+            border: 1px solid;
+        }
+
+        .btn-wa { background: rgba(16, 185, 129, 0.08); color: #34d399; border-color: rgba(16, 185, 129, 0.2); }
+        .btn-tg { background: rgba(14, 165, 233, 0.08); color: #38bdf8; border-color: rgba(14, 165, 233, 0.2); }
+        .btn-gm { background: rgba(239, 68, 68, 0.08); color: #f87171; border-color: rgba(239, 68, 68, 0.2); }
+        .btn-contact:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+        /* ─── Sections ─── */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 1.25rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header { text-align: center; margin-bottom: 2.5rem; }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.1rem, 4vw, 2rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-line {
+            height: 3px;
+            border-radius: 100px;
+            margin: 12px auto 0;
+            width: 80px;
+        }
+
+        /* ─── Premium Card ─── */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 27, 75, 0.25), rgba(15, 23, 42, 0.45));
+            border: 1px solid rgba(139, 92, 246, 0.18);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(6, 182, 212, 0.08);
+        }
+
+        /* ─── Skills Grid ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            padding: 1.25rem;
+        }
+
+        .skill-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        .skill-list { list-style: none; }
+        .skill-list li { font-size: 12px; color: #94a3b8; padding: 4px 0; }
+        .skill-list li::before { content: '• '; opacity: 0.5; }
+
+        /* ─── Timeline ─── */
+        .timeline { display: flex; flex-direction: column; gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+
+        .exp-card {
+            padding: 1.5rem;
+            border-left: 3px solid transparent;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .exp-header { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+        }
+
+        .exp-title { font-size: clamp(0.9rem, 2.5vw, 1.05rem); font-weight: 800; color: #fff; }
+
+        .exp-badge {
+            font-family: monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .exp-list { list-style: disc; padding-left: 1.25rem; }
+        .exp-list li { font-size: clamp(11px, 2vw, 13px); color: #94a3b8; line-height: 1.7; margin-bottom: 4px; }
+        .exp-list li.highlight { color: #fde68a; font-weight: 700; }
+
+        /* ─── Projects Grid ─── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            padding: 1.25rem;
+            display: flex; flex-direction: column; justify-content: space-between;
+            border-top: 2px solid transparent;
+            min-height: 200px;
+        }
+
+        .project-title {
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        .project-desc {
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .project-tag {
+            font-family: monospace;
+            font-size: 9px;
+            font-weight: 700;
+            margin-top: 12px;
+            display: block;
+        }
+
+        /* ─── Video Grid ─── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .video-wrap video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ─── Gallery ─── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover { transform: scale(1.04); }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ─── Language Grid ─── */
+        .lang-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+        .lang-row {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .lang-name { font-size: 14px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        .lang-level {
+            font-family: monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        /* ─── Soft Skills ─── */
+        .soft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .soft-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex; gap: 12px;
+        }
+
+        .soft-icon { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+        .soft-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .soft-desc { font-size: 11px; color: #64748b; line-height: 1.6; }
+
+        /* ─── Footer ─── */
+        footer {
+            position: relative; z-index: 1;
+            background: #020109;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem 1.25rem;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            color: #475569;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
+        .footer-links a { font-size: 20px; color: #475569; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--cyan); }
+
+        .footer-copy { font-size: 10px; font-family: monospace; color: #334155; }
+
+        /* ─── Animations ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* stagger delay classes */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* ─── Typing cursor ─── */
+        .cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ─── Particles ─── */
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+        }
+
+        /* ─── Responsive tweaks ─── */
+        @media (max-width: 480px) {
+            .btn-row { flex-direction: column; }
+            .btn-contact-row { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ─── Section divider ─── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+            margin: 0 1.25rem;
+        }
+
+        /* ─── Scroll indicator ─── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            opacity: 0.4;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span { font-size: 10px; font-family: monospace; letter-spacing: 0.1em; color: var(--cyan); }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ─── Glow bar ─── */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--fuchsia));
+            z-index: 200;
+            width: 0%;
+            transition: width 0.1s;
         }
     </style>
 </head>
-<body class="text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+<body>
 
+<!-- Progress bar -->
+<div id="progress-bar"></div>
 
-    
+<!-- Ambient blobs -->
+<div class="blob" style="width:500px;height:500px;background:#7c3aed;top:-100px;right:-50px;"></div>
+<div class="blob" style="width:600px;height:600px;background:#0891b2;top:40vh;left:-150px;"></div>
+<div class="blob" style="width:500px;height:500px;background:#4f46e5;bottom:10vh;right:-50px;"></div>
 
-    <div class="ambient-blur w-[500px] h-[500px] bg-purple-600 top-[-100px] right-[-50px]"></div>
-    <div class="ambient-blur w-[600px] h-[600px] bg-cyan-600 top-[40vh] left-[-100px]"></div>
-    <div class="ambient-blur w-[500px] h-[500px] bg-indigo-700 bottom-[10vh] right-[-50px]"></div>
+<!-- Particles canvas -->
+<canvas id="particles-canvas"></canvas>
 
-<section class="relative pt-36 pb-12 px-4 md:px-8 max-w-7xl mx-auto text-center z-10 flex flex-col items-center justify-center min-h-[85vh]">
-        <div class="gsap-hero inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-6">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]"></span>
-            <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول - متاح للتعاقدات الدولية</span>
-            <span class="lang-en">Senior Software Engineer & GameDev - Available Globally</span>
-            <span class="lang-ru">Старший инженер ПО и разработчик игр - Доступен для контрактов</span>
-        </div>
-        
-        <h1 class="gsap-hero text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 text-white leading-tight">
-            <span class="lang-ar">بناء الحلول البرمجية المتكاملة ونظم <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">الذكاء الاصطناعي</span></span>
-            <span class="lang-en">Architecting Full-Cycle Software & <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">AI Systems</span></span>
-            <span class="lang-ru">Создание ИТ-решений полного цикла и <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">Систем ИИ</span></span>
-        </h1>
-    <nav class="fixed top-0 left-0 w-full bg-[#03020d]/80 backdrop-blur-xl z-50 border-b border-purple-500/10 px-4 py-4 md:px-8">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex flex-col">
-                <span class="font-cyber text-xl md:text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
-                    HANY REDA
-                </span>
-                <span class="text-[10px] font-mono tracking-widest text-cyan-400 uppercase font-bold">
-                    <span class="lang-ar">لوحة مهندس البرمجيات والألعاب الأقدم</span>
-                    <span class="lang-en">Senior Software & Game Engineer Portfolio</span>
-                    <span class="lang-ru">Портфолио старшего инженера ПО и игр</span>
-                </span>
-            </div>
-            
-            <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-xl">
-                <button onclick="setLanguage('ru')" id="btn-ru" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all bg-purple-600 text-white cursor-pointer">РУ</button>
-                <button onclick="setLanguage('en')" id="btn-en" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer">EN</button>
-                <button onclick="setLanguage('ar')" id="btn-ar" class="px-4 py-1.5 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer">العربية</button>
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <div class="nav-brand">
+            <div class="nav-title">HANY REDA</div>
+            <div class="nav-sub">
+                <span class="lang-ar">مهندس برمجيات أول</span>
+                <span class="lang-en">Senior Software Engineer Portfolio</span>
+                <span class="lang-ru">Портфолио инженера ПО и игр</span>
             </div>
         </div>
-    </nav>
 
+        <div class="lang-switcher">
+            <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn active">РУ</button>
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
+            <button onclick="setLanguage('ar')" id="btn-ar" class="lang-btn">AR</button>
+        </div>
+    </div>
+</nav>
 
-<style>
-    @media (max-width: 640px) {
-        section { padding-top: 2rem !important; }
-    }
-</style>
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+    <div class="hero-badge fade-up">
+        <div class="badge-dot"></div>
+        <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول - متاح للتعاقدات</span>
+        <span class="lang-en">Senior Software Engineer & GameDev - Available Globally</span>
+        <span class="lang-ru">Старший инженер ПО и GameDev — доступен для контрактов</span>
+    </div>
 
-<style>
-    @media (max-width: 640px) {
-        section { padding-top: 2rem !important; }
-    }
-</style>  
-        <p class="gsap-hero text-slate-300 text-sm md:text-base lg:text-lg max-w-4xl mb-8 leading-relaxed font-medium">
-            <span class="lang-ar">خبرة تزيد عن 6 سنوات في هندسة البرمجيات، تطوير ألعاب الفيديو، وتطبيقات الهواتف الذكية وتصميم المجسمات ثلاثية الأبعاد. متميز في إدارة المشاريع تقنياً وتجارياً بدءاً من الفكرة المعمارية وحتى النشر الفعلي في الأسواق وتحليل العائدات وإدارة المفاوضات الكبرى.</span>
-            <span class="lang-en">Over 6+ years of verified technical excellence in software development, core game architecture, mobile engineering, and immersive 3D modeling. Specializing in technical project leadership, international B2B client solutions, and commercial scaling.</span>
-            <span class="lang-ru">Более 6 лет подтвержденного технического опыта в инженерии ПО, разработке игр, мобильных приложений и 3D-моделировании. Специализируюсь на управлении проектами, интеграции ИИ, коммерческом масштабировании и ведении крупных международных B2B-переговоров.</span>
+    <h1 class="hero-title fade-up delay-1">
+        <span class="lang-ar">بناء الحلول البرمجية المتكاملة ونظم <span class="gradient-text">الذكاء الاصطناعي</span></span>
+        <span class="lang-en">Architecting Full-Cycle Software &amp; <span class="gradient-text">AI Systems</span></span>
+        <span class="lang-ru">Создание ИТ-решений полного цикла<br>и <span class="gradient-text">Систем ИИ</span></span>
+    </h1>
+
+    <p class="hero-desc fade-up delay-2">
+        <span class="lang-ar">خبرة تزيد عن 6 سنوات في هندسة البرمجيات، تطوير ألعاب الفيديو، وتطبيقات الهواتف الذكية. متميز في إدارة المشاريع من الفكرة حتى النشر الفعلي.</span>
+        <span class="lang-en">6+ years in software engineering, game architecture, mobile development and 3D modeling. Specializing in AI integration, B2B solutions and commercial scaling.</span>
+        <span class="lang-ru">Более 6 лет опыта в инженерии ПО, разработке игр, мобильных приложений и 3D-моделировании. Специализируюсь на управлении проектами, интеграции ИИ и международных B2B-переговорах.</span>
+    </p>
+
+    <div class="target-box fade-up delay-3">
+        <span class="target-label">// CAREER TARGET MATRIX</span>
+        <p class="target-text">
+            <span class="lang-ar">"هدفي المهني هو الانضمام إلى بيئة عمل ابتكارية عالمية لاستغلال خبراتي الهندسية المتقدمة في البرمجيات والألعاب، وتوظيف مهاراتي القيادية لبناء منتجات عالية الجودة."</span>
+            <span class="lang-en">"My professional target is to integrate with a pioneering international ecosystem where I can maximize my software architectures, game production skills, and multilingual capacity."</span>
+            <span class="lang-ru">"Моя профессиональная цель — присоединиться к международной инновационной компании, где я смогу задействовать свой инженерный потенциал для создания высококачественных ИТ-продуктов."</span>
         </p>
+    </div>
 
-        <div class="gsap-hero max-w-3xl bg-purple-950/20 border border-purple-500/20 p-5 rounded-2xl mb-10 text-center shadow-2xl">
-            <h4 class="text-xs font-cyber font-bold tracking-widest text-purple-400 mb-2 uppercase">// CAREER TARGET MATRIX</h4>
-            <p class="text-xs md:text-sm text-slate-200 italic font-medium leading-relaxed">
-                <span class="lang-ar">"هدف المهني هو الانضمام إلى بيئة عمل ابتكارية عالمية لاستغلال خبراتي الهندسية المتقدمة في البرمجيات والألعاب، وتوظيف مهاراتي القيادية واللغوية المتعددة لبناء منتجات عالية الجودة تحقق نجاحات تجارية مستدامة وضخمة."</span>
-                <span class="lang-en">"My professional target is to integrate with a pioneering international ecosystem where I can maximize my software architectures, game production skills, and multilingual capacity to secure high-tier product deliveries."</span>
-                <span class="lang-ru">"Моя профессиональная цель — присоединиться к международной инновационной компании, где я смогу задействовать свой инженерный потенциал, навыки разработки ПО, опыт создания игр и лидерские качества для создания высококачественных ИТ-продуктов."</span>
-            </p>
+    <div class="btn-grid fade-up delay-4">
+        <div class="btn-row">
+            <a href="cv_en.pdf" download="Hany_Reda_CV_English.pdf" class="btn-primary btn-cyan">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span class="lang-ar">تحميل السيرة (EN)</span>
+                <span class="lang-en">Download CV (English)</span>
+                <span class="lang-ru">Резюме (English)</span>
+            </a>
+            <a href="cv_ru.pdf" download="Hany_Reda_CV_Russian.pdf" class="btn-primary btn-purple">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span class="lang-ar">تحميل السيرة (RU)</span>
+                <span class="lang-en">Download CV (Russian)</span>
+                <span class="lang-ru">Резюме (Русский)</span>
+            </a>
+        </div>
+        <div class="btn-contact-row">
+            <a href="https://wa.me/79969382354" target="_blank" class="btn-contact btn-wa">
+                <i class="fa-brands fa-whatsapp"></i> WHATSAPP
+            </a>
+            <a href="https://t.me/+79969382354" target="_blank" class="btn-contact btn-tg">
+                <i class="fa-brands fa-telegram"></i> TELEGRAM
+            </a>
+            <a href="mailto:Developeractionobject@gmail.com" class="btn-contact btn-gm">
+                <i class="fa-solid fa-envelope"></i> GMAIL
+            </a>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--cyan);"></i>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════ LANGUAGES + SOFT SKILLS ═══════════════════════════ -->
+<div class="section">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+
+        <!-- Languages -->
+        <div class="card fade-up" style="padding:1.5rem;border-left:3px solid var(--cyan);">
+            <h3 style="font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
+                <i class="fa-solid fa-language" style="color:var(--cyan);"></i>
+                <span class="lang-ar">إتقان اللغات</span>
+                <span class="lang-en">Languages</span>
+                <span class="lang-ru">Владение языками</span>
+            </h3>
+            <div class="lang-grid">
+                <div class="lang-row">
+                    <div class="lang-name"><div class="lang-dot" style="background:#10b981;box-shadow:0 0 8px #10b981;"></div>العربية / ARABIC</div>
+                    <span class="lang-level" style="background:rgba(16,185,129,0.1);color:#34d399;">
+                        <span class="lang-ar">اللغة الأم</span><span class="lang-en">Native</span><span class="lang-ru">Родной</span>
+                    </span>
+                </div>
+                <div class="lang-row">
+                    <div class="lang-name"><div class="lang-dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan);"></div>ENGLISH</div>
+                    <span class="lang-level" style="background:rgba(6,182,212,0.1);color:var(--cyan);">
+                        <span class="lang-ar">طلاقة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободный</span>
+                    </span>
+                </div>
+                <div class="lang-row">
+                    <div class="lang-name"><div class="lang-dot" style="background:var(--fuchsia);box-shadow:0 0 8px var(--fuchsia);"></div>РУССКИЙ / RUSSIAN</div>
+                    <span class="lang-level" style="background:rgba(217,70,239,0.1);color:#e879f9;">
+                        <span class="lang-ar">طلاقة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободный</span>
+                    </span>
+                </div>
+            </div>
         </div>
 
-        <div class="gsap-hero flex flex-col gap-4 w-full max-w-3xl">
-            <div class="flex flex-col sm:flex-row gap-3.5 justify-center w-full">
-                <a href="cv_en.pdf" download="Hany_Reda_CV_English.pdf" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-95 text-black font-black px-7 py-3.5 rounded-xl transition shadow-lg text-center flex items-center justify-center gap-2 text-xs md:text-sm tracking-wide">
-                    <i class="fa-solid fa-file-pdf text-base"></i>
-                    <span class="lang-ar">تحميل السيرة الذاتية (الإنجليزية)</span>
-                    <span class="lang-en">Download CV (English Version)</span>
-                    <span class="lang-ru">Скачать резюме (Английская версия)</span>
-                </a>
-                <a href="cv_ru.pdf" download="Hany_Reda_CV_Russian.pdf" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-95 text-white font-black px-7 py-3.5 rounded-xl transition shadow-lg text-center flex items-center justify-center gap-2 text-xs md:text-sm tracking-wide">
-                    <i class="fa-solid fa-file-pdf text-base"></i>
-                    <span class="lang-ar">تحميل السيرة الذاتية (الروسية)</span>
-                    <span class="lang-en">Download CV (Russian Version)</span>
-                    <span class="lang-ru">Скачать резюме (Русская версия)</span>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full">
-                <a href="https://wa.me/79969382354" target="_blank" class="bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/20 font-black py-3 rounded-xl transition text-center flex items-center justify-center gap-2 text-xs font-mono">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> WHATSAPP
-                </a>
-                <a href="https://t.me/+79969382354" target="_blank" class="bg-sky-600/10 hover:bg-sky-600/20 text-sky-400 border border-sky-500/20 font-black py-3 rounded-xl transition text-center flex items-center justify-center gap-2 text-xs font-mono">
-                    <i class="fa-brands fa-telegram text-sm"></i> TELEGRAM
-                </a>
-                <a href="mailto:Developeractionobject@gmail.com" class="bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/20 font-black py-3 rounded-xl transition text-center flex items-center justify-center gap-2 text-xs font-mono">
-                    <i class="fa-solid fa-envelope text-sm"></i> GMAIL
-                </a>
+        <!-- Soft Skills -->
+        <div class="card fade-up delay-1" style="padding:1.5rem;border-left:3px solid var(--purple);">
+            <h3 style="font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
+                <i class="fa-solid fa-user-tie" style="color:var(--purple);"></i>
+                <span class="lang-ar">المهارات الشخصية</span>
+                <span class="lang-en">Soft Skills</span>
+                <span class="lang-ru">Мягкие навыки</span>
+            </h3>
+            <div class="soft-grid" style="grid-template-columns:1fr;">
+                <div class="soft-card">
+                    <div class="soft-icon" style="color:var(--purple);"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <div>
+                        <div class="soft-title"><span class="lang-ar">مفاوضات B2B</span><span class="lang-en">B2B Negotiations</span><span class="lang-ru">B2B Переговоры</span></div>
+                        <div class="soft-desc"><span class="lang-ar">قيادة المفاوضات التجارية مع الشركات العالمية</span><span class="lang-en">Leading commercial negotiations with global companies</span><span class="lang-ru">Ведение переговоров с международными компаниями</span></div>
+                    </div>
+                </div>
+                <div class="soft-card">
+                    <div class="soft-icon" style="color:var(--cyan);"><i class="fa-solid fa-users"></i></div>
+                    <div>
+                        <div class="soft-title"><span class="lang-ar">روح الفريق</span><span class="lang-en">Team Player</span><span class="lang-ru">Командный игрок</span></div>
+                        <div class="soft-desc"><span class="lang-ar">تعاون عالٍ وتواصل فعّال في الفرق متعددة الجنسيات</span><span class="lang-en">High collaboration in multinational teams</span><span class="lang-ru">Высокая командная работа в многонациональных коллективах</span></div>
+                    </div>
+                </div>
+                <div class="soft-card">
+                    <div class="soft-icon" style="color:var(--amber);"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div>
+                        <div class="soft-title"><span class="lang-ar">العمل تحت الضغط</span><span class="lang-en">Works Under Pressure</span><span class="lang-ru">Работа под давлением</span></div>
+                        <div class="soft-desc"><span class="lang-ar">اتخاذ قرارات برمجية سليمة ضمن جداول تسليم صارمة</span><span class="lang-en">Precise engineering decisions under strict deadlines</span><span class="lang-ru">Точные решения в условиях строгих дедлайнов</span></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <section class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-6xl mx-auto">
-            
-            <div class="lg:col-span-5 premium-card p-6 rounded-2xl border-l-4 border-l-cyan-400 flex flex-col justify-between">
+<div class="divider"></div>
+
+<!-- ═══════════════════════════ VIDEOS ═══════════════════════════ -->
+<div class="section" id="videos">
+    <div class="section-header fade-up">
+        <h2 class="section-title">
+            <span class="lang-ar">// معرض الفيديو والإنتاج المرئي</span>
+            <span class="lang-en">// Video Productions</span>
+            <span class="lang-ru">// Видеопрезентации</span>
+        </h2>
+        <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--purple));"></div>
+    </div>
+
+    <div class="video-grid">
+        <div class="card fade-up" style="padding:1rem;">
+            <div class="video-wrap">
+                <video controls preload="metadata" poster="poster1.jpg">
+                    <source src="video1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="margin-top:12px;font-size:12px;font-weight:700;color:#a78bfa;display:flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-gamepad" style="color:var(--cyan);"></i>
+                <span class="lang-ar">فيديو إعلاني للعبة 2022</span>
+                <span class="lang-en">Commercial trailer — Game 2022</span>
+                <span class="lang-ru">Рекламный трейлер игры 2022</span>
+            </div>
+        </div>
+
+        <div class="card fade-up delay-1" style="padding:1rem;">
+            <div class="video-wrap">
+                <video controls preload="metadata" poster="poster2.jpg">
+                    <source src="video2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="margin-top:12px;font-size:12px;font-weight:700;color:#67e8f9;display:flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-clapperboard" style="color:var(--purple);"></i>
+                <span class="lang-ar">فيديو دعائي للعبة 2023</span>
+                <span class="lang-en">Cinematic promo — Game 2023</span>
+                <span class="lang-ru">Промо-видео игры 2023</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════ SKILLS ═══════════════════════════ -->
+<div class="section" id="skills">
+    <div class="section-header fade-up">
+        <h2 class="section-title">
+            <span class="lang-ar">// مصفوفة القدرات التقنية</span>
+            <span class="lang-en">// Technical Skills Matrix</span>
+            <span class="lang-ru">// Технические навыки</span>
+        </h2>
+        <div class="section-line" style="background:linear-gradient(90deg,var(--purple),#ec4899);"></div>
+    </div>
+
+    <div class="skills-grid">
+        <div class="card skill-card fade-up">
+            <div class="skill-title" style="color:var(--cyan);"><i class="fa-solid fa-code"></i> PROGRAMMING</div>
+            <ul class="skill-list">
+                <li>C++ Core Language</li>
+                <li>Python (Automation & AI)</li>
+                <li>Dart (Flutter Stack)</li>
+                <li>Kotlin (Android Native)</li>
+                <li>Java Engine Support</li>
+                <li>SQL Databases Logic</li>
+            </ul>
+        </div>
+
+        <div class="card skill-card fade-up delay-1">
+            <div class="skill-title" style="color:var(--purple);"><i class="fa-solid fa-ghost"></i> GAME DEVELOPMENT</div>
+            <ul class="skill-list">
+                <li>Unreal Engine (6+ Years)</li>
+                <li>Unity Engine Framework</li>
+                <li>Blueprints Architecture</li>
+                <li>Gameplay Programming</li>
+                <li>Multiplayer Networks</li>
+                <li>Steam & Google Play</li>
+                <li>Complex UI/UX Game Design</li>
+            </ul>
+        </div>
+
+        <div class="card skill-card fade-up delay-2">
+            <div class="skill-title" style="color:var(--fuchsia);"><i class="fa-solid fa-layer-group"></i> INFRASTRUCTURE</div>
+            <ul class="skill-list">
+                <li>Flutter Cross-Platform</li>
+                <li>Android Studio</li>
+                <li>Firebase Integration</li>
+                <li>FastAPI & REST API</li>
+                <li>PostgreSQL Database</li>
+                <li>Docker & Linux</li>
+                <li>Git Version Control</li>
+            </ul>
+        </div>
+
+        <div class="card skill-card fade-up delay-3">
+            <div class="skill-title" style="color:var(--amber);"><i class="fa-solid fa-wand-magic-sparkles"></i> CREATIVE & AI</div>
+            <ul class="skill-list">
+                <li>AI Tools: ChatGPT, Claude</li>
+                <li>Advanced Prompt Engineering</li>
+                <li>Blender 3D Creation</li>
+                <li>Architectural Visualization</li>
+                <li>Premiere Pro & After Effects</li>
+                <li>CapCut / Filmora</li>
+                <li>Excel Pro & CRM</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════ EXPERIENCE ═══════════════════════════ -->
+<div class="section" id="experience">
+    <div class="section-header fade-up">
+        <h2 class="section-title">
+            <span class="lang-ar">// السجل المهني</span>
+            <span class="lang-en">// Professional Experience</span>
+            <span class="lang-ru">// Профессиональный опыт</span>
+        </h2>
+        <div class="section-line" style="background:linear-gradient(90deg,#ec4899,var(--cyan));"></div>
+    </div>
+
+    <div class="timeline">
+
+        <!-- Game Dev -->
+        <div class="card exp-card fade-up" style="border-left-color:var(--cyan);">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول</span>
+                    <span class="lang-en">Senior Software Engineer & Game Developer</span>
+                    <span class="lang-ru">Старший инженер ПО и разработчик игр</span>
+                </div>
+                <span class="exp-badge" style="background:rgba(6,182,212,0.1);color:var(--cyan);">Freelance | 2019 — Present</span>
+            </div>
+            <ul class="exp-list">
+                <li><span class="lang-ar">تطوير آليات الألعاب والـ Gameplay على Unreal Engine و Unity.</span><span class="lang-en">Engineered gameplay mechanics and code structures on Unreal Engine and Unity.</span><span class="lang-ru">Разработка игровых механик на Unreal Engine и Unity.</span></li>
+                <li><span class="lang-ar">برمجة الميزات متعددة اللاعبين وإدارة الاتصال الشبكي والـ Replication.</span><span class="lang-en">Designed multiplayer frameworks with real-time synchronization and replication.</span><span class="lang-ru">Проектирование мультиплеерных систем с репликацией данных.</span></li>
+                <li><span class="lang-ar">بناء واجهات مستخدم متكاملة ودمج المجسمات والرسوم الحركية.</span><span class="lang-en">Integrated UI/UX structures alongside 3D assets and animation states.</span><span class="lang-ru">Создание UI/UX систем и интеграция 3D-моделей и анимации.</span></li>
+                <li><span class="lang-ar">دمج خدمات Google Play، الشراء الداخلي، وإدارة الكود بـ Git.</span><span class="lang-en">Integrated Google Play Services, In-App Purchases, and maintained Git version control.</span><span class="lang-ru">Интеграция Google Play Services и управление кодом через Git.</span></li>
+                <li><span class="lang-ar">نشر وإطلاق حتى 4 ألعاب متكاملة وحصد آلاف التحميلات.</span><span class="lang-en">Successfully published up to 4 complete commercial game titles on global stores.</span><span class="lang-ru">Успешный выпуск до 4 игровых проектов на официальных площадках.</span></li>
+            </ul>
+        </div>
+
+        <!-- Mobile -->
+        <div class="card exp-card fade-up delay-1" style="border-left-color:var(--purple);">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <span class="lang-ar">مطور تطبيقات الهواتف الذكية</span>
+                    <span class="lang-en">Mobile Applications Engineer</span>
+                    <span class="lang-ru">Инженер мобильной разработки</span>
+                </div>
+                <span class="exp-badge" style="background:rgba(139,92,246,0.1);color:var(--purple);">Freelance | 2021 — Present</span>
+            </div>
+            <ul class="exp-list">
+                <li><span class="lang-ar">بناء تطبيقات الهواتف المتقدمة عبر Flutter.</span><span class="lang-en">Constructed scalable cross-platform applications using Flutter.</span><span class="lang-ru">Разработка кроссплатформенных приложений на Flutter.</span></li>
+                <li><span class="lang-ar">برمجة تطبيقات أندرويد أصلية بـ Kotlin في Android Studio.</span><span class="lang-en">Programmed native Android solutions using Kotlin in Android Studio.</span><span class="lang-ru">Программирование нативных Android-приложений на Kotlin.</span></li>
+                <li><span class="lang-ar">دمج Firebase وربط REST APIs وإدارة قواعد البيانات وتسجيل الدخول.</span><span class="lang-en">Integrated Firebase, REST APIs, database models, and authentication workflows.</span><span class="lang-ru">Интеграция Firebase, REST API и систем аутентификации.</span></li>
+                <li><span class="lang-ar">إدارة النشر على Google Play وإطلاق التحديثات الدورية.</span><span class="lang-en">Managed full release pipelines on Google Play with incremental version updates.</span><span class="lang-ru">Управление публикациями в Google Play с регулярными обновлениями.</span></li>
+            </ul>
+        </div>
+
+        <!-- Marketing -->
+        <div class="card exp-card fade-up delay-2" style="border-left-color:var(--amber);background:linear-gradient(to left,rgba(245,158,11,0.03),transparent);">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <i class="fa-solid fa-star" style="color:var(--amber);font-size:12px;"></i>
+                    <span class="lang-ar">مدير الميديا والتسويق الرقمي وإدارة متاجر الإنستغرام</span>
+                    <span class="lang-en">Media & Digital Marketing Manager (Instagram & E-Commerce)</span>
+                    <span class="lang-ru">Директор по медиа и цифровому маркетингу</span>
+                </div>
+                <span class="exp-badge" style="background:rgba(245,158,11,0.1);color:var(--amber);">2020 — Present</span>
+            </div>
+            <ul class="exp-list">
+                <li class="highlight">
+                    <span class="lang-ar">قيادة وإدارة قطاع الميديا بالكامل لأكبر جمعية خيرية على مستوى الشرق الأوسط وحصد نسب تفاعل مليونية.</span>
+                    <span class="lang-en">Headed full-scale media operations for the largest charitable network in the Middle East — millions of interactions.</span>
+                    <span class="lang-ru">Руководство медиа-сектором крупнейшей благотворительной организации Ближнего Востока с миллионными охватами.</span>
+                </li>
+                <li><span class="lang-ar">إدارة الحسابات الكبرى ومتاجر الإنستغرام التجارية الإلكترونية.</span><span class="lang-en">Directed corporate Instagram accounts, digital stores, and e-commerce brands.</span><span class="lang-ru">Управление корпоративными Instagram-аккаунтами и онлайн-магазинами.</span></li>
+                <li><span class="lang-ar">تصميم المواد الإعلانية الإبداعية مع قياس دقيق لمعدلات ROI.</span><span class="lang-en">Engineered marketing visuals and audited conversion data with high ROI results.</span><span class="lang-ru">Разработка рекламных кампаний и анализ ROI.</span></li>
+            </ul>
+        </div>
+
+        <!-- 3D -->
+        <div class="card exp-card fade-up delay-3" style="border-left-color:var(--fuchsia);">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <span class="lang-ar">أخصائي تصميم وتجسيم ثلاثي الأبعاد 3D</span>
+                    <span class="lang-en">3D Creative Designer & Visualization Engineer</span>
+                    <span class="lang-ru">Специалист по 3D-моделированию и визуализации</span>
+                </div>
+                <span class="exp-badge" style="background:rgba(217,70,239,0.1);color:var(--fuchsia);">Freelance | 2020 — Present</span>
+            </div>
+            <ul class="exp-list">
+                <li><span class="lang-ar">بناء النماذج ثلاثية الأبعاد المعقدة بدقة متناهية عبر Blender.</span><span class="lang-en">Sculpted game-ready 3D objects and structural layouts inside Blender.</span><span class="lang-ru">Создание детализированных 3D-моделей в Blender.</span></li>
+                <li><span class="lang-ar">تطوير أصول الألعاب الرقمية المجهزة للتحريك والإضاءة.</span><span class="lang-en">Optimized mesh systems with UV wrapping and custom textures for real-time rendering.</span><span class="lang-ru">Разработка игровых ассетов, готовых для анимации и запекания света.</span></li>
+                <li><span class="lang-ar">تصميم المحاكاة المعمارية عالية الجودة وإنتاج المقاطع السينمائية.</span><span class="lang-en">Produced photorealistic architectural visualizations and cinematic trailers in Unreal Engine.</span><span class="lang-ru">Производство фотореалистичной архитектурной визуализации и кинематографичных трейлеров.</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+<div class="section" id="projects">
+    <div class="section-header fade-up">
+        <h2 class="section-title">
+            <span class="lang-ar">// سجل المشاريع الاستراتيجية</span>
+            <span class="lang-en">// Projects Archive</span>
+            <span class="lang-ru">// Реестр проектов</span>
+        </h2>
+        <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--purple));"></div>
+    </div>
+
+    <!-- Game Projects -->
+    <div style="margin-bottom:2rem;">
+        <h3 class="fade-up" style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <i class="fa-solid fa-gamepad"></i> [01]
+            <span class="lang-ar">ألعاب الفيديو</span><span class="lang-en">GAME PRODUCTION</span><span class="lang-ru">ИГРОВАЯ РАЗРАБОТКА</span>
+        </h3>
+        <div class="projects-grid">
+            <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
                 <div>
-                    <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-language text-xl text-cyan-400"></i>
-                        <span class="lang-ar">إتقان اللغات والتحدث العالمي</span>
-                        <span class="lang-en">Languages & Global Communication</span>
-                        <span class="lang-ru">Владение языками и коммуникация</span>
-                    </h3>
-                    <p class="text-xs text-slate-400 mb-6 leading-relaxed">
-                        <span class="lang-ar">تحدث بطلاقة تامة مكنتني من العمل المباشر وقيادة المفاوضات التقنية والتجارية مع مختلف الجنسيات والأسواق العالمية.</span>
-                        <span class="lang-en">Flawless multilingual command allowing direct execution of corporate and engineering negotiations globally.</span>
-                        <span class="lang-ru">Свободное владение языками позволяет мне вести сложные технические и коммерческие переговоры на международном уровне.</span>
+                    <div class="project-title" style="color:#67e8f9;"><i class="fa-solid fa-cart-shopping"></i>
+                        <span class="lang-ar">محاكي السوبر ماركت (3D)</span>
+                        <span class="lang-en">Supermarket Simulator (3D)</span>
+                        <span class="lang-ru">Симулятор Супермаркета (3D)</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة محاكاة ثلاثية أبعاد مدعومة بذكاء اصطناعي عميق تتغير فيها تصرفات المشترين والبيئة ديناميكياً مع كل قرار للاعب.</span>
+                        <span class="lang-en">Fully immersive 3D simulation powered by a Deep AI framework where buyer interactions adapt dynamically based on player choices.</span>
+                        <span class="lang-ru">3D-симулятор с продвинутым Deep AI, где поведение покупателей меняется на основе каждого решения игрока.</span>
                     </p>
                 </div>
-                
-                <div class="space-y-4">
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex justify-between items-center shadow-inner">
-                        <div class="flex items-center gap-3">
-                            <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]"></span>
-                            <span class="text-base font-black tracking-wide text-white">العربية / ARABIC</span>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-md">
-                            <span class="lang-ar">اللغة الأم</span><span class="lang-en">Native</span><span class="lang-ru">Родной язык</span>
-                        </span>
-                    </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex justify-between items-center shadow-inner">
-                        <div class="flex items-center gap-3">
-                            <span class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4]"></span>
-                            <span class="text-base font-black tracking-wide text-white">ENGLISH</span>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-400/10 px-2.5 py-1 rounded-md">
-                            <span class="lang-ar">طلاقة تامة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободное владение</span>
-                        </span>
-                    </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex justify-between items-center shadow-inner">
-                        <div class="flex items-center gap-3">
-                            <span class="w-3 h-3 rounded-full bg-fuchsia-400 shadow-[0_0_10px_#d946ef]"></span>
-                            <span class="text-base font-black tracking-wide text-white">РУССКИЙ / RUSSIAN</span>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-fuchsia-400 bg-fuchsia-400/10 px-2.5 py-1 rounded-md">
-                            <span class="lang-ar">طلاقة تامة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободное владение</span>
-                        </span>
-                    </div>
-                </div>
+                <span class="project-tag" style="color:var(--cyan);">UNREAL ENGINE / MOBILE & PC</span>
             </div>
 
-            <div class="lg:col-span-7 premium-card p-6 rounded-2xl border-l-4 border-l-purple-500">
-                <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-user-tie text-xl text-purple-400"></i>
-                    <span class="lang-ar">المهارات الشخصية والصفات الجوهرية (محببة للـ HR)</span>
-                    <span class="lang-en">Core Personal Traits & Soft Skills (HR Target)</span>
-                    <span class="lang-ru">Личные качества и мягкие навыки (Для HR)</span>
-                </h3>
-                <p class="text-xs text-slate-400 mb-5 leading-relaxed">
-                    <span class="lang-ar">أبرز السمات السلوكية والقيادية التي ألتزم بها لضمان استقرار المشاريع وبيئات العمل وتحقيق أعلى معدلات إنتاجية وجودة:</span>
-                    <span class="lang-en">Key behavioral and leadership principles tailored to secure team stabilization, fluid production, and corporate alignment:</span>
-                    <span class="lang-ru">Ключевые поведенческие и лидерские качества, гарантирующие стабильность проектов, продуктивность и командное взаимодействие:</span>
-                </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
-                    <div class="bg-purple-950/20 border border-purple-500/30 p-3.5 rounded-xl flex items-start gap-3">
-                        <i class="fa-solid fa-handshake-angle text-base text-purple-400 mt-0.5"></i>
-                        <div>
-                            <h4 class="font-bold text-white mb-0.5 text-sm">
-                                <span class="lang-ar">مفاوضات قطاع الأعمال (B2B)</span>
-                                <span class="lang-en">B2B Negotiations</span>
-                                <span class="lang-ru">B2B Переговоры</span>
-                            </h4>
-                            <p class="text-slate-400 text-[11px]">
-                                <span class="lang-ar">القدرة الفائقة على قيادة المفاوضات التجارية وإدارة العقود مع الشركات والمستثمرين العالميين بكفاءة.</span>
-                                <span class="lang-en">Excellent ability to lead commercial negotiations and manage contracts with global companies and investors.</span>
-                                <span class="lang-ru">Высокая способность вести коммерческие переговоры и управлять контрактами с международными компаниями и инвесторами.</span>
-                            </p>
-                        </div>
+            <div class="card project-card fade-up delay-1" style="border-top-color:#ef4444;">
+                <div>
+                    <div class="project-title" style="color:#f87171;"><i class="fa-solid fa-virus"></i>
+                        <span class="lang-ar">محاكاة الفيروس (3D - AAA)</span>
+                        <span class="lang-en">Virus Simulator (3D - AAA)</span>
+                        <span class="lang-ru">Симулятор Вируса (3D - AAA)</span>
                     </div>
-                    <div class="bg-slate-900/60 border border-slate-800 p-3.5 rounded-xl flex items-start gap-3">
-                        <i class="fa-solid fa-brain text-base text-cyan-400 mt-0.5"></i>
-                        <div>
-                            <h4 class="font-bold text-white mb-0.5 text-sm">
-                                <span class="lang-ar">التروي والصبر العالي</span>
-                                <span class="lang-en">High Resilience & Patience</span>
-                                <span class="lang-ru">Терпение и высокая стойкость</span>
-                            </h4>
-                            <p class="text-slate-400 text-[11px]">
-                                <span class="lang-ar">القدرة على مواجهة المشكلات البرمجية والتقنية المعقدة بصبر طويل وجلد حتى الوصول للحل الجذري والأمثل.</span>
-                                <span class="lang-en">The ability to confront complex architectural and software challenges with deep patience until securing an optimal solution.</span>
-                                <span class="lang-ru">Способность решать сложные архитектурные и программные задачи с глубоким терпением до достижения идеального результата.</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900/60 border border-slate-800 p-3.5 rounded-xl flex items-start gap-3">
-                        <i class="fa-solid fa-users text-base text-fuchsia-400 mt-0.5"></i>
-                        <div>
-                            <h4 class="font-bold text-white mb-0.5 text-sm">
-                                <span class="lang-ar">أجيد العمل بروح الفريق</span>
-                                <span class="lang-en">Excellent Team Player</span>
-                                <span class="lang-ru">Командный игрок</span>
-                            </h4>
-                            <p class="text-slate-400 text-[11px]">
-                                <span class="lang-ar">متعاون جداً، وأمتلك مهارات اتصال ممتازة تضمن الاندماج والإنتاجية العالية ضمن فرق العمل المتعددة الجنسيات والمجالات.</span>
-                                <span class="lang-en">Highly collaborative with excellent communication skills, ensuring smooth integration within multi-national teams.</span>
-                                <span class="lang-ru">Отличные навыки коммуникации, гарантирующие гладкую интеграцию и высокую продуктивность в международных командах.</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900/60 border border-slate-800 p-3.5 rounded-xl flex items-start gap-3">
-                        <i class="fa-solid fa-gauge-high text-base text-amber-400 mt-0.5"></i>
-                        <div>
-                            <h4 class="font-bold text-white mb-0.5 text-sm">
-                                <span class="lang-ar">العمل تحت الضغط والالتزام بالوقت</span>
-                                <span class="lang-en">Thriving Under Pressure</span>
-                                <span class="lang-ru">Работа под давлением и дедлайны</span>
-                            </h4>
-                            <p class="text-slate-400 text-[11px]">
-                                <span class="lang-ar">الحفاظ على التركيز التام واتخاذ القرارات البرمجية السليمة تحت جداول التسليم الصارمة والـ Deadlines الحرجة.</span>
-                                <span class="lang-en">Maintaining focus and rendering precise engineering judgments under strict timelines and critical product deadlines.</span>
-                                <span class="lang-ru">Сохранение фокуса и принятие точных инженерных решений в условиях строгих временных рамок и критических дедлайнов.</span>
-                            </p>
-                        </div>
-                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة ضخمة بجرافيك سينمائي AAA. تلعب دور فيروس يسعى لاختراق جسم الإنسان، بناء جيش فيروسات، والحذر من خلايا الدم البيضاء.</span>
+                        <span class="lang-en">AAA-quality project where you control a pathogen, infiltrate human physiology, synthesize cell armies, and evade white blood cell swarms.</span>
+                        <span class="lang-ru">AAA-проект: управляй вирусом, проникай в организм, строй армию микробов и борись с лейкоцитами.</span>
+                    </p>
                 </div>
-
-                <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-mono text-slate-400 bg-slate-950 p-2.5 rounded-xl border border-slate-900">
-                    <span>• Leadership</span> <span>• High Resilience</span> <span>• Rapid Autonomous Learning</span> <span>• Critical Thinking</span> <span>• Strict Deadline Execution</span> <span>• Result-Oriented Architecture</span>
-                </div>
+                <span class="project-tag" style="color:#f87171;">HIGH-END CINEMATIC / IN-DEVELOPMENT</span>
             </div>
 
-        </div>
-    </section>
-
-    <section id="videos" class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10 scroll-mt-20">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-4xl font-black font-cyber text-white uppercase tracking-wider">
-                <span class="lang-ar">// معرض عروض الفيديو والإنتاج المرئي الإعلاني</span>
-                <span class="lang-en">// VIDEO PRODUCTIONS & CINEMATICS</span>
-                <span class="lang-ru">// ВИДЕОПРЕЗЕНТАЦИИ И КИНЕМАТОГРАФИКА</span>
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-fuchsia-500 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div class="premium-card p-4 rounded-2xl bg-slate-950/50">
-                <div class="relative rounded-xl overflow-hidden bg-black aspect-video border border-slate-800">
-                    <video class="w-full h-full object-cover" controls preload="metadata" poster="poster1.jpg">
-                        <source src="video1.mp4" type="video/mp4">
-                    </video>
+            <div class="card project-card fade-up delay-2" style="border-top-color:var(--purple);">
+                <div>
+                    <div class="project-title" style="color:#c4b5fd;"><i class="fa-solid fa-shield-halved"></i>
+                        <span class="lang-ar">استراتيجية دفاع القواعد (STR)</span>
+                        <span class="lang-en">Base Defense Strategy (STR)</span>
+                        <span class="lang-ru">Стратегия Защиты Баз (STR)</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة استراتيجية تكتيكية للهواتف بعالمين: خريطة معارك فضائية وخريطة معارك في العصور الوسطى.</span>
+                        <span class="lang-en">Mobile tactical strategy with dual thematic modes: sci-fi space battlefields and historical medieval fortress sieges.</span>
+                        <span class="lang-ru">Мобильная тактическая стратегия с двумя режимами: футуристический космос и историческое Средневековье.</span>
+                    </p>
                 </div>
-                <div class="mt-4 font-bold text-xs text-purple-300 flex items-center gap-2 leading-relaxed">
-                    <i class="fa-solid fa-gamepad text-base text-cyan-400"></i>
-                    <span class="lang-ar">فيديو إعلاني للعبة قمت بتطويرها بصنعي بالكامل 2022 (فيديو إعلاني للعلبة)</span>
-                    <span class="lang-en">Commercial trailer for a game fully developed by me in 2022</span>
-                    <span class="lang-ru">Рекламное видео игры, полностью разработанной мной в 2022 году</span>
-                </div>
+                <span class="project-tag" style="color:var(--purple);">CROSS-PLATFORM MOBILE STR</span>
             </div>
 
-
-            
-            
-
-            <div class="premium-card p-4 rounded-2xl bg-slate-950/50">
-                <div class="relative rounded-xl overflow-hidden bg-black aspect-video border border-slate-800">
-                    <video class="w-full h-full object-cover" controls preload="metadata" poster="poster2.jpg">
-                        <source src="video2.mp4" type="video/mp4">
-                    </video>
+            <div class="card project-card fade-up" style="border-top-color:var(--amber);">
+                <div>
+                    <div class="project-title" style="color:#fde68a;"><i class="fa-solid fa-mask"></i>
+                        <span class="lang-ar">محاكي سرقة بنك (2.5D Stealth)</span>
+                        <span class="lang-en">Bank Robbery Simulator (2.5D)</span>
+                        <span class="lang-ru">Симулятор Ограбления (2.5D)</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة حركية ثنائية ونصف الأبعاد تعتمد التسلل والاختفاء وتجنب حراس الأمن وتعطيل كاميرات المراقبة.</span>
+                        <span class="lang-en">2.5D side-scroller relying on stealth algorithms, concealment, pattern tracking, and bypassing security lasers.</span>
+                        <span class="lang-ru">Стелс-экшен в 2.5D на механиках скрытности, обходе охраны и отключении лазерной сигнализации.</span>
+                    </p>
                 </div>
-                <div class="mt-4 font-bold text-xs text-cyan-300 flex items-center gap-2 leading-relaxed">
-                    <i class="fa-solid fa-clapperboard text-base text-purple-400"></i>
-                    <span class="lang-ar">فيديو دعائي للعبة قمت بصنعها أيضاً بالكامل 2023 (فيديو دعائي للعبه)</span>
-                    <span class="lang-en">Promotional cinematic video for a game fully made by me in 2023</span>
-                    <span class="lang-ru">Промо-видео игры, также полностью созданной мной в 2023 году</span>
+                <span class="project-tag" style="color:var(--amber);">UNITY FRAMEWORK / STEALTH LOGIC</span>
+            </div>
+
+            <div class="card project-card fade-up delay-1" style="border-top-color:var(--fuchsia);">
+                <div>
+                    <div class="project-title" style="color:#f0abfc;"><i class="fa-solid fa-user-astronaut"></i>
+                        <span class="lang-ar">باتل رويال في الفضاء (Multiplayer)</span>
+                        <span class="lang-en">Space Battle Royale (Multiplayer)</span>
+                        <span class="lang-ru">Космическая Королевская Битва</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة قتال جماعي عبر الإنترنت في بيئات فضائية مفتوحة مع فيزيائيات انعدام الجاذبية ومزامنة الخوادم.</span>
+                        <span class="lang-en">Online survival in zero-gravity space maps with net-authoritative server synchronization and orbital combat mechanics.</span>
+                        <span class="lang-ru">Сетевой экшен на выживание в космосе с физикой нулевой гравитации и оптимизированной репликацией.</span>
+                    </p>
                 </div>
+                <span class="project-tag" style="color:var(--fuchsia);">MULTIPLAYER INFRASTRUCTURE / STEAM</span>
+            </div>
+
+            <div class="card project-card fade-up delay-2" style="border-top-color:#34d399;">
+                <div>
+                    <div class="project-title" style="color:#6ee7b7;"><i class="fa-solid fa-car-burst"></i>
+                        <span class="lang-ar">لعبة سباق سيارات خفيفة</span>
+                        <span class="lang-en">Lightweight Car Racing</span>
+                        <span class="lang-ru">Аркадные Автогонки</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">لعبة سباقات محسّنة لتعمل بسلاسة فائقة على جميع فئات الهواتف الضعيفة والقوية بمعدل فريمات عالٍ وثابت.</span>
+                        <span class="lang-en">Arcade racing heavily optimized for maximum FPS on all device tiers, including low-end mobile hardware.</span>
+                        <span class="lang-ru">Аркадные гонки с глубокой оптимизацией для стабильного FPS на любых смартфонах.</span>
+                    </p>
+                </div>
+                <span class="project-tag" style="color:#34d399;">HYPER-OPTIMIZED MOBILE</span>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="skills" class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10 scroll-mt-20">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-4xl font-black font-cyber text-white">
-                <span class="lang-ar">// مصفوفة القدرات التقنية الكاملة</span>
-                <span class="lang-en">// COMPREHENSIVE SKILLS MATRIX</span>
-                <span class="lang-ru">// ПОЛНЫЙ НАБОР ТЕХНИЧЕСКИХ НАВЫКОВ</span>
-            </h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto text-xs font-mono">
-            <div class="premium-card p-5 rounded-xl">
-                <h3 class="font-cyber text-sm font-bold text-cyan-400 mb-3 border-b border-slate-800/80 pb-2"><i class="fa-solid fa-code mr-1"></i> PROGRAMMING</h3>
-                <ul class="space-y-2 text-slate-300">
-                    <li>• C++ Core Language</li>
-                    <li>• Python (Automation & AI)</li>
-                    <li>• Dart (Flutter Stack)</li>
-                    <li>• Kotlin (Android Native)</li>
-                    <li>• Java Engine Support</li>
-                    <li>• SQL Databases Logic</li>
-                </ul>
-            </div>
-
-            <div class="premium-card p-5 rounded-xl">
-                <h3 class="font-cyber text-sm font-bold text-purple-400 mb-3 border-b border-slate-800/80 pb-2"><i class="fa-solid fa-ghost mr-1"></i> GAME DEVELOPMENT</h3>
-                <ul class="space-y-1 text-slate-300 text-[11px]">
-                    <li>• Unreal Engine (6+ Years)</li>
-                    <li>• Unity Engine Framework</li>
-                    <li>• Blueprints Architecture</li>
-                    <li>• Gameplay Programming Layers</li>
-                    <li>• Multiplayer Networks</li>
-                    <li>• Game Chat Systems</li>
-                    <li>• Steam & Google Play</li>
-                    <li>• Complex UI/UX Game Design</li>
-                </ul>
-            </div>
-
-            <div class="premium-card p-5 rounded-xl">
-                <h3 class="font-cyber text-sm font-bold text-fuchsia-400 mb-3 border-b border-slate-800/80 pb-2"><i class="fa-solid fa-layer-group mr-1"></i> INFRASTRUCTURE</h3>
-                <ul class="space-y-2 text-slate-300">
-                    <li>• Flutter Cross-Platform</li>
-                    <li>• Android Studio Development</li>
-                    <li>• Firebase Integration Systems</li>
-                    <li>• FastAPI & REST API Design</li>
-                    <li>• PostgreSQL Database Models</li>
-                    <li>• Docker Containers & Linux</li>
-                    <li>• Git Version Control Matrix</li>
-                </ul>
-            </div>
-
-            <div class="premium-card p-5 rounded-xl">
-                <h3 class="font-cyber text-sm font-bold text-amber-400 mb-3 border-b border-slate-800/80 pb-2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> CREATIVE & AI MATRIX</h3>
-                <ul class="space-y-1 text-slate-300 text-[11px]">
-                    <li>• AI Tools: ChatGPT, Claude</li>
-                    <li>• Advanced Prompt Engineering</li>
-                    <li>• Workflow Automation Layouts</li>
-                    <li>• Blender 3D Asset Creation</li>
-                    <li>• High-End Architectural Vis</li>
-                    <li>• Premiere Pro & After Effects</li>
-                    <li>• CapCut / Filmora Motion</li>
-                    <li>• Microsoft Excel Pro & CRM</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10 scroll-mt-20">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-4xl font-black font-cyber text-white">
-                <span class="lang-ar">// السجل المهني والخبرات المعتمدة</span>
-                <span class="lang-en">// CHRONICLES OF PROFESSIONAL EXPERIENCE</span>
-                <span class="lang-ru">// ПРОФЕССИОНАЛЬНЫЙ ОПЫТ РАБОТЫ</span>
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-pink-500 to-cyan-500 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <div class="space-y-6 max-w-4xl mx-auto text-xs md:text-sm">
-            <div class="premium-card p-6 rounded-2xl border-r-4 border-r-cyan-400">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
-                    <h3 class="text-base md:text-lg font-black text-white">
-                        <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول</span>
-                        <span class="lang-en">Senior Software Engineer & Game Developer</span>
-                        <span class="lang-ru">Старший инженер программного обеспечения и разработчик игр</span>
-                    </h3>
-                    <span class="font-mono text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full text-[11px] font-bold self-start sm:self-auto">Freelance | 2019 — Present</span>
-                </div>
-                <ul class="space-y-1.5 text-slate-300 leading-relaxed list-disc list-inside">
-                    <span class="lang-ar">
-                        <li>تطوير آليات ونظم الألعاب وبناء منطق اللعب (Gameplay) الكامل على محركات Unreal Engine و Unity.</li>
-                        <li>برمجة الميزات متعددة اللاعبين (Multiplayer) وإدارة عمليات الاتصال الشبكي والـ Replication.</li>
-                        <li>بناء واجهات مستخدم متكاملة (UI Systems) ودمج الأصول الرقمية، المجسمات الـ 3D والرسوم الحركية.</li>
-                        <li>تطوير غرف الدردشة داخل الألعاب ونظم الاتصال التفاعلية المباشرة بين اللاعبين عبر خوادم مخصصة.</li>
-                        <li>دمج خدمات Google Play Services، أنظمة الشراء الرقمي الداخلي، واستخدام الـ Git لإدارة وتنظيم الأكواد.</li>
-                        <li>اختبار الألعاب، إصلاح الأخطاء، وتحسين مستوى الأداء العام والسرعة البرمجية للمشاريع المنشورة.</li>
-                        <li>تحقيق إنجاز نشر وإطلاق حتى 4 مشاريع ألعاب متكاملة وحصد آلاف التحميلات في المتاجر الرسمية.</li>
-                    </span>
-                    <span class="lang-en">
-                        <li>Engineered fluid gameplay mechanics, dynamic state machines, and reliable code structures on Unreal Engine and Unity frameworks.</li>
-                        <li>Designed ultra-low-latency multiplayer frameworks, real-time client-server synchronization, and packet replication strategies.</li>
-                        <li>Integrated beautiful multi-tiered UI/UX structures alongside robust 3D assets and rigged animation states.</li>
-                        <li>Programmed real-time text and voice game chat logic backed by secure specialized network servers.</li>
-                        <li>Integrated Google Play Services, In-App Purchases, and maintained codebase version control using Git.</li>
-                        <li>Conducted systematic testing, profiling, and hyper-optimization for shipped production titles.</li>
-                        <li>Successfully published up to 4 complete commercial game titles on global official stores.</li>
-                    </span>
-                    <span class="lang-ru">
-                        <li>Разработка игровых механик, логики игрового процесса и архитектуры на Unreal Engine и Unity.</li>
-                        <li>Проектирование стабильного сетевого кода для мультиплеера, репликации данных и сетевой синхронизации.</li>
-                        <li>Создание многоуровневых систем пользовательского интерфейса (UI/UX) и интеграция 3D-моделей и анимации.</li>
-                        <li>Программирование игровых чатов (текстовых и голосовых) в реальном времени с выделенными серверами связи.</li>
-                        <li>Интеграция Google Play Services, внутриигровых покупок (In-App Purchases) и управление кодом через Git.</li>
-                        <li>Проведение тестирования, отладки кода, профилирования и оптимизации производительности проектов.</li>
-                        <li>Успешный выпуск и публикация до 4 полноценных игровых проектов на официальных площадках и магазинах.</li>
-                    </span>
-                </ul>
-            </div>
-
-            <div class="premium-card p-6 rounded-2xl border-r-4 border-r-purple-400">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
-                    <h3 class="text-base md:text-lg font-black text-white">
-                        <span class="lang-ar">مطور تطبيقات الهواتف الذكية</span>
-                        <span class="lang-en">Mobile Applications Engineer</span>
-                        <span class="lang-ru">Инженер мобильной разработки</span>
-                    </h3>
-                    <span class="font-mono text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full text-[11px] font-bold self-start sm:self-auto">Freelance | 2021 — Present</span>
-                </div>
-                <ul class="space-y-1.5 text-slate-300 leading-relaxed list-disc list-inside">
-                    <span class="lang-ar">
-                        <li>بناء وتطوير تطبيقات الهواتف الذكية المتقدمة وألعاب الجوال عبر بيئة العمل المتطورة Flutter.</li>
-                        <li>تطوير وبرمجة تطبيقات الأندرويد الأصلية (Native) بالاعتماد المباشر على لغة Kotlin داخل Android Studio.</li>
-                        <li>ربط وتكامل منصة Firebase السحابية، وربط واجهات برمجة التطبيقات الخارجية والمصادر الـ REST APIs.</li>
-                        <li>تصميم وإدارة قواعد البيانات، وبناء نظم تسجيل دخول المستخدمين والمزامنة السحابية الآمنة للمعلومات.</li>
-                        <li>إدارة عمليات النشر الكاملة على متجر التطبيقات الرسمي Google Play وإدارة التحديثات الدورية للبرامج.</li>
-                    </span>
-                    <span class="lang-en">
-                        <li>Constructed scalable, adaptive cross-platform phone applications utilizing Flutter structural components.</li>
-                        <li>Programmed native Android solutions utilizing modern Kotlin implementations directly within Android Studio ecosystems.</li>
-                        <li>Integrated cloud architectures backed by Google Firebase, along with extensive external REST API endpoint bindings.</li>
-                        <li>Engineered structural database models, authentication workflows, and cross-device synchronization locks.</li>
-                        <li>Managed full release pipelines on official application stores (Google Play) alongside incremental version updates.</li>
-                    </span>
-                    <span class="lang-ru">
-                        <li>Разработка высокопроизводительных кроссплатформенных мобильных приложений с использованием Flutter.</li>
-                        <li>Программирование нативных Android-решений на языке Kotlin в среде разработки Android Studio.</li>
-                        <li>Интеграция облачных сервисов Google Firebase и архитектурное связывание внешних REST API интерфейсов.</li>
-                        <li>Проектирование баз данных, систем аутентификации пользователей и безопасной синхронизации данных.</li>
-                        <li>Управление полным циклом публикации приложений в Google Play Console и выпуск регулярных обновлений.</li>
-                    </span>
-                </ul>
-            </div>
-
-            <div class="premium-card p-6 rounded-2xl border-r-4 border-r-amber-500 bg-gradient-to-l from-amber-500/5 to-transparent">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-star text-amber-400 animate-pulse text-sm"></i>
-                        <h3 class="text-base md:text-lg font-black text-white">
-                            <span class="lang-ar">مدير الميديا والتسويق الرقمي وإدارة حسابات ومتاجر الإنستغرام</span>
-                            <span class="lang-en">Media & Digital Marketing Manager (Instagram & E-Commerce Executive)</span>
-                            <span class="lang-ru">Директор по медиа, цифровому маркетингу и управлению магазинами Instagram</span>
-                        </h3>
+    <!-- Enterprise Projects -->
+    <div>
+        <h3 class="fade-up" style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--purple);margin-bottom:1rem;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <i class="fa-solid fa-layer-group"></i> [02]
+            <span class="lang-ar">البرمجيات المؤسسية</span><span class="lang-en">ENTERPRISE SOFTWARE</span><span class="lang-ru">КОРПОРАТИВНЫЙ СТЕК</span>
+        </h3>
+        <div class="projects-grid">
+            <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
+                <div>
+                    <div class="project-title" style="color:#67e8f9;"><i class="fa-solid fa-shield-cat"></i>
+                        <span class="lang-ar">برنامج الشبكة الافتراضية (VPN)</span>
+                        <span class="lang-en">Secure VPN Application</span>
+                        <span class="lang-ru">VPN-приложение</span>
                     </div>
-                    <span class="font-mono text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full text-[11px] font-bold self-start sm:self-auto">2020 — Present</span>
+                    <p class="project-desc">
+                        <span class="lang-ar">برنامج متكامل مشفر لحماية البيانات وتجاوز الحجب الجغرافي مع خوادم دولية متعددة.</span>
+                        <span class="lang-en">Full VPN client with layered encryption, geoblock circumvention, and low-latency global server handshakes.</span>
+                        <span class="lang-ru">Полнофункциональный VPN-клиент с шифрованием и быстрым переключением между серверами.</span>
+                    </p>
                 </div>
-                <ul class="space-y-1.5 text-slate-300 leading-relaxed list-disc list-inside">
-                    <span class="lang-ar">
-                        <li class="text-amber-300 font-bold">قيادة وإدارة قطاع الميديا بالكامل ورسم الخطط التسويقية الاستراتيجية الكبرى لأكبر جمعية خيرية على مستوى الشرق الأوسط وحصد نسب تفاعل مليونية قياسية.</li>
-                        <li>الإشراف الاحترافي على تنمية وإدارة المنشورات والحسابات الرسمية الكبرى وسلاسل المتاجر والشركات التجارية الإلكترونية على منصة إنستغرام ومختلف الشبكات الرقمية.</li>
-                        <li>تصميم وإنتاج المواد الإعلانية والدعائية الإبداعية الجاذبة للجماهير المستهدفة مع قياس دقيق لمعدلات العائد على الاستثمار الحملات الممولة (ROI).</li>
-                        <li>صياغة المحتوى النصي والمرئي الإعلاني الاحترافي، وتحليل سلوك المستخدمين وبناء الوعي الكامل بالعلامة التجارية على مستوى دولي.</li>
-                    </span>
-                    <span class="lang-en">
-                        <li class="text-amber-300 font-bold">Headed full-scale media operations and macro marketing blueprints for the single largest charitable network in the Middle East region.</li>
-                        <li>Directed targeted corporate growth setups for high-conversion Instagram enterprise accounts, digital stores, and e-commerce brands.</li>
-                        <li>Engineered marketing visual elements, copy text setups, and audited conversion tunnel data sets with high ROI results.</li>
-                        <li>Formulated professional visual/copy text configurations and monitored international target audience behaviours.</li>
-                    </span>
-                    <span class="lang-ru">
-                        <li class="text-amber-300 font-bold">Руководил медиа-сектором и долгосрочными стратегиями продвижения крупнейшей благотворительной ассоциации на Ближнем Востоке с миллионными охватами.</li>
-                        <li>Профессиональное управление, развитие и продвижение крупных корпоративных аккаунтов, коммерческих Instagram-магазинов и брендов онлайн-коммерции.</li>
-                        <li>Разработка креативных рекламных кампаний и визуального контента с точным аудитом окупаемости инвестиций (ROI).</li>
-                        <li>Создание продающих текстов, визуального контента, глубокая аналитика поведения пользователей и масштабирование узнаваемости бренда.</li>
-                    </span>
-                </ul>
+                <span class="project-tag" style="color:var(--cyan);">NETWORK SECURITY / CRYPTO FLOW</span>
             </div>
 
-            <div class="premium-card p-6 rounded-2xl border-r-4 border-r-fuchsia-400">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
-                    <h3 class="text-base md:text-lg font-black text-white">
-                        <span class="lang-ar">أخصائي تصميم وتجسيم ثلاثي الأبعاد 3D</span>
-                        <span class="lang-en">3D Creative Designer & Visualization Engineer</span>
-                        <span class="lang-ru">Специалист по 3D-моделированию и визуализации</span>
-                    </h3>
-                    <span class="font-mono text-fuchsia-400 bg-fuchsia-400/10 px-3 py-1 rounded-full text-[11px] font-bold self-start sm:self-auto">Freelance | 2020 — Present</span>
+            <div class="card project-card fade-up delay-1" style="border-top-color:var(--amber);">
+                <div>
+                    <div class="project-title" style="color:#fde68a;"><i class="fa-solid fa-scale-balanced"></i>
+                        <span class="lang-ar">الإدارة المالية للشركات (ERP)</span>
+                        <span class="lang-en">Enterprise Financial Platform (ERP)</span>
+                        <span class="lang-ru">Корпоративный ERP-Финансы</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">نظام مؤسسي ضخم يعالج التدفقات المالية، الحسابات البنكية، مراقبة الميزانيات والتقارير الضريبية والتحليلات المتقدمة.</span>
+                        <span class="lang-en">Enterprise ERP asset with financial analytics, accounting workflows, automated ledger balancing, and deep business metrics.</span>
+                        <span class="lang-ru">Корпоративная ERP-система с финансовой аналитикой, бюджетированием и предиктивными данными.</span>
+                    </p>
                 </div>
-                <ul class="space-y-1.5 text-slate-300 leading-relaxed list-disc list-inside">
-                    <span class="lang-ar">
-                        <li>بناء وتصميم النماذج ثلاثية الأبعاد (3D Models) المعقدة بدقة متناهية عبر برنامج Blender الشهير.</li>
-                        <li>تطوير وإنشاء أصول الألعاب الرقمية (Game Assets) المجهزة للتحريك والإضاءة المناسبة للمحركات.</li>
-                        <li>تصميم المحاكاة والخرائط المعمارية الرقمية الفاخرة عالية الجودة (Architectural Visualizations).</li>
-                        <li>إنتاج وتصنيع المقاطع السينمائية والفيديوهات المتحركة الإبداعية من خلال أدوات السينما في Unreal Engine.</li>
-                    </span>
-                    <span class="lang-en">
-                        <li>Sculpted topological game-ready objects and low/high poly structural layouts inside Blender environments.</li>
-                        <li>Optimized mesh systems with clean UV wrapping and custom textures ready for real-time lighting calculations.</li>
-                        <li>Produced photorealistic high-end architectural visualizations and spatial blueprints.</li>
-                        <li>Rendered striking cinematic assets and dynamic sequence trailers inside advanced Unreal Engine sequencer systems.</li>
-                    </span>
-                    <span class="lang-ru">
-                        <li>Создание детализированных и оптимизированных 3D-моделей (Low/High-Poly) в среде Blender.</li>
-                        <li>Разработка игровых ассетов (Game Assets), подготовленных к текстурированию, анимации и запеканию света.</li>
-                        <li>Проектирование высококачественной фотореалистичной архитектурной 3D-визуализации (Architectural Visualization).</li>
-                        <li>Производство и рендеринг кинематографичных видеороликов и игровых трейлеров с помощью инструментов Unreal Engine.</li>
-                    </span>
-                </ul>
+                <span class="project-tag" style="color:var(--amber);">ERP ARCHITECTURE / ANALYTICS</span>
+            </div>
+
+            <div class="card project-card fade-up delay-2" style="border-top-color:var(--fuchsia);">
+                <div>
+                    <div class="project-title" style="color:#f0abfc;"><i class="fa-solid fa-truck-ramp-box"></i>
+                        <span class="lang-ar">منصة التوصيل والخدمات اللوجستية</span>
+                        <span class="lang-en">Full-Cycle Delivery & Logistics</span>
+                        <span class="lang-ru">Платформа Доставки</span>
+                    </div>
+                    <p class="project-desc">
+                        <span class="lang-ar">منصة لوجستية متكاملة: تطبيق العميل، تطبيق المندوب، لوحة تحكم إدارية مع تتبع حي GPS.</span>
+                        <span class="lang-en">End-to-end logistics ecosystem: Client app, Driver routing tool, and Management Portal with real-time GPS tracking.</span>
+                        <span class="lang-ru">Комплексная логистика: приложение клиента, курьера и административная панель с GPS-трекингом.</span>
+                    </p>
+                </div>
+                <span class="project-tag" style="color:var(--fuchsia);">FLUTTER / FIREBASE / GEOLOCATION</span>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <section id="projects" class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10 scroll-mt-20">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-4xl font-black font-cyber text-white uppercase tracking-wider">
-                <span class="lang-ar">// سجل المشاريع الاستراتيجية والإنتاج البرمجي المكتمل</span>
-                <span class="lang-en">// EXECUTED STRATEGIC PROJECTS ARCHIVE</span>
-                <span class="lang-ru">// РЕЕСТР ВЫПОЛНЕННЫХ ИТ-ПРОЕКТОВ И РАЗРАБОТОК</span>
-            </h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto mt-3 rounded-full"></div>
-        </div>
+<div class="divider"></div>
 
-        <div class="max-w-6xl mx-auto mb-12">
-            <h3 class="text-base md:text-lg font-black text-cyan-400 mb-6 flex items-center gap-2 border-b border-slate-800 pb-3 font-cyber">
-                <i class="fa-solid fa-gamepad text-xl"></i> [01] <span class="lang-ar">ألعاب الفيديو الاحترافية</span><span class="lang-en">GAME PRODUCTION MATRIX</span><span class="lang-ru">ИГРОВАЯ ИНЖЕНЕРИЯ MATРИЦА</span>
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs md:text-sm">
-                
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-cyan-400 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-cyan-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-cart-shopping"></i> 
-                            <span class="lang-ar">لعبة محاكي السوبر ماركت (3D)</span>
-                            <span class="lang-en">Supermarket Simulator (3D)</span>
-                            <span class="lang-ru">Симулятор Супермаркета (3D)</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">لعبة محاكاة ثلاثية أبعاد متكاملة تم تطويرها للحواسب والهواتف الذكية. مدعومة بنظام ذكاء اصطناعي عميق (Deep AI) متطور، حيث تتغير تصرفات المشترين والبيئة المحيطة والنتائج ديناميكياً مع كل خيار وقرار يتخذه اللاعب.</span>
-                            <span class="lang-en">A fully immersive 3D simulation built for PC and Mobile. Powered by an advanced Deep AI framework where buyer interactions and environmental matrices adapt dynamically based on every singular player choice.</span>
-                            <span class="lang-ru">Полнофункциональный 3D-симулятор для ПК и мобильных устройств. Базируется на продвинутой системе глубокого ИИ (Deep AI), динамически меняющей поведение покупателей и условия на основе каждого выбора.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-cyan-400 mt-3 block font-bold">UNREAL ENGINE / MOBILE & PC</span>
-                </div>
+<!-- ═══════════════════════════ GALLERY ═══════════════════════════ -->
+<div class="section" id="gallery">
+    <div class="section-header fade-up">
+        <h2 class="section-title">
+            <span class="lang-ar">// معرض الأصول الإبداعية</span>
+            <span class="lang-en">// Visual Archive</span>
+            <span class="lang-ru">// Графический архив</span>
+        </h2>
+        <div class="section-line" style="background:linear-gradient(90deg,var(--fuchsia),var(--cyan));"></div>
+    </div>
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-red-500 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-red-400 flex items-center gap-1.5">
-                            <i class="fa-solid fa-virus"></i> 
-                            <span class="lang-ar">لعبة محاكاة الفيروس (3D - جرافيك AAA)</span>
-                            <span class="lang-en">Virus Simulator (3D - AAA Graphics)</span>
-                            <span class="lang-ru">Симулятор Вируса (3D - Графика AAA)</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">مشروع لعبة ضخمة بجرافيك سينمائي عالي الجودة (AAA) مصممة للهواتف، الكمبيوتر، والمنصات المنزلية (لم تنته بعد). تلعب فيها بدور فيروس ذكي يسعى لاختراق جسم الإنسان، السيطرة على الأعضاء، بناء جيش من الفيروسات، والحذر الشديد من هجمات خلايا الدم البيضاء.</span>
-                            <span class="lang-en">An ambitious high-fidelity AAA project mapped for Mobile, PC, and Consoles (In-development). Take control of an advanced pathogen, infiltrate human physiology, synthesize cell armies, and tactically evade white blood cell defensive swarms.</span>
-                            <span class="lang-ru">Масштабный проект с кинематографичной графикой уровня AAA для смартфонов, ПК и консолей (в разработке). Игрок управляет вирусом, проникающим в организм, строит микробиологическую армию и борется с лейкоцитами.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-red-400 mt-3 block font-bold">HIGH-END CINEMATIC / IN-DEVELOPMENT</span>
-                </div>
+    <div class="gallery-grid">
+        <div class="gallery-item fade-up"><img src="img1.jpg" alt="Asset 1" loading="lazy"></div>
+        <div class="gallery-item fade-up delay-1"><img src="img2.jpg" alt="Asset 2" loading="lazy"></div>
+        <div class="gallery-item fade-up delay-2"><img src="img3.jpg" alt="Asset 3" loading="lazy"></div>
+        <div class="gallery-item fade-up delay-3"><img src="img4.jpg" alt="Asset 4" loading="lazy"></div>
+        <div class="gallery-item fade-up delay-4"><img src="img5.jpg" alt="Asset 5" loading="lazy"></div>
+    </div>
+</div>
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-purple-400 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-purple-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-shield-halved"></i> 
-                            <span class="lang-ar">لعبة استراتيجية ودفاع عن القواعد (STR)</span>
-                            <span class="lang-en">Base Defense Strategy (STR)</span>
-                            <span class="lang-ru">Стратегия Защиты Баз (STR)</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">لعبة استراتيجية تكتيكية مخصصة للهواتف الذكية تحاكي الدفاع عن القواعد، وتضم عالمين متباينين بالكامل: خريطة المعارك الفضائية المستقبلية العميقة، وخريطة المعارك الحصينة في العصور الوسطى التاريخية.</span>
-                            <span class="lang-en">A mobile tactical real-time strategy simulation built around defensive perimeter engineering. Features dual distinct thematic modes: deep futuristic sci-fi space battlefields and historical medieval fortress sieges.</span>
-                            <span class="lang-ru">Мобильная тактическая стратегия в реальном времени, симулирующая оборону опорных пунктов. Включает два контрастных режима: футуристический открытый космос и историческое Средневековье.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-purple-400 mt-3 block font-bold">CROSS-PLATFORM MOBILE STR</span>
-                </div>
+<div class="divider"></div>
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-amber-400 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-amber-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-mask"></i> 
-                            <span class="lang-ar">لعبة محاكي سرقة بنك (2.5D Stealth)</span>
-                            <span class="lang-en">Bank Robbery Simulator (2.5D Stealth)</span>
-                            <span class="lang-ru">Симулятор Ограбления (2.5D Стелс)</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">لعبة حركية بمنظور ثنائي ونصف الأبعاد تعتمد على ميكانيكيات التسلل، الاختفاء، التخفي الاحترافي، تجنب حراس الأمن، وتعطيل شبكات كاميرات المراقبة لتنفيذ عمليات سطو محكمة.</span>
-                            <span class="lang-en">A high-stakes 2.5D side-scroller engine relying heavily on complex dynamic stealth algorithms, concealment nodes, pattern tracking, and bypassing infrastructure safety lasers.</span>
-                            <span class="lang-ru">Увлекательный стелс-экшен в 2.5D проекции, завязанный на механиках скрытности, прятках в тени, обходе патрулей охраны и отключении систем лазерной сигнализации.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-amber-400 mt-3 block font-bold">UNITY FRAMEWORK / STEALTH LOGIC</span>
-                </div>
+<!-- ═══════════════════════════ EDUCATION ═══════════════════════════ -->
+<div class="section">
+    <div class="card fade-up" style="max-width:700px;margin:0 auto;padding:1.5rem;border-left:3px solid var(--amber);">
+        <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:0.12em;margin-bottom:8px;">// ACADEMIC FOUNDATION</div>
+        <div style="font-size:clamp(14px,3vw,17px);font-weight:800;color:var(--amber);margin-bottom:6px;">Bachelor's Degree in Technical Science</div>
+        <p style="font-size:clamp(11px,2vw,13px);color:#cbd5e1;line-height:1.7;">
+            <span class="lang-ar">درجة البكالوريوس في هندسة تقنيات أنظمة الاتصالات والمعلومات والمعالجة البرمجية.</span>
+            <span class="lang-en">Infocommunication Technologies and Communication Systems Engineering degree.</span>
+            <span class="lang-ru">Высшее техническое образование в сфере инфокоммуникационных технологий и систем связи.</span>
+        </p>
+    </div>
+</div>
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-fuchsia-400 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-fuchsia-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-user-astronaut"></i> 
-                            <span class="lang-ar">لعبة باتل رويال في الفضاء</span>
-                            <span class="lang-en">Space Battle Royale</span>
-                            <span class="lang-ru">Космическая Королевская Битва</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">لعبة قتال جماعي مباشر وعبر شبكة الإنترنت (Multiplayer) قائمة على النجاة والمواجهات في بيئات فضائية مفتوحة شاسعة مع تطبيق فيزيائيات انعدام الجاذبية ومزامنة الخوادم السريعة.</span>
-                            <span class="lang-en">A massive online multiplayer survival experience configured inside zero-gravity space maps. Incorporates real-time net-authoritative server synchronization, and orbital combat mechanics.</span>
-                            <span class="lang-ru">Сетевой многопользовательский экшен на выживание в открытом космосе. Реализована физика нулевой гравитации и оптимизированная сетевая репликация пакетов на сервере.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-fuchsia-400 mt-3 block font-bold">MULTIPLAYER INFRASTRUCTURE / STEAM</span>
-                </div>
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+    <div class="footer-name">HANY REDA &bull; SENIOR TECHNICAL PORTFOLIO</div>
+    <div class="footer-links">
+        <a href="mailto:Developeractionobject@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/79969382354" target="_blank" title="WhatsApp" style="color:#34d399;"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/+79969382354" target="_blank" title="Telegram" style="color:#38bdf8;"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+    <div class="footer-copy">
+        <span class="lang-ar">&copy; 2026 هاني رضا. جميع الحقوق محفوظة.</span>
+        <span class="lang-en">&copy; 2026 Hany Reda. All rights reserved.</span>
+        <span class="lang-ru">&copy; 2026 Хани Реда. Все права защищены.</span>
+    </div>
+</footer>
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-emerald-400 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-emerald-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-car-burst"></i> 
-                            <span class="lang-ar">لعبة سباق سيارات خفيفة</span>
-                            <span class="lang-en">Lightweight Car Racing Game</span>
-                            <span class="lang-ru">Легковесные Автогонки</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">لعبة سباقات سريعة ومثيرة تم تحسين شفرتها البرمجية وأصولها الرسومية (Hyper-Optimized) لتعمل بسلاسة فائقة بمعدل فريمات ثابت وعالٍ على جميع فئات الهواتف الضعيفة والقوية.</span>
-                            <span class="lang-en">An arcade racing module heavily optimized down to low-level hardware constraints, ensuring maximum fluid FPS rates and smooth layout control mechanics on low-tier mobile devices.</span>
-                            <span class="lang-ru">Аркадный гоночный проект, прошедший глубокую низкоуровневую оптимизацию графики и кода для обеспечения стабильно высокой частоты кадров на любых смартфонах.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-emerald-400 mt-3 block font-bold">HYPER-OPTIMIZED MOBILE ARCHITECTURE</span>
-                </div>
+<script>
+// ─── Language System ───
+function setLanguage(lang) {
+    ['ar','en','ru'].forEach(l => {
+        document.querySelectorAll('.lang-' + l).forEach(el => {
+            el.style.display = 'none';
+        });
+        const btn = document.getElementById('btn-' + l);
+        if(btn) btn.classList.remove('active');
+    });
 
-            </div>
-        </div>
+    document.querySelectorAll('.lang-' + lang).forEach(el => {
+        el.style.display = 'inline';
+    });
 
-        <div class="max-w-6xl mx-auto">
-            <h3 class="text-base md:text-lg font-black text-purple-400 mb-6 flex items-center gap-2 border-b border-slate-800 pb-3 font-cyber">
-                <i class="fa-solid fa-layer-group text-xl"></i> [02] <span class="lang-ar">البرمجيات والتطبيقات المؤسسية</span><span class="lang-en">ENTERPRISE SOFTWARE STACK</span><span class="lang-ru">КОРПОРАТИВНЫЕ ИТ-РЕШЕНИЯ</span>
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs md:text-sm">
-                
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-cyan-500 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-cyan-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-shield-cat"></i> 
-                            <span class="lang-ar">برنامج الشبكة الافتراضية الآمنة (VPN)</span>
-                            <span class="lang-en">Secure VPN Application Engine</span>
-                            <span class="lang-ru">Высокозащищенное VPN-приложение</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">برنامج متكامل مشفر لحماية البيانات وتأمين تصفح الإنترنت وتجاوز الحجب الجغرافي. مبني باتصال بروتوكولي سريع، آمن، ومستقر مع خوادم دولية متعددة لحماية خصوصية المستخدمين.</span>
-                            <span class="lang-en">A fully operational virtual private network client supporting layered data encryption protocols, structural geoblock circumvention, and low-latency global server handshakes.</span>
-                            <span class="lang-ru">Полнофункциональный VPN-клиент с поддержкой сквозного шифрования трафика, обхода географических ограничений и быстрого переключения между удаленными серверами.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-cyan-400 mt-3 block font-bold">NETWORK SECURITY / CRYPTO FLOW</span>
-                </div>
+    const activeBtn = document.getElementById('btn-' + lang);
+    if(activeBtn) activeBtn.classList.add('active');
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-amber-500 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-amber-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-scale-balanced"></i> 
-                            <span class="lang-ar">برنامج الإدارة المالية لشركة كبيرة</span>
-                            <span class="lang-en">Enterprise Financial Management Platform</span>
-                            <span class="lang-ru">Корпоративная Система Управления Финансами</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">نظام مؤسسي ضخم ومعقد مخصص للشركات الكبرى، يعالج التدفقات المالية، إدارة المعاملات، الحسابات البنكية، مراقبة الميزانيات بدقة، استخراج التقارير الضريبية الذكية والتحليلات البيانية المتقدمة للأرباح والخسائر.</span>
-                            <span class="lang-en">A massive corporate ERP asset scaled for enterprise financial analytics, accounting workflows, automated ledger ledger balancing, multi-currency accounting, and deep business metrics.</span>
-                            <span class="lang-ru">Крупномасштабное ERP-решение для холдингов и крупных компаний. Управляет финансовыми потоками, транзакциями, бюджетированием, налогами и предиктивной аналитикой.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-amber-400 mt-3 block font-bold">ERP ARCHITECTURE / DATA ANALYTICS</span>
-                </div>
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+}
 
-                <div class="premium-card p-5 rounded-xl border-t-2 border-t-fuchsia-500 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-white text-sm mb-2 text-fuchsia-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-truck-ramp-box"></i> 
-                            <span class="lang-ar">برنامج توصيل طلبات كامل المتكامل</span>
-                            <span class="lang-en">Full-Cycle Delivery & Logistics Ecosystem</span>
-                            <span class="lang-ru">Платформа Сервиса Доставки Полного Цикла</span>
-                        </h4>
-                        <p class="text-slate-300 leading-relaxed text-[11px] md:text-xs">
-                            <span class="lang-ar">منصة لوجستية متكاملة تشمل: تطبيق العميل لطلب وتحديد المنتجات، تطبيق المندوب لتلقي الطلبات وإدارتها، لوحة تحكم الإدارة (Admin Dashboard) المركزية مع تتبع حي ومباشر عبر خرائط GPS لخط السير.</span>
-                            <span class="lang-en">An end-to-end transport network ecosystem containing a dedicated Client application interface, a Driver routing tool, and an enterprise Management Portal with real-time GPS asset tracing maps.</span>
-                            <span class="lang-ru">Комплексная логистическая экосистема: мобильное приложение клиента, приложение курьера с маршрутизацией и административная панель управления с GPS-трекингом заказов.</span>
-                        </p>
-                    </div>
-                    <span class="text-[9px] font-mono text-fuchsia-400 mt-3 block font-bold">FLUTTER / FIREBASE / GEOLOCATION STACK</span>
-                </div>
+// ─── Scroll Progress Bar ───
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = progress + '%';
+}, { passive: true });
 
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10 scroll-mt-20">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-4xl font-black font-cyber text-white">
-                <span class="lang-ar">// معرض الأصول الإبداعية واللقطات الرقمية (10 صور)</span>
-                <span class="lang-en">// VISUAL ARCHIVE & 3D ASSETS VECTOR (10 PHOTOS)</span>
-                <span class="lang-ru">// ГРАФИЧЕСКИЙ АРХИВ И ТРЕХМЕРНЫЕ СНИМКИ (10 ФОТО)</span>
-            </h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-fuchsia-500 to-cyan-400 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-6xl mx-auto">
-            <div class="premium-card p-1.5 rounded-xl group overflow-hidden bg-slate-950/40">
-                <div class="rounded-lg overflow-hidden aspect-square relative bg-slate-900 border border-slate-800/60">
-                    <img src="img1.jpg" alt="Asset 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="text-[9px] font-mono text-slate-500 mt-1.5 text-center font-bold"></div>
-            </div>
-            <div class="premium-card p-1.5 rounded-xl group overflow-hidden bg-slate-950/40">
-                <div class="rounded-lg overflow-hidden aspect-square relative bg-slate-900 border border-slate-800/60">
-                    <img src="img2.jpg" alt="Asset 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="text-[9px] font-mono text-slate-500 mt-1.5 text-center font-bold"></div>
-            </div>
-            <div class="premium-card p-1.5 rounded-xl group overflow-hidden bg-slate-950/40">
-                <div class="rounded-lg overflow-hidden aspect-square relative bg-slate-900 border border-slate-800/60">
-                    <img src="img3.jpg" alt="Asset 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="text-[9px] font-mono text-slate-500 mt-1.5 text-center font-bold"></div>
-            </div>
-            <div class="premium-card p-1.5 rounded-xl group overflow-hidden bg-slate-950/40">
-                <div class="rounded-lg overflow-hidden aspect-square relative bg-slate-900 border border-slate-800/60">
-                    <img src="img4.jpg" alt="Asset 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="text-[9px] font-mono text-slate-500 mt-1.5 text-center font-bold"></div>
-            </div>
-            <div class="premium-card p-1.5 rounded-xl group overflow-hidden bg-slate-950/40">
-                <div class="rounded-lg overflow-hidden aspect-square relative bg-slate-900 border border-slate-800/60">
-                    <img src="img5.jpg" alt="Asset 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="text-[9px] font-mono text-slate-500 mt-1.5 text-center font-bold"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-12 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="max-w-4xl mx-auto premium-card p-6 rounded-2xl border-l-4 border-l-amber-400">
-            <h3 class="font-cyber text-sm font-black text-white mb-3 uppercase tracking-wide">// ACADEMIC FOUNDATION</h3>
-            <div class="space-y-1">
-                <div class="font-black text-amber-400 text-sm md:text-base">Bachelor's Degree in Technical Science</div>
-                <p class="text-xs md:text-sm text-slate-200 leading-relaxed font-medium">
-                    <span class="lang-ar">درجة البكالوريوس في هندسة تقنيات أنظمة الاتصالات والمعلومات والمعالجة البرمجية ونقل البيانات الرقمية. (تخصص هندسي متكامل).</span>
-                    <span class="lang-en">Infocommunication Technologies and Communication Systems Engineering core tracking university degree.</span>
-                    <span class="lang-ru">Высшее техническое образование в сфере инфокоммуникационных технологий и систем связи.</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-950 py-10 px-4 border-t border-slate-900 text-center text-slate-500 text-xs relative z-10">
-        <div class="max-w-7xl mx-auto space-y-4">
-            <div class="font-cyber font-bold tracking-widest text-slate-400 text-sm">HANY REDA &bull; SENIOR TECHNICAL PORTFOLIO</div>
-            
-            <div class="flex justify-center gap-6 text-xl text-slate-400">
-                <a href="mailto:Developeractionobject@gmail.com" class="hover:text-red-500 transition"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://wa.me/79969382354" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://t.me/+79969382354" target="_blank" class="hover:text-sky-400 transition"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-            
-            <div class="font-mono text-[10px] text-slate-600 font-bold">
-                <span class="lang-ar">&copy; 2026 هاني رضا. جميع الحقوق محفوظة لِلكود والنظم البرمجية التابعة.</span>
-                <span class="lang-en">&copy; 2026 Hany Reda. All global digital assets & systems reserved.</span>
-                <span class="lang-ru">&copy; 2026 Хани Реда. Все права на интеллектуальную собственность защищены.</span>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Language Router Engine
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-ar').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.lang-ru').forEach(el => el.style.display = 'none');
-            
-            ['ar', 'en', 'ru'].forEach(l => {
-                const btn = document.getElementById(`btn-${l}`);
-                btn.classList.remove('bg-purple-600', 'text-white', 'shadow-md');
-                btn.classList.add('text-slate-400');
-            });
-
-            document.querySelectorAll(`.lang-${lang}`).forEach(el => el.style.display = 'inline-block');
-            
-            const activeBtn = document.getElementById(`btn-${lang}`);
-            activeBtn.classList.remove('text-slate-400');
-            activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-md');
-
-            if (lang === 'ar') {
-                document.documentElement.dir = 'rtl';
-                document.documentElement.lang = 'ar';
-            } else {
-                document.documentElement.dir = 'ltr';
-                document.documentElement.lang = lang;
-            }
+// ─── Intersection Observer for fade-up ───
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
         }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Global Initialization Layout
-        window.onload = function() {
-            setLanguage('ru'); // Initialize Default Language Context to Russian as requested
-            
-            // GSAP Orchestration Engine
-            gsap.from(".gsap-hero", {
-                opacity: 0,
-                y: 35,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power2.out"
-            });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ─── Particles ───
+(function() {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let W, H;
+
+    function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+        return {
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            alpha: Math.random() * 0.5 + 0.1,
+            color: ['#06b6d4','#8b5cf6','#d946ef'][Math.floor(Math.random()*3)]
         };
-    </script>
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    for(let i = 0; i < 80; i++) particles.push(createParticle());
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.fill();
+            p.x += p.vx;
+            p.y += p.vy;
+            if(p.x < 0 || p.x > W) p.vx *= -1;
+            if(p.y < 0 || p.y > H) p.vy *= -1;
+        });
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+// ─── Navbar shadow on scroll ───
+window.addEventListener('scroll', () => {
+    const nb = document.getElementById('navbar');
+    if(window.scrollY > 50) {
+        nb.style.background = 'rgba(3, 2, 13, 0.95)';
+    } else {
+        nb.style.background = 'rgba(3, 2, 13, 0.85)';
+    }
+}, { passive: true });
+
+// ─── Init ───
+window.addEventListener('DOMContentLoaded', () => {
+    setLanguage('ru');
+});
+</script>
 </body>
 </html>
+HTMLEOF
+echo "Done. File size: $(wc -c < /mnt/user-data/outputs/index.html) bytes"

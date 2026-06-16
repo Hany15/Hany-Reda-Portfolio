@@ -1,1243 +1,1479 @@
-bash
-
-cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="ru" dir="ltr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Hany Reda | Senior Software Engineer Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --cyan: #06b6d4;
-            --purple: #8b5cf6;
-            --fuchsia: #d946ef;
-            --amber: #f59e0b;
-            --emerald: #10b981;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: #03020d;
-            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
-            overflow-x: hidden;
-            color: #e2e8f0;
-        }
-
-        .font-cyber { font-family: 'Orbitron', sans-serif; }
-
-        .lang-en, .lang-ar { display: none; }
-        .lang-ru { display: inline; }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #0a0914; }
-        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
-
-        .blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.18;
-            will-change: transform;
-        }
-
-        #navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: rgba(3, 2, 13, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.12);
-            padding: 0.875rem 1.25rem;
-            transition: background 0.3s;
-        }
-
-        .nav-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-brand { flex-shrink: 0; }
-
-        .nav-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 4vw, 1.4rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--fuchsia));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .nav-sub {
-            font-size: 9px;
-            font-family: monospace;
-            letter-spacing: 0.1em;
-            color: var(--cyan);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 2px;
-        }
-
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            background: #050414;
-            padding: 4px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.06);
-            flex-shrink: 0;
-        }
-
-        .lang-btn {
-            padding: 5px 10px;
-            border-radius: 7px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: #64748b;
-            background: transparent;
-            border: none;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .lang-btn.active {
-            background: var(--purple);
-            color: #fff;
-        }
-
-        /* ─── Hero ─── */
-        #hero {
-            position: relative;
-            min-height: 100svh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 7rem 1.25rem 5rem;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(6, 182, 212, 0.08);
-            border: 1px solid rgba(6, 182, 212, 0.25);
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #67e8f9;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .badge-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 10px var(--cyan);
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.3); }
-        }
-
-        .hero-title {
-            font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--fuchsia) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-desc {
-            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
-            color: #94a3b8;
-            max-width: 680px;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .target-box {
-            background: rgba(109, 40, 217, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.25);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            max-width: 640px;
-            width: 100%;
-            margin: 0 auto 2.5rem;
-        }
-
-        .target-label {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 9px;
-            letter-spacing: 0.15em;
-            color: #a78bfa;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .target-text {
-            font-size: clamp(0.78rem, 2vw, 0.9rem);
-            color: #e2e8f0;
-            font-style: italic;
-            line-height: 1.7;
-        }
-
-        .btn-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 520px; }
-        .btn-row { display: flex; gap: 10px; }
-
-        .btn-primary {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-size: clamp(11px, 2.5vw, 13px);
-            font-weight: 800;
-            text-decoration: none;
-            transition: all 0.25s;
-            letter-spacing: 0.04em;
-            white-space: nowrap;
-        }
-
-        .btn-cyan { background: linear-gradient(135deg, var(--cyan), #3b82f6); color: #000; }
-        .btn-purple { background: linear-gradient(135deg, var(--purple), #ec4899); color: #fff; }
-        .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
-
-        .btn-contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-
-        .btn-contact {
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 12px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 800;
-            text-decoration: none;
-            font-family: monospace;
-            transition: all 0.25s;
-            border: 1px solid;
-        }
-
-        .btn-wa { background: rgba(16,185,129,0.08); color: #34d399; border-color: rgba(16,185,129,0.2); }
-        .btn-tg { background: rgba(14,165,233,0.08); color: #38bdf8; border-color: rgba(14,165,233,0.2); }
-        .btn-gm { background: rgba(239,68,68,0.08); color: #f87171; border-color: rgba(239,68,68,0.2); }
-        .btn-contact:hover { transform: translateY(-2px); filter: brightness(1.2); }
-
-        /* ─── SCROLL INDICATOR — fixed to bottom of viewport, hidden after scroll ─── */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-            opacity: 0.5;
-            animation: bounce 2s infinite;
-            z-index: 50;
-            pointer-events: none;
-            transition: opacity 0.4s;
-        }
-
-        .scroll-indicator.hidden { opacity: 0; }
-        .scroll-indicator span { font-size: 10px; font-family: monospace; letter-spacing: 0.1em; color: var(--cyan); }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        .section {
-            position: relative;
-            z-index: 1;
-            padding: 4rem 1.25rem;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section-header { text-align: center; margin-bottom: 2.5rem; }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.1rem, 4vw, 2rem);
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .section-line {
-            height: 3px;
-            border-radius: 100px;
-            margin: 12px auto 0;
-            width: 80px;
-        }
-
-        .card {
-            background: linear-gradient(145deg, rgba(30,27,75,0.25), rgba(15,23,42,0.45));
-            border: 1px solid rgba(139,92,246,0.18);
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
-            overflow: hidden;
-        }
-
-        .card:hover {
-            border-color: rgba(6,182,212,0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), 0 0 25px rgba(6,182,212,0.08);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-card { padding: 1.25rem; }
-
-        .skill-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            display: flex; align-items: center; gap: 6px;
-        }
-
-        .skill-list { list-style: none; }
-        .skill-list li { font-size: 12px; color: #94a3b8; padding: 4px 0; }
-        .skill-list li::before { content: '• '; opacity: 0.5; }
-
-        .timeline { display: flex; flex-direction: column; gap: 1.25rem; max-width: 900px; margin: 0 auto; }
-
-        .exp-card {
-            padding: 1.5rem;
-            border-left: 3px solid transparent;
-        }
-
-        .exp-header {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 600px) {
-            .exp-header { flex-direction: row; justify-content: space-between; align-items: flex-start; }
-        }
-
-        .exp-title { font-size: clamp(0.9rem,2.5vw,1.05rem); font-weight: 800; color: #fff; }
-
-        .exp-badge {
-            font-family: monospace;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 100px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .exp-list { list-style: disc; padding-left: 1.25rem; }
-        .exp-list li { font-size: clamp(11px,2vw,13px); color: #94a3b8; line-height: 1.7; margin-bottom: 4px; }
-        .exp-list li.highlight { color: #fde68a; font-weight: 700; }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-        }
-
-        .project-card {
-            padding: 1.25rem;
-            display: flex; flex-direction: column; justify-content: space-between;
-            border-top: 2px solid transparent;
-            min-height: 200px;
-        }
-
-        .project-title {
-            font-size: clamp(12px,2.5vw,14px);
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex; align-items: center; gap: 6px;
-        }
-
-        .project-desc { font-size: 11px; color: #94a3b8; line-height: 1.7; flex: 1; }
-
-        .project-tag {
-            font-family: monospace;
-            font-size: 9px;
-            font-weight: 700;
-            margin-top: 12px;
-            display: block;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .video-wrap {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.07);
-        }
-
-        .video-wrap video {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            background: #0f172a;
-            border: 1px solid rgba(255,255,255,0.06);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover { transform: scale(1.04); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        .lang-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-
-        .lang-row {
-            background: rgba(15,23,42,0.8);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            padding: 14px 16px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .lang-name { font-size: 14px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
-        .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
-
-        .lang-level {
-            font-family: monospace;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .soft-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
-        }
-
-        .soft-card {
-            background: rgba(15,23,42,0.6);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            padding: 14px;
-            display: flex; gap: 12px;
-        }
-
-        .soft-icon { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
-        .soft-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .soft-desc { font-size: 11px; color: #64748b; line-height: 1.6; }
-
-        footer {
-            position: relative; z-index: 1;
-            background: #020109;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 2.5rem 1.25rem;
-            text-align: center;
-        }
-
-        .footer-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            letter-spacing: 0.15em;
-            color: #475569;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
-        .footer-links a { font-size: 20px; color: #475569; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--cyan); }
-        .footer-copy { font-size: 10px; font-family: monospace; color: #334155; }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.35;
-        }
-
-        @media (max-width: 480px) {
-            .btn-row { flex-direction: column; }
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(139,92,246,0.2), transparent);
-            margin: 0 1.25rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        #progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--fuchsia));
-            z-index: 200;
-            width: 0%;
-            transition: width 0.1s;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .fade-up { opacity: 1; transform: none; }
-            .badge-dot { animation: none; }
-            .scroll-indicator { animation: none; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Hany Reda | Senior Software Engineer</title>
+
+<!-- ════════════════════════════════════════════════════════
+     GOOGLE ANALYTICS 4 — G-1WG4306FK6
+     ════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1WG4306FK6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1WG4306FK6', {
+    send_page_view: true,
+    cookie_flags: 'SameSite=None;Secure',
+    // Enhanced measurement — tracks scroll, outbound clicks, file downloads, video
+    anonymize_ip: false
+  });
+
+  // ── TRACK: Time on page (every 30 sec milestone) ──
+  var _timeOnPage = 0;
+  var _timeInterval = setInterval(function(){
+    _timeOnPage += 30;
+    gtag('event', 'time_on_page', {
+      event_category: 'Engagement',
+      event_label: _timeOnPage + ' seconds',
+      value: _timeOnPage,
+      non_interaction: true
+    });
+    if(_timeOnPage >= 600) clearInterval(_timeInterval); // stop at 10 min
+  }, 30000);
+
+  // ── TRACK: Scroll depth (25%, 50%, 75%, 100%) ──
+  var _scrollDepths = [25, 50, 75, 100];
+  var _scrollFired = {};
+  window.addEventListener('scroll', function(){
+    var scrollPct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    _scrollDepths.forEach(function(d){
+      if(scrollPct >= d && !_scrollFired[d]){
+        _scrollFired[d] = true;
+        gtag('event', 'scroll_depth', {
+          event_category: 'Engagement',
+          event_label: d + '%',
+          value: d,
+          non_interaction: true
+        });
+      }
+    });
+  }, {passive: true});
+
+  // ── TRACK: Section visibility ──
+  function trackSectionView(sectionName){
+    gtag('event', 'section_viewed', {
+      event_category: 'Content',
+      event_label: sectionName
+    });
+  }
+
+  // ── TRACK: CV Downloads ──
+  function trackDownload(fileName, lang){
+    gtag('event', 'file_download', {
+      event_category: 'Download',
+      event_label: fileName,
+      file_name: fileName,
+      file_extension: 'pdf',
+      link_text: 'CV Download ' + lang
+    });
+  }
+
+  // ── TRACK: Contact button clicks ──
+  function trackContact(method){
+    gtag('event', 'contact_click', {
+      event_category: 'Contact',
+      event_label: method,
+      event_action: 'click'
+    });
+  }
+
+  // ── TRACK: Language switch ──
+  function trackLanguage(lang){
+    gtag('event', 'language_switch', {
+      event_category: 'UX',
+      event_label: lang
+    });
+  }
+
+  // ── TRACK: Page exit + session duration ──
+  var _sessionStart = Date.now();
+  window.addEventListener('beforeunload', function(){
+    var duration = Math.round((Date.now() - _sessionStart) / 1000);
+    gtag('event', 'session_end', {
+      event_category: 'Engagement',
+      event_label: 'Session duration',
+      value: duration,
+      non_interaction: true
+    });
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ═══════════════════════ RESET & TOKENS ═══════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #020510;
+  --surface:  #080d1f;
+  --surface2: #0d1530;
+  --border:   rgba(255,255,255,0.06);
+  --cyan:     #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.08);
+  --violet:   #7c5cfc;
+  --violet-dim: rgba(124,92,252,0.1);
+  --pink:     #f02fc2;
+  --amber:    #ffb547;
+  --green:    #00e5a0;
+  --text:     #e2e8f0;
+  --muted:    #64748b;
+  --mono:     'JetBrains Mono', monospace;
+  --sans:     'Space Grotesk', sans-serif;
+  --cyber:    'Orbitron', sans-serif;
+  --radius:   14px;
+  --glow-c:   0 0 30px rgba(0,212,255,0.2);
+  --glow-v:   0 0 30px rgba(124,92,252,0.2);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  font-family: var(--sans);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--violet); border-radius: 2px; }
+
+/* ═══════════════════════ LANGUAGE SYSTEM ═══════════════════════ */
+.lang-en, .lang-ar { display: none; }
+.lang-ru { display: inline; }
+
+/* ═══════════════════════ PROGRESS BAR ═══════════════════════ */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  z-index: 999; transition: width 0.08s linear;
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+/* ═══════════════════════ AURORA BACKGROUND ═══════════════════════ */
+#aurora-canvas {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  opacity: 0.55;
+}
+
+/* ═══════════════════════ NAVBAR ═══════════════════════ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0.75rem 1.5rem;
+  background: rgba(2,5,16,0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.4s;
+}
+.nav-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.nav-brand { display: flex; flex-direction: column; }
+.nav-title {
+  font-family: var(--cyber);
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 60%, var(--pink) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: 0.08em;
+}
+.nav-sub {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--cyan); letter-spacing: 0.15em; opacity: 0.7;
+  margin-top: 2px;
+}
+.lang-switcher {
+  display: flex; gap: 2px;
+  background: rgba(255,255,255,0.04);
+  padding: 4px; border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.lang-btn {
+  padding: 5px 11px; border-radius: 7px;
+  font-family: var(--cyber); font-size: 10px; font-weight: 700;
+  cursor: pointer; border: none; background: transparent;
+  color: var(--muted); transition: all 0.2s;
+}
+.lang-btn.active { background: var(--violet); color: #fff; box-shadow: 0 0 12px rgba(124,92,252,0.4); }
+
+/* ═══════════════════════ HERO ═══════════════════════ */
+#hero {
+  position: relative; z-index: 1;
+  min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 1.5rem 5rem;
+}
+
+.hero-ring {
+  position: absolute;
+  width: clamp(340px, 60vw, 700px);
+  height: clamp(340px, 60vw, 700px);
+  border-radius: 50%;
+  border: 1px solid rgba(0,212,255,0.12);
+  animation: ring-spin 20s linear infinite;
+  pointer-events: none;
+}
+.hero-ring::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 50%;
+  border: 1px dashed rgba(124,92,252,0.1);
+  animation: ring-spin 12s linear infinite reverse;
+}
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px;
+  background: rgba(0,212,255,0.05);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 100px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+.hero-title {
+  font-family: var(--cyber);
+  font-size: clamp(2rem, 7vw, 5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 55%, var(--pink) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.glitch::before {
+  animation: glitch-1 4s infinite steps(2,end);
+  clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+  transform: translateX(-2px);
+  opacity: 0.8;
+}
+.glitch::after {
+  animation: glitch-2 4s infinite steps(2,end) 0.1s;
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+  transform: translateX(2px);
+  opacity: 0.8;
+}
+@keyframes glitch-1 {
+  0%,100% { clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0 0%); }
+  10%,11% { clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); transform: translateX(-3px); }
+  30%,31% { clip-path: polygon(0 55%, 100% 55%, 100% 65%, 0 65%); transform: translateX(2px); }
+  60%,61% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); transform: translateX(-1px); }
+}
+@keyframes glitch-2 {
+  0%,100% { clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0 0%); }
+  15%,16% { clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%); transform: translateX(3px); }
+  40%,41% { clip-path: polygon(0 70%, 100% 70%, 100% 85%, 0 85%); transform: translateX(-2px); }
+}
+
+.hero-desc {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: #8892a4; max-width: 600px; line-height: 1.85;
+  margin-bottom: 2rem; font-weight: 400;
+}
+
+.typewriter-wrap {
+  font-family: var(--mono); font-size: clamp(12px, 2vw, 14px);
+  color: var(--green); margin-bottom: 2.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.typewriter-wrap::before { content: '> '; color: var(--muted); }
+#typewriter { min-width: 200px; }
+.cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--green); animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.target-box {
+  background: linear-gradient(135deg, rgba(124,92,252,0.07), rgba(0,212,255,0.04));
+  border: 1px solid rgba(124,92,252,0.2);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  max-width: 620px; width: 100%;
+  margin: 0 auto 2.5rem;
+  position: relative; overflow: hidden;
+}
+.target-box::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 60%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer { to { left: 200%; } }
+.target-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  color: var(--violet); font-weight: 700; margin-bottom: 8px; display: block;
+}
+.target-text {
+  font-size: clamp(0.78rem, 2vw, 0.88rem);
+  color: #b0bec5; font-style: italic; line-height: 1.8;
+}
+
+.btn-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 520px; }
+.btn-row { display: flex; gap: 10px; }
+.btn-primary {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 20px; border-radius: 12px;
+  font-family: var(--mono); font-size: clamp(10px, 2vw, 12px); font-weight: 700;
+  text-decoration: none; transition: all 0.3s; letter-spacing: 0.06em;
+  white-space: nowrap; position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-3px); }
+.btn-cyan { background: linear-gradient(135deg, #00b4d8, #0077b6); color: #fff; box-shadow: 0 4px 20px rgba(0,180,216,0.3); }
+.btn-cyan:hover { box-shadow: 0 8px 30px rgba(0,212,255,0.5); }
+.btn-violet { background: linear-gradient(135deg, #7c5cfc, #c026d3); color: #fff; box-shadow: 0 4px 20px rgba(124,92,252,0.3); }
+.btn-violet:hover { box-shadow: 0 8px 30px rgba(124,92,252,0.5); }
+
+.btn-contact-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.btn-contact {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 8px; border-radius: 12px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  text-decoration: none; border: 1px solid; transition: all 0.25s;
+}
+.btn-contact:hover { transform: translateY(-3px); filter: brightness(1.3); }
+.btn-wa { background: rgba(16,185,129,0.08); color: #34d399; border-color: rgba(16,185,129,0.25); }
+.btn-tg { background: rgba(14,165,233,0.08); color: #38bdf8; border-color: rgba(14,165,233,0.25); }
+.btn-gm { background: rgba(239,68,68,0.08); color: #f87171; border-color: rgba(239,68,68,0.25); }
+
+.scroll-indicator {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  pointer-events: none; z-index: 50; transition: opacity 0.4s;
+  animation: float 2.5s ease-in-out infinite;
+}
+.scroll-indicator.hidden { opacity: 0; }
+.scroll-indicator span { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: var(--cyan); opacity: 0.5; }
+.scroll-arrow { width: 20px; height: 20px; border-right: 1.5px solid var(--cyan); border-bottom: 1.5px solid var(--cyan); transform: rotate(45deg); opacity: 0.4; }
+@keyframes float {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ═══════════════════════ SECTIONS ═══════════════════════ */
+.section {
+  position: relative; z-index: 1;
+  max-width: 1320px; margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--cyan); text-transform: uppercase; font-weight: 700;
+  margin-bottom: 0.5rem; display: block; opacity: 0.7;
+}
+.section-title {
+  font-family: var(--cyber); font-size: clamp(1.2rem, 4vw, 2.2rem);
+  font-weight: 900; color: #fff; letter-spacing: 0.04em;
+}
+.section-line {
+  height: 2px; border-radius: 2px; margin: 1rem auto 0; width: 60px;
+  position: relative;
+}
+.section-line::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 2px;
+  animation: line-glow 2s ease-in-out infinite alternate;
+}
+@keyframes line-glow {
+  from { box-shadow: 0 0 4px currentColor; }
+  to { box-shadow: 0 0 16px currentColor, 0 0 30px currentColor; }
+}
+
+/* ═══════════════════════ CARD BASE ═══════════════════════ */
+.card {
+  background: linear-gradient(145deg, rgba(13,21,48,0.9), rgba(8,13,31,0.95));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transition: opacity 0.3s;
+}
+.card:hover {
+  border-color: rgba(0,212,255,0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.8), 0 0 30px rgba(0,212,255,0.06);
+}
+.card:hover::before { opacity: 0; }
+
+/* ═══════════════════════ SKILLS GRID ═══════════════════════ */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+.skill-card { padding: 1.5rem; }
+.skill-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; margin-bottom: 1rem;
+}
+.skill-title {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 0.75rem; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-list { list-style: none; }
+.skill-list li {
+  font-size: 12px; color: var(--muted);
+  padding: 3px 0; display: flex; align-items: center; gap: 6px;
+}
+.skill-list li::before { content: '─'; color: rgba(0,212,255,0.3); font-size: 10px; }
+.skill-list li:hover { color: var(--text); }
+
+/* ═══════════════════════ EXPERIENCE ═══════════════════════ */
+.timeline { display: flex; flex-direction: column; gap: 1.25rem; max-width: 960px; margin: 0 auto; }
+.exp-card {
+  padding: 1.75rem;
+  border-left: 2px solid transparent;
+  position: relative;
+}
+.exp-card::before {
+  content: '';
+  position: absolute; left: -6px; top: 1.75rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid currentColor;
+  background: var(--bg);
+}
+.exp-header {
+  display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem;
+}
+@media (min-width: 640px) { .exp-header { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
+.exp-title { font-size: clamp(0.9rem, 2.5vw, 1.05rem); font-weight: 700; color: #fff; }
+.exp-company { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+.exp-badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  padding: 5px 12px; border-radius: 100px;
+  white-space: nowrap; flex-shrink: 0;
+  border: 1px solid;
+}
+.exp-list { list-style: none; padding-left: 0; }
+.exp-list li {
+  font-size: clamp(11px, 1.8vw, 13px); color: var(--muted);
+  line-height: 1.75; margin-bottom: 5px;
+  padding-left: 1.2rem; position: relative;
+}
+.exp-list li::before {
+  content: '▸'; position: absolute; left: 0;
+  color: rgba(0,212,255,0.4); font-size: 10px; top: 3px;
+}
+.exp-list li.highlight { color: var(--amber); font-weight: 600; }
+
+/* ═══════════════════════ PROJECTS ═══════════════════════ */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; }
+.project-card {
+  padding: 1.5rem;
+  display: flex; flex-direction: column;
+  border-top: 2px solid transparent; min-height: 200px;
+}
+.project-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; margin-bottom: 0.75rem;
+}
+.project-title {
+  font-size: clamp(12px, 2vw, 14px); font-weight: 700; color: #fff;
+  margin-bottom: 8px; line-height: 1.4;
+}
+.project-desc { font-size: 11px; color: var(--muted); line-height: 1.75; flex: 1; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 1rem; }
+.project-tag {
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.05); color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* ═══════════════════════ LANGUAGES ═══════════════════════ */
+.lang-bar {
+  background: var(--surface2); border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border: 1px solid var(--border); margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+.lang-bar:hover { border-color: rgba(0,212,255,0.2); }
+.lang-name { font-size: 13px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 10px; }
+.lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.lang-level {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px; border: 1px solid;
+}
+
+/* ═══════════════════════ SOFT SKILLS ═══════════════════════ */
+.soft-card {
+  display: flex; gap: 12px;
+  background: var(--surface2); border-radius: 12px;
+  padding: 14px; border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.soft-card:hover { border-color: rgba(124,92,252,0.25); }
+.soft-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.soft-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.soft-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+/* ═══════════════════════ VIDEO SECTION ═══════════════════════ */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 940px; margin: 0 auto; }
+.video-wrap { border-radius: 10px; overflow: hidden; background: #000; position: relative; }
+.video-wrap video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.video-label {
+  padding: 12px 14px; display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════ GALLERY ═══════════════════════ */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; max-width: 940px; margin: 0 auto; }
+.gallery-item {
+  border-radius: 10px; overflow: hidden; aspect-ratio: 1;
+  background: var(--surface2); border: 1px solid var(--border);
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1); position: relative;
+}
+.gallery-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,92,252,0.15));
+  opacity: 0; transition: opacity 0.3s;
+}
+.gallery-item:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ═══════════════════════ STATS ═══════════════════════ */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; max-width: 900px; margin: 0 auto; }
+.stat-card {
+  padding: 1.5rem 1rem; text-align: center;
+  background: linear-gradient(145deg, rgba(13,21,48,0.9), rgba(8,13,31,0.95));
+  border: 1px solid var(--border); border-radius: var(--radius);
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.stat-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+.stat-num {
+  font-family: var(--cyber); font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900; line-height: 1; margin-bottom: 6px;
+  display: block;
+}
+.stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+/* ═══════════════════════ DIVIDER ═══════════════════════ */
+.divider {
+  height: 1px; position: relative; z-index: 1; margin: 0 1.5rem;
+  background: linear-gradient(90deg, transparent, rgba(124,92,252,0.15), transparent);
+}
+
+/* ═══════════════════════ FOOTER ═══════════════════════ */
+footer {
+  position: relative; z-index: 1;
+  background: rgba(2,5,16,0.98);
+  border-top: 1px solid var(--border);
+  padding: 3rem 1.5rem; text-align: center;
+}
+.footer-logo {
+  font-family: var(--cyber); font-size: clamp(1rem, 3vw, 1.4rem); font-weight: 900;
+  background: linear-gradient(135deg, var(--cyan), var(--violet), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: 0.12em; margin-bottom: 1.25rem; display: block;
+}
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.25rem; }
+.footer-links a {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--muted);
+  border: 1px solid var(--border); text-decoration: none;
+  transition: all 0.25s;
+}
+.footer-links a:hover { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 15px rgba(0,212,255,0.2); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: #2d3748; }
+
+.sub-header {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1rem; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ═══════════════════════ ANIMATIONS ═══════════════════════ */
+.fade-up {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.6s, transform 0.6s; }
+.fade-left.visible { opacity: 1; transform: translateX(0); }
+.scale-in { opacity: 0; transform: scale(0.9); transition: opacity 0.5s, transform 0.5s; }
+.scale-in.visible { opacity: 1; transform: scale(1); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════ EDUCATION ═══════════════════════ */
+.edu-card {
+  max-width: 720px; margin: 0 auto; padding: 2rem;
+  border-left: 2px solid var(--amber);
+}
+.edu-degree { font-family: var(--cyber); font-size: clamp(13px, 2.5vw, 16px); font-weight: 900; color: var(--amber); margin-bottom: 8px; }
+.edu-desc { font-size: clamp(11px, 2vw, 13px); color: var(--muted); line-height: 1.75; }
+
+@media (max-width: 480px) {
+  .btn-row { flex-direction: column; }
+  .stat-num { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-left, .scale-in { opacity: 1; transform: none; }
+  .badge-dot { animation: none; }
+  .glitch::before, .glitch::after { display: none; }
+  .scroll-indicator { animation: none; }
+}
+</style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
+<canvas id="aurora-canvas"></canvas>
 
-<div class="blob" style="width:500px;height:500px;background:#7c3aed;top:-100px;right:-50px;"></div>
-<div class="blob" style="width:600px;height:600px;background:#0891b2;top:40vh;left:-150px;"></div>
-<div class="blob" style="width:500px;height:500px;background:#4f46e5;bottom:10vh;right:-50px;"></div>
-
-<canvas id="particles-canvas"></canvas>
-
-<!-- SCROLL INDICATOR — fixed, outside hero -->
 <div class="scroll-indicator" id="scrollIndicator">
-    <span>SCROLL</span>
-    <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--cyan);"></i>
+  <span>SCROLL</span>
+  <div class="scroll-arrow"></div>
 </div>
 
-<!-- NAVBAR -->
+<!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
 <nav id="navbar">
-    <div class="nav-inner">
-        <div class="nav-brand">
-            <div class="nav-title">HANY REDA</div>
-            <div class="nav-sub">
-                <span class="lang-ar">مهندس برمجيات أول</span>
-                <span class="lang-en">Senior Software Engineer Portfolio</span>
-                <span class="lang-ru">Портфолио инженера ПО и игр</span>
-            </div>
-        </div>
-        <div class="lang-switcher">
-            <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn active">РУ</button>
-            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
-            <button onclick="setLanguage('ar')" id="btn-ar" class="lang-btn">AR</button>
-        </div>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-title">HANY REDA</div>
+      <div class="nav-sub">
+        <span class="lang-ru">Старший инженер ПО &amp; GameDev</span>
+        <span class="lang-en">Senior Software Engineer &amp; GameDev</span>
+        <span class="lang-ar">مهندس برمجيات أول ومطور ألعاب</span>
+      </div>
     </div>
+    <div class="lang-switcher">
+      <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn active">РУ</button>
+      <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
+      <button onclick="setLanguage('ar')" id="btn-ar" class="lang-btn">AR</button>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section id="hero">
-    <div class="hero-badge fade-up">
-        <div class="badge-dot"></div>
-        <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول - متاح للتعاقدات</span>
-        <span class="lang-en">Senior Software Engineer & GameDev — Available Globally</span>
-        <span class="lang-ru">Старший инженер ПО и GameDev — доступен для контрактов</span>
-    </div>
+  <div class="hero-ring"></div>
 
-    <h1 class="hero-title fade-up delay-1">
-        <span class="lang-ar">بناء الحلول البرمجية المتكاملة ونظم <span class="gradient-text">الذكاء الاصطناعي</span></span>
-        <span class="lang-en">Architecting Full-Cycle Software &amp; <span class="gradient-text">AI Systems</span></span>
-        <span class="lang-ru">Создание ИТ-решений полного цикла<br>и <span class="gradient-text">Систем ИИ</span></span>
-    </h1>
+  <div class="hero-badge fade-up">
+    <div class="badge-dot"></div>
+    <span class="lang-ru">Старший инженер &amp; GameDev — открыт для контрактов</span>
+    <span class="lang-en">Senior Engineer &amp; GameDev — Available Globally</span>
+    <span class="lang-ar">مهندس أول ومطور ألعاب — متاح للتعاقدات</span>
+  </div>
 
-    <p class="hero-desc fade-up delay-2">
-        <span class="lang-ar">خبرة تزيد عن 6 سنوات في هندسة البرمجيات، تطوير ألعاب الفيديو، وتطبيقات الهواتف الذكية. متميز في إدارة المشاريع من الفكرة حتى النشر الفعلي.</span>
-        <span class="lang-en">6+ years in software engineering, game architecture, mobile development and 3D modeling. Specializing in AI integration, B2B solutions and commercial scaling.</span>
-        <span class="lang-ru">Более 6 лет опыта в инженерии ПО, разработке игр, мобильных приложений и 3D-моделировании. Специализируюсь на управлении проектами, интеграции ИИ и международных B2B-переговорах.</span>
+  <h1 class="hero-title fade-up delay-1">
+    <span class="glitch" data-text="HANY REDA">HANY REDA</span><br>
+    <span class="gradient-text">
+      <span class="lang-ru">Архитектор ПО полного цикла</span>
+      <span class="lang-en">Full-Cycle Software Architect</span>
+      <span class="lang-ar">مهندس حلول برمجية متكاملة</span>
+    </span>
+  </h1>
+
+  <div class="typewriter-wrap fade-up delay-2">
+    <span id="typewriter"></span><span class="cursor"></span>
+  </div>
+
+  <p class="hero-desc fade-up delay-2">
+    <span class="lang-ru">Более 6 лет опыта в инженерии ПО, разработке игр, мобильных приложений и 3D-моделировании. Специализация на ИИ-интеграции, международных B2B-переговорах и управлении проектами.</span>
+    <span class="lang-en">6+ years in software engineering, game architecture, mobile development and 3D modeling. Specializing in AI integration, B2B solutions and international commercial scaling.</span>
+    <span class="lang-ar">خبرة تزيد عن 6 سنوات في هندسة البرمجيات، تطوير الألعاب، وتطبيقات الهواتف والنمذجة ثلاثية الأبعاد.</span>
+  </p>
+
+  <div class="target-box fade-up delay-3">
+    <span class="target-label">// CAREER_TARGET.exe</span>
+    <p class="target-text">
+      <span class="lang-ru">"Моя профессиональная цель — присоединиться к международной инновационной компании, где я смогу задействовать инженерный потенциал для создания высококачественных ИТ-продуктов и лидировать техническую команду."</span>
+      <span class="lang-en">"My professional target is to integrate with a pioneering international ecosystem where I can maximize my software architecture, game production skills, and multilingual capacity to build world-class products."</span>
+      <span class="lang-ar">"هدفي المهني هو الانضمام إلى بيئة عمل ابتكارية عالمية لاستغلال خبراتي الهندسية المتقدمة وتوظيف مهاراتي القيادية لبناء منتجات عالية الجودة."</span>
     </p>
+  </div>
 
-    <div class="target-box fade-up delay-3">
-        <span class="target-label">// CAREER TARGET MATRIX</span>
-        <p class="target-text">
-            <span class="lang-ar">"هدفي المهني هو الانضمام إلى بيئة عمل ابتكارية عالمية لاستغلال خبراتي الهندسية المتقدمة في البرمجيات والألعاب، وتوظيف مهاراتي القيادية لبناء منتجات عالية الجودة."</span>
-            <span class="lang-en">"My professional target is to integrate with a pioneering international ecosystem where I can maximize my software architectures, game production skills, and multilingual capacity."</span>
-            <span class="lang-ru">"Моя профессиональная цель — присоединиться к международной инновационной компании, где я смогу задействовать свой инженерный потенциал для создания высококачественных ИТ-продуктов."</span>
-        </p>
+  <div class="btn-grid fade-up delay-4">
+    <div class="btn-row">
+      <a href="cv_en.pdf" download="Hany_Reda_CV_English.pdf" class="btn-primary btn-cyan" onclick="trackDownload('Hany_Reda_CV_English.pdf','EN')">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="lang-ru">Резюме (EN)</span>
+        <span class="lang-en">Download CV (EN)</span>
+        <span class="lang-ar">تحميل السيرة (EN)</span>
+      </a>
+      <a href="cv_ru.pdf" download="Hany_Reda_CV_Russian.pdf" class="btn-primary btn-violet" onclick="trackDownload('Hany_Reda_CV_Russian.pdf','RU')">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="lang-ru">Резюме (RU)</span>
+        <span class="lang-en">Download CV (RU)</span>
+        <span class="lang-ar">تحميل السيرة (RU)</span>
+      </a>
     </div>
-
-    <div class="btn-grid fade-up delay-4">
-        <div class="btn-row">
-            <a href="cv_en.pdf" download="Hany_Reda_CV_English.pdf" class="btn-primary btn-cyan">
-                <i class="fa-solid fa-file-pdf"></i>
-                <span class="lang-ar">تحميل السيرة (EN)</span>
-                <span class="lang-en">Download CV (English)</span>
-                <span class="lang-ru">Резюме (English)</span>
-            </a>
-            <a href="cv_ru.pdf" download="Hany_Reda_CV_Russian.pdf" class="btn-primary btn-purple">
-                <i class="fa-solid fa-file-pdf"></i>
-                <span class="lang-ar">تحميل السيرة (RU)</span>
-                <span class="lang-en">Download CV (Russian)</span>
-                <span class="lang-ru">Резюме (Русский)</span>
-            </a>
-        </div>
-        <div class="btn-contact-row">
-            <a href="https://wa.me/79969382354" target="_blank" class="btn-contact btn-wa">
-                <i class="fa-brands fa-whatsapp"></i> WHATSAPP
-            </a>
-            <a href="https://t.me/+79969382354" target="_blank" class="btn-contact btn-tg">
-                <i class="fa-brands fa-telegram"></i> TELEGRAM
-            </a>
-            <a href="mailto:Developeractionobject@gmail.com" class="btn-contact btn-gm">
-                <i class="fa-solid fa-envelope"></i> GMAIL
-            </a>
-        </div>
+    <div class="btn-contact-row">
+      <a href="https://wa.me/79969382354" target="_blank" class="btn-contact btn-wa" onclick="trackContact('WhatsApp')"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+      <a href="https://t.me/+79969382354" target="_blank" class="btn-contact btn-tg" onclick="trackContact('Telegram')"><i class="fa-brands fa-telegram"></i> TELEGRAM</a>
+      <a href="mailto:Developeractionobject@gmail.com" class="btn-contact btn-gm" onclick="trackContact('Gmail')"><i class="fa-solid fa-envelope"></i> GMAIL</a>
     </div>
+  </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- LANGUAGES + SOFT SKILLS -->
+<!-- ═══════════════════════ STATS ═══════════════════════ -->
 <div class="section">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
-        <div class="card fade-up" style="padding:1.5rem;border-left:3px solid var(--cyan);">
-            <h3 style="font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
-                <i class="fa-solid fa-language" style="color:var(--cyan);"></i>
-                <span class="lang-ar">إتقان اللغات</span>
-                <span class="lang-en">Languages</span>
-                <span class="lang-ru">Владение языками</span>
-            </h3>
-            <div class="lang-grid">
-                <div class="lang-row">
-                    <div class="lang-name"><div class="lang-dot" style="background:#10b981;box-shadow:0 0 8px #10b981;"></div>العربية / ARABIC</div>
-                    <span class="lang-level" style="background:rgba(16,185,129,0.1);color:#34d399;">
-                        <span class="lang-ar">اللغة الأم</span><span class="lang-en">Native</span><span class="lang-ru">Родной</span>
-                    </span>
-                </div>
-                <div class="lang-row">
-                    <div class="lang-name"><div class="lang-dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan);"></div>ENGLISH</div>
-                    <span class="lang-level" style="background:rgba(6,182,212,0.1);color:var(--cyan);">
-                        <span class="lang-ar">طلاقة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободный</span>
-                    </span>
-                </div>
-                <div class="lang-row">
-                    <div class="lang-name"><div class="lang-dot" style="background:var(--fuchsia);box-shadow:0 0 8px var(--fuchsia);"></div>РУССКИЙ / RUSSIAN</div>
-                    <span class="lang-level" style="background:rgba(217,70,239,0.1);color:#e879f9;">
-                        <span class="lang-ar">طلاقة</span><span class="lang-en">Fluent</span><span class="lang-ru">Свободный</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card fade-up delay-1" style="padding:1.5rem;border-left:3px solid var(--purple);">
-            <h3 style="font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
-                <i class="fa-solid fa-user-tie" style="color:var(--purple);"></i>
-                <span class="lang-ar">المهارات الشخصية</span>
-                <span class="lang-en">Soft Skills</span>
-                <span class="lang-ru">Мягкие навыки</span>
-            </h3>
-            <div class="soft-grid" style="grid-template-columns:1fr;">
-                <div class="soft-card">
-                    <div class="soft-icon" style="color:var(--purple);"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <div>
-                        <div class="soft-title"><span class="lang-ar">مفاوضات B2B</span><span class="lang-en">B2B Negotiations</span><span class="lang-ru">B2B Переговоры</span></div>
-                        <div class="soft-desc"><span class="lang-ar">قيادة المفاوضات التجارية مع الشركات العالمية</span><span class="lang-en">Leading commercial negotiations with global companies</span><span class="lang-ru">Ведение переговоров с международными компаниями</span></div>
-                    </div>
-                </div>
-                <div class="soft-card">
-                    <div class="soft-icon" style="color:var(--cyan);"><i class="fa-solid fa-users"></i></div>
-                    <div>
-                        <div class="soft-title"><span class="lang-ar">روح الفريق</span><span class="lang-en">Team Player</span><span class="lang-ru">Командный игрок</span></div>
-                        <div class="soft-desc"><span class="lang-ar">تعاون عالٍ وتواصل فعّال في الفرق متعددة الجنسيات</span><span class="lang-en">High collaboration in multinational teams</span><span class="lang-ru">Высокая командная работа в многонациональных коллективах</span></div>
-                    </div>
-                </div>
-                <div class="soft-card">
-                    <div class="soft-icon" style="color:var(--amber);"><i class="fa-solid fa-gauge-high"></i></div>
-                    <div>
-                        <div class="soft-title"><span class="lang-ar">العمل تحت الضغط</span><span class="lang-en">Works Under Pressure</span><span class="lang-ru">Работа под давлением</span></div>
-                        <div class="soft-desc"><span class="lang-ar">اتخاذ قرارات برمجية سليمة ضمن جداول تسليم صارمة</span><span class="lang-en">Precise engineering decisions under strict deadlines</span><span class="lang-ru">Точные решения в условиях строгих дедлайнов</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="stats-grid">
+    <div class="stat-card fade-up scale-in" style="border-top:1px solid rgba(0,212,255,0.3);">
+      <div class="stat-card-glow" style="background:linear-gradient(135deg,transparent,rgba(0,212,255,0.03));position:absolute;inset:0;pointer-events:none;border-radius:inherit;"></div>
+      <span class="stat-num" style="color:var(--cyan);" data-count="6">0</span>
+      <span class="stat-label">
+        <span class="lang-ru">Лет опыта</span>
+        <span class="lang-en">Years exp.</span>
+        <span class="lang-ar">سنوات خبرة</span>
+      </span>
     </div>
+    <div class="stat-card fade-up scale-in delay-1" style="border-top:1px solid rgba(124,92,252,0.3);">
+      <span class="stat-num" style="color:var(--violet);" data-count="4">0</span>
+      <span class="stat-label">
+        <span class="lang-ru">Изданных игр</span>
+        <span class="lang-en">Games published</span>
+        <span class="lang-ar">ألعاب منشورة</span>
+      </span>
+    </div>
+    <div class="stat-card fade-up scale-in delay-2" style="border-top:1px solid rgba(240,47,194,0.3);">
+      <span class="stat-num" style="color:var(--pink);" data-count="12">0</span>
+      <span class="stat-label">
+        <span class="lang-ru">Проектов завершено</span>
+        <span class="lang-en">Projects delivered</span>
+        <span class="lang-ar">مشاريع منجزة</span>
+      </span>
+    </div>
+    <div class="stat-card fade-up scale-in delay-3" style="border-top:1px solid rgba(255,181,71,0.3);">
+      <span class="stat-num" style="color:var(--amber);" data-count="3">0</span>
+      <span class="stat-label">
+        <span class="lang-ru">Языка</span>
+        <span class="lang-en">Languages spoken</span>
+        <span class="lang-ar">لغات إتقانها</span>
+      </span>
+    </div>
+    <div class="stat-card fade-up scale-in delay-4" style="border-top:1px solid rgba(0,229,160,0.3);">
+      <span class="stat-num" style="color:var(--green);" data-count="100">0</span>
+      <span class="stat-label">
+        <span class="lang-ru">% Remote ready</span>
+        <span class="lang-en">% Remote ready</span>
+        <span class="lang-ar">% استعداد بعيد</span>
+      </span>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- VIDEOS -->
+<!-- ═══════════════════════ LANGUAGES + SOFT SKILLS ═══════════════════════ -->
+<div class="section">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+
+    <div class="card fade-up" style="padding:1.5rem;border-left:2px solid var(--cyan);">
+      <h3 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--cyan);"><i class="fa-solid fa-language"></i></span>
+        <span class="lang-ru">Владение языками</span>
+        <span class="lang-en">Languages</span>
+        <span class="lang-ar">إتقان اللغات</span>
+      </h3>
+      <div class="lang-bar">
+        <div class="lang-name"><div class="lang-dot" style="background:#10b981;box-shadow:0 0 8px #10b981;"></div>ARABIC — العربية</div>
+        <span class="lang-level" style="background:rgba(16,185,129,0.08);color:#34d399;border-color:rgba(16,185,129,0.2);">
+          <span class="lang-ru">Родной</span><span class="lang-en">Native</span><span class="lang-ar">الأم</span>
+        </span>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-name"><div class="lang-dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan);"></div>ENGLISH</div>
+        <span class="lang-level" style="background:rgba(0,212,255,0.08);color:var(--cyan);border-color:rgba(0,212,255,0.2);">
+          <span class="lang-ru">Свободный</span><span class="lang-en">Fluent</span><span class="lang-ar">طلاقة</span>
+        </span>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-name"><div class="lang-dot" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>RUSSIAN — Русский</div>
+        <span class="lang-level" style="background:rgba(240,47,194,0.08);color:var(--pink);border-color:rgba(240,47,194,0.2);">
+          <span class="lang-ru">Свободный</span><span class="lang-en">Fluent</span><span class="lang-ar">طلاقة</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="card fade-up delay-1" style="padding:1.5rem;border-left:2px solid var(--violet);">
+      <h3 style="font-size:14px;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--violet);"><i class="fa-solid fa-user-tie"></i></span>
+        <span class="lang-ru">Мягкие навыки</span>
+        <span class="lang-en">Soft Skills</span>
+        <span class="lang-ar">المهارات الشخصية</span>
+      </h3>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="soft-card">
+          <div class="soft-icon" style="background:rgba(124,92,252,0.1);color:var(--violet);"><i class="fa-solid fa-handshake-angle"></i></div>
+          <div>
+            <div class="soft-title"><span class="lang-ru">B2B Переговоры</span><span class="lang-en">B2B Negotiations</span><span class="lang-ar">مفاوضات B2B</span></div>
+            <div class="soft-desc"><span class="lang-ru">Ведение переговоров с международными компаниями</span><span class="lang-en">Leading commercial negotiations with global companies</span><span class="lang-ar">قيادة المفاوضات التجارية مع الشركات العالمية</span></div>
+          </div>
+        </div>
+        <div class="soft-card">
+          <div class="soft-icon" style="background:rgba(0,212,255,0.1);color:var(--cyan);"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="soft-title"><span class="lang-ru">Командный игрок</span><span class="lang-en">Team Player</span><span class="lang-ar">روح الفريق</span></div>
+            <div class="soft-desc"><span class="lang-ru">Высокая командная работа в многонациональных коллективах</span><span class="lang-en">High collaboration in multinational teams</span><span class="lang-ar">تعاون عالٍ في الفرق متعددة الجنسيات</span></div>
+          </div>
+        </div>
+        <div class="soft-card">
+          <div class="soft-icon" style="background:rgba(255,181,71,0.1);color:var(--amber);"><i class="fa-solid fa-gauge-high"></i></div>
+          <div>
+            <div class="soft-title"><span class="lang-ru">Работа под давлением</span><span class="lang-en">Works Under Pressure</span><span class="lang-ar">العمل تحت الضغط</span></div>
+            <div class="soft-desc"><span class="lang-ru">Точные решения в условиях строгих дедлайнов</span><span class="lang-en">Precise engineering decisions under strict deadlines</span><span class="lang-ar">اتخاذ قرارات سليمة ضمن جداول تسليم صارمة</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ VIDEOS ═══════════════════════ -->
 <div class="section" id="videos">
-    <div class="section-header fade-up">
-        <h2 class="section-title">
-            <span class="lang-ar">// معرض الفيديو والإنتاج المرئي</span>
-            <span class="lang-en">// Video Productions</span>
-            <span class="lang-ru">// Видеопрезентации</span>
-        </h2>
-        <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--purple));"></div>
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">portfolio.media</span>
+    <h2 class="section-title">
+      <span class="lang-ru">Видеопрезентации</span>
+      <span class="lang-en">Video Productions</span>
+      <span class="lang-ar">معرض الفيديو</span>
+    </h2>
+    <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--cyan);"></div>
+  </div>
+  <div class="video-grid">
+    <div class="card fade-up" style="padding:1rem;">
+      <div class="video-wrap">
+        <video controls preload="metadata" poster="poster1.jpg" onplay="gtag('event','video_play',{event_category:'Video',event_label:'Game Trailer 2022'})"><source src="video1.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-label" style="color:#a78bfa;">
+        <i class="fa-solid fa-gamepad" style="color:var(--cyan);"></i>
+        <span class="lang-ru">Рекламный трейлер игры 2022</span>
+        <span class="lang-en">Commercial trailer — Game 2022</span>
+        <span class="lang-ar">فيديو إعلاني للعبة 2022</span>
+      </div>
     </div>
-    <div class="video-grid">
-        <div class="card fade-up" style="padding:1rem;">
-            <div class="video-wrap">
-                <video controls preload="metadata" poster="poster1.jpg">
-                    <source src="video1.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="margin-top:12px;font-size:12px;font-weight:700;color:#a78bfa;display:flex;align-items:center;gap:6px;">
-                <i class="fa-solid fa-gamepad" style="color:var(--cyan);"></i>
-                <span class="lang-ar">فيديو إعلاني للعبة 2022</span>
-                <span class="lang-en">Commercial trailer — Game 2022</span>
-                <span class="lang-ru">Рекламный трейлер игры 2022</span>
-            </div>
-        </div>
-        <div class="card fade-up delay-1" style="padding:1rem;">
-            <div class="video-wrap">
-                <video controls preload="metadata" poster="poster2.jpg">
-                    <source src="video2.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="margin-top:12px;font-size:12px;font-weight:700;color:#67e8f9;display:flex;align-items:center;gap:6px;">
-                <i class="fa-solid fa-clapperboard" style="color:var(--purple);"></i>
-                <span class="lang-ar">فيديو دعائي للعبة 2023</span>
-                <span class="lang-en">Cinematic promo — Game 2023</span>
-                <span class="lang-ru">Промо-видео игры 2023</span>
-            </div>
-        </div>
+    <div class="card fade-up delay-1" style="padding:1rem;">
+      <div class="video-wrap">
+        <video controls preload="metadata" poster="poster2.jpg" onplay="gtag('event','video_play',{event_category:'Video',event_label:'Game Promo 2023'})"><source src="video2.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-label" style="color:var(--cyan);">
+        <i class="fa-solid fa-clapperboard" style="color:var(--violet);"></i>
+        <span class="lang-ru">Промо-видео игры 2023</span>
+        <span class="lang-en">Cinematic promo — Game 2023</span>
+        <span class="lang-ar">فيديو دعائي للعبة 2023</span>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- SKILLS -->
+<!-- ═══════════════════════ SKILLS ═══════════════════════ -->
 <div class="section" id="skills">
-    <div class="section-header fade-up">
-        <h2 class="section-title">
-            <span class="lang-ar">// مصفوفة القدرات التقنية</span>
-            <span class="lang-en">// Technical Skills Matrix</span>
-            <span class="lang-ru">// Технические навыки</span>
-        </h2>
-        <div class="section-line" style="background:linear-gradient(90deg,var(--purple),#ec4899);"></div>
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">technical.stack</span>
+    <h2 class="section-title">
+      <span class="lang-ru">Технические навыки</span>
+      <span class="lang-en">Skills Matrix</span>
+      <span class="lang-ar">مصفوفة القدرات</span>
+    </h2>
+    <div class="section-line" style="background:linear-gradient(90deg,var(--violet),var(--pink));color:var(--violet);"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="card skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(0,212,255,0.1);color:var(--cyan);"><i class="fa-solid fa-code"></i></div>
+      <div class="skill-title" style="color:var(--cyan);">PROGRAMMING</div>
+      <ul class="skill-list">
+        <li>C++ Core Language</li>
+        <li>Python (Automation &amp; AI)</li>
+        <li>Dart (Flutter Stack)</li>
+        <li>Kotlin (Android Native)</li>
+        <li>Java Engine Support</li>
+        <li>SQL Databases Logic</li>
+      </ul>
     </div>
-    <div class="skills-grid">
-        <div class="card skill-card fade-up">
-            <div class="skill-title" style="color:var(--cyan);"><i class="fa-solid fa-code"></i> PROGRAMMING</div>
-            <ul class="skill-list">
-                <li>C++ Core Language</li>
-                <li>Python (Automation & AI)</li>
-                <li>Dart (Flutter Stack)</li>
-                <li>Kotlin (Android Native)</li>
-                <li>Java Engine Support</li>
-                <li>SQL Databases Logic</li>
-            </ul>
-        </div>
-        <div class="card skill-card fade-up delay-1">
-            <div class="skill-title" style="color:var(--purple);"><i class="fa-solid fa-ghost"></i> GAME DEVELOPMENT</div>
-            <ul class="skill-list">
-                <li>Unreal Engine (6+ Years)</li>
-                <li>Unity Engine Framework</li>
-                <li>Blueprints Architecture</li>
-                <li>Gameplay Programming</li>
-                <li>Multiplayer Networks</li>
-                <li>Steam & Google Play</li>
-                <li>Complex UI/UX Game Design</li>
-            </ul>
-        </div>
-        <div class="card skill-card fade-up delay-2">
-            <div class="skill-title" style="color:var(--fuchsia);"><i class="fa-solid fa-layer-group"></i> INFRASTRUCTURE</div>
-            <ul class="skill-list">
-                <li>Flutter Cross-Platform</li>
-                <li>Android Studio</li>
-                <li>Firebase Integration</li>
-                <li>FastAPI & REST API</li>
-                <li>PostgreSQL Database</li>
-                <li>Docker & Linux</li>
-                <li>Git Version Control</li>
-            </ul>
-        </div>
-        <div class="card skill-card fade-up delay-3">
-            <div class="skill-title" style="color:var(--amber);"><i class="fa-solid fa-wand-magic-sparkles"></i> CREATIVE & AI</div>
-            <ul class="skill-list">
-                <li>AI Tools: ChatGPT, Claude</li>
-                <li>Advanced Prompt Engineering</li>
-                <li>Blender 3D Creation</li>
-                <li>Architectural Visualization</li>
-                <li>Premiere Pro & After Effects</li>
-                <li>CapCut / Filmora</li>
-                <li>Excel Pro & CRM</li>
-            </ul>
-        </div>
+    <div class="card skill-card fade-up delay-1">
+      <div class="skill-icon" style="background:rgba(124,92,252,0.1);color:var(--violet);"><i class="fa-solid fa-ghost"></i></div>
+      <div class="skill-title" style="color:var(--violet);">GAME DEVELOPMENT</div>
+      <ul class="skill-list">
+        <li>Unreal Engine (6+ Years)</li>
+        <li>Unity Engine Framework</li>
+        <li>Blueprints Architecture</li>
+        <li>Gameplay Programming</li>
+        <li>Multiplayer Networks</li>
+        <li>Steam &amp; Google Play</li>
+        <li>Complex UI/UX Game Design</li>
+      </ul>
     </div>
+    <div class="card skill-card fade-up delay-2">
+      <div class="skill-icon" style="background:rgba(240,47,194,0.1);color:var(--pink);"><i class="fa-solid fa-layer-group"></i></div>
+      <div class="skill-title" style="color:var(--pink);">INFRASTRUCTURE</div>
+      <ul class="skill-list">
+        <li>Flutter Cross-Platform</li>
+        <li>Android Studio</li>
+        <li>Firebase Integration</li>
+        <li>FastAPI &amp; REST API</li>
+        <li>PostgreSQL Database</li>
+        <li>Docker &amp; Linux</li>
+        <li>Git Version Control</li>
+      </ul>
+    </div>
+    <div class="card skill-card fade-up delay-3">
+      <div class="skill-icon" style="background:rgba(255,181,71,0.1);color:var(--amber);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div class="skill-title" style="color:var(--amber);">CREATIVE &amp; AI</div>
+      <ul class="skill-list">
+        <li>AI Tools: ChatGPT, Claude</li>
+        <li>Advanced Prompt Engineering</li>
+        <li>Blender 3D Creation</li>
+        <li>Architectural Visualization</li>
+        <li>Premiere Pro &amp; After Effects</li>
+        <li>CapCut / Filmora</li>
+        <li>Excel Pro &amp; CRM</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
+<!-- ═══════════════════════ EXPERIENCE ═══════════════════════ -->
 <div class="section" id="experience">
-    <div class="section-header fade-up">
-        <h2 class="section-title">
-            <span class="lang-ar">// السجل المهني</span>
-            <span class="lang-en">// Professional Experience</span>
-            <span class="lang-ru">// Профессиональный опыт</span>
-        </h2>
-        <div class="section-line" style="background:linear-gradient(90deg,#ec4899,var(--cyan));"></div>
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">career.log</span>
+    <h2 class="section-title">
+      <span class="lang-ru">Профессиональный опыт</span>
+      <span class="lang-en">Professional Experience</span>
+      <span class="lang-ar">السجل المهني</span>
+    </h2>
+    <div class="section-line" style="background:linear-gradient(90deg,var(--pink),var(--cyan));color:var(--pink);"></div>
+  </div>
+  <div class="timeline">
+    <div class="card exp-card fade-up" style="border-left-color:var(--cyan);color:var(--cyan);">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">
+            <span class="lang-ru">Старший инженер ПО и разработчик игр</span>
+            <span class="lang-en">Senior Software Engineer &amp; Game Developer</span>
+            <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول</span>
+          </div>
+        </div>
+        <span class="exp-badge" style="background:rgba(0,212,255,0.07);color:var(--cyan);border-color:rgba(0,212,255,0.2);">Freelance │ 2019 — Present</span>
+      </div>
+      <ul class="exp-list">
+        <li><span class="lang-ru">Разработка игровых механик на Unreal Engine и Unity с использованием C++ и Blueprints.</span><span class="lang-en">Engineered gameplay mechanics and code structures on Unreal Engine and Unity.</span><span class="lang-ar">تطوير آليات الألعاب والـ Gameplay على Unreal Engine و Unity.</span></li>
+        <li><span class="lang-ru">Проектирование мультиплеерных систем с репликацией данных в реальном времени.</span><span class="lang-en">Designed multiplayer frameworks with real-time synchronization and replication.</span><span class="lang-ar">برمجة ميزات متعددة اللاعبين وإدارة الاتصال الشبكي.</span></li>
+        <li><span class="lang-ru">Создание UI/UX систем и интеграция 3D-моделей и анимации.</span><span class="lang-en">Integrated UI/UX structures alongside 3D assets and animation states.</span><span class="lang-ar">بناء واجهات مستخدم متكاملة ودمج المجسمات والرسوم الحركية.</span></li>
+        <li><span class="lang-ru">Интеграция Google Play Services и управление кодом через Git.</span><span class="lang-en">Integrated Google Play Services, In-App Purchases, and maintained Git version control.</span><span class="lang-ar">دمج خدمات Google Play والشراء الداخلي وإدارة الكود بـ Git.</span></li>
+        <li><span class="lang-ru">Успешный выпуск до 4 игровых проектов на официальных площадках.</span><span class="lang-en">Successfully published up to 4 complete commercial game titles on global stores.</span><span class="lang-ar">نشر وإطلاق حتى 4 ألعاب متكاملة وحصد آلاف التحميلات.</span></li>
+      </ul>
     </div>
-    <div class="timeline">
-        <div class="card exp-card fade-up" style="border-left-color:var(--cyan);">
-            <div class="exp-header">
-                <div class="exp-title">
-                    <span class="lang-ar">مهندس برمجيات ومطور ألعاب أول</span>
-                    <span class="lang-en">Senior Software Engineer & Game Developer</span>
-                    <span class="lang-ru">Старший инженер ПО и разработчик игр</span>
-                </div>
-                <span class="exp-badge" style="background:rgba(6,182,212,0.1);color:var(--cyan);">Freelance | 2019 — Present</span>
-            </div>
-            <ul class="exp-list">
-                <li><span class="lang-ar">تطوير آليات الألعاب والـ Gameplay على Unreal Engine و Unity.</span><span class="lang-en">Engineered gameplay mechanics and code structures on Unreal Engine and Unity.</span><span class="lang-ru">Разработка игровых механик на Unreal Engine и Unity.</span></li>
-                <li><span class="lang-ar">برمجة الميزات متعددة اللاعبين وإدارة الاتصال الشبكي والـ Replication.</span><span class="lang-en">Designed multiplayer frameworks with real-time synchronization and replication.</span><span class="lang-ru">Проектирование мультиплеерных систем с репликацией данных.</span></li>
-                <li><span class="lang-ar">بناء واجهات مستخدم متكاملة ودمج المجسمات والرسوم الحركية.</span><span class="lang-en">Integrated UI/UX structures alongside 3D assets and animation states.</span><span class="lang-ru">Создание UI/UX систем и интеграция 3D-моделей и анимации.</span></li>
-                <li><span class="lang-ar">دمج خدمات Google Play، الشراء الداخلي، وإدارة الكود بـ Git.</span><span class="lang-en">Integrated Google Play Services, In-App Purchases, and maintained Git version control.</span><span class="lang-ru">Интеграция Google Play Services и управление кодом через Git.</span></li>
-                <li><span class="lang-ar">نشر وإطلاق حتى 4 ألعاب متكاملة وحصد آلاف التحميلات.</span><span class="lang-en">Successfully published up to 4 complete commercial game titles on global stores.</span><span class="lang-ru">Успешный выпуск до 4 игровых проектов на официальных площадках.</span></li>
-            </ul>
-        </div>
 
-        <div class="card exp-card fade-up delay-1" style="border-left-color:var(--purple);">
-            <div class="exp-header">
-                <div class="exp-title">
-                    <span class="lang-ar">مطور تطبيقات الهواتف الذكية</span>
-                    <span class="lang-en">Mobile Applications Engineer</span>
-                    <span class="lang-ru">Инженер мобильной разработки</span>
-                </div>
-                <span class="exp-badge" style="background:rgba(139,92,246,0.1);color:var(--purple);">Freelance | 2021 — Present</span>
-            </div>
-            <ul class="exp-list">
-                <li><span class="lang-ar">بناء تطبيقات الهواتف المتقدمة عبر Flutter.</span><span class="lang-en">Constructed scalable cross-platform applications using Flutter.</span><span class="lang-ru">Разработка кроссплатформенных приложений на Flutter.</span></li>
-                <li><span class="lang-ar">برمجة تطبيقات أندرويد أصلية بـ Kotlin في Android Studio.</span><span class="lang-en">Programmed native Android solutions using Kotlin in Android Studio.</span><span class="lang-ru">Программирование нативных Android-приложений на Kotlin.</span></li>
-                <li><span class="lang-ar">دمج Firebase وربط REST APIs وإدارة قواعد البيانات وتسجيل الدخول.</span><span class="lang-en">Integrated Firebase, REST APIs, database models, and authentication workflows.</span><span class="lang-ru">Интеграция Firebase, REST API и систем аутентификации.</span></li>
-                <li><span class="lang-ar">إدارة النشر على Google Play وإطلاق التحديثات الدورية.</span><span class="lang-en">Managed full release pipelines on Google Play with incremental version updates.</span><span class="lang-ru">Управление публикациями в Google Play с регулярными обновлениями.</span></li>
-            </ul>
+    <div class="card exp-card fade-up delay-1" style="border-left-color:var(--violet);color:var(--violet);">
+      <div class="exp-header">
+        <div class="exp-title">
+          <span class="lang-ru">Инженер мобильной разработки</span>
+          <span class="lang-en">Mobile Applications Engineer</span>
+          <span class="lang-ar">مطور تطبيقات الهواتف الذكية</span>
         </div>
-
-        <div class="card exp-card fade-up delay-2" style="border-left-color:var(--amber);background:linear-gradient(to left,rgba(245,158,11,0.03),transparent);">
-            <div class="exp-header">
-                <div class="exp-title">
-                    <i class="fa-solid fa-star" style="color:var(--amber);font-size:12px;"></i>
-                    <span class="lang-ar">مدير الميديا والتسويق الرقمي وإدارة متاجر الإنستغرام</span>
-                    <span class="lang-en">Media & Digital Marketing Manager (Instagram & E-Commerce)</span>
-                    <span class="lang-ru">Директор по медиа и цифровому маркетингу</span>
-                </div>
-                <span class="exp-badge" style="background:rgba(245,158,11,0.1);color:var(--amber);">2020 — Present</span>
-            </div>
-            <ul class="exp-list">
-                <li class="highlight">
-                    <span class="lang-ar">قيادة وإدارة قطاع الميديا بالكامل لأكبر جمعية خيرية على مستوى الشرق الأوسط وحصد نسب تفاعل مليونية.</span>
-                    <span class="lang-en">Headed full-scale media operations for the largest charitable network in the Middle East — millions of interactions.</span>
-                    <span class="lang-ru">Руководство медиа-сектором крупнейшей благотворительной организации Ближнего Востока с миллионными охватами.</span>
-                </li>
-                <li><span class="lang-ar">إدارة الحسابات الكبرى ومتاجر الإنستغرام التجارية الإلكترونية.</span><span class="lang-en">Directed corporate Instagram accounts, digital stores, and e-commerce brands.</span><span class="lang-ru">Управление корпоративными Instagram-аккаунтами и онлайн-магазинами.</span></li>
-                <li><span class="lang-ar">تصميم المواد الإعلانية الإبداعية مع قياس دقيق لمعدلات ROI.</span><span class="lang-en">Engineered marketing visuals and audited conversion data with high ROI results.</span><span class="lang-ru">Разработка рекламных кампаний и анализ ROI.</span></li>
-            </ul>
-        </div>
-
-        <div class="card exp-card fade-up delay-3" style="border-left-color:var(--fuchsia);">
-            <div class="exp-header">
-                <div class="exp-title">
-                    <span class="lang-ar">أخصائي تصميم وتجسيم ثلاثي الأبعاد 3D</span>
-                    <span class="lang-en">3D Creative Designer & Visualization Engineer</span>
-                    <span class="lang-ru">Специалист по 3D-моделированию и визуализации</span>
-                </div>
-                <span class="exp-badge" style="background:rgba(217,70,239,0.1);color:var(--fuchsia);">Freelance | 2020 — Present</span>
-            </div>
-            <ul class="exp-list">
-                <li><span class="lang-ar">بناء النماذج ثلاثية الأبعاد المعقدة بدقة متناهية عبر Blender.</span><span class="lang-en">Sculpted game-ready 3D objects and structural layouts inside Blender.</span><span class="lang-ru">Создание детализированных 3D-моделей в Blender.</span></li>
-                <li><span class="lang-ar">تطوير أصول الألعاب الرقمية المجهزة للتحريك والإضاءة.</span><span class="lang-en">Optimized mesh systems with UV wrapping and custom textures for real-time rendering.</span><span class="lang-ru">Разработка игровых ассетов, готовых для анимации и запекания света.</span></li>
-                <li><span class="lang-ar">تصميم المحاكاة المعمارية عالية الجودة وإنتاج المقاطع السينمائية.</span><span class="lang-en">Produced photorealistic architectural visualizations and cinematic trailers in Unreal Engine.</span><span class="lang-ru">Производство фотореалистичной архитектурной визуализации и кинематографичных трейлеров.</span></li>
-            </ul>
-        </div>
+        <span class="exp-badge" style="background:rgba(124,92,252,0.07);color:var(--violet);border-color:rgba(124,92,252,0.2);">Freelance │ 2021 — Present</span>
+      </div>
+      <ul class="exp-list">
+        <li><span class="lang-ru">Разработка кроссплатформенных приложений на Flutter.</span><span class="lang-en">Constructed scalable cross-platform applications using Flutter.</span><span class="lang-ar">بناء تطبيقات الهواتف المتقدمة عبر Flutter.</span></li>
+        <li><span class="lang-ru">Программирование нативных Android-приложений на Kotlin.</span><span class="lang-en">Programmed native Android solutions using Kotlin in Android Studio.</span><span class="lang-ar">برمجة تطبيقات أندرويد أصلية بـ Kotlin في Android Studio.</span></li>
+        <li><span class="lang-ru">Интеграция Firebase, REST API и систем аутентификации.</span><span class="lang-en">Integrated Firebase, REST APIs, database models, and authentication workflows.</span><span class="lang-ar">دمج Firebase وربط REST APIs وإدارة قواعد البيانات.</span></li>
+        <li><span class="lang-ru">Управление публикациями в Google Play с регулярными обновлениями.</span><span class="lang-en">Managed full release pipelines on Google Play with incremental version updates.</span><span class="lang-ar">إدارة النشر على Google Play وإطلاق التحديثات الدورية.</span></li>
+      </ul>
     </div>
+
+    <div class="card exp-card fade-up delay-2" style="border-left-color:var(--amber);color:var(--amber);">
+      <div class="exp-header">
+        <div class="exp-title">
+          <span class="lang-ru">Директор по медиа и цифровому маркетингу</span>
+          <span class="lang-en">Media &amp; Digital Marketing Manager</span>
+          <span class="lang-ar">مدير الميديا والتسويق الرقمي</span>
+        </div>
+        <span class="exp-badge" style="background:rgba(255,181,71,0.07);color:var(--amber);border-color:rgba(255,181,71,0.2);">2020 — Present</span>
+      </div>
+      <ul class="exp-list">
+        <li class="highlight">
+          <span class="lang-ru">Руководство медиа-сектором крупнейшей благотворительной организации Ближнего Востока с миллионными охватами аудитории.</span>
+          <span class="lang-en">Headed full-scale media operations for the largest charitable network in the Middle East — millions of interactions.</span>
+          <span class="lang-ar">قيادة قطاع الميديا بالكامل لأكبر جمعية خيرية على مستوى الشرق الأوسط وحصد نسب تفاعل مليونية.</span>
+        </li>
+        <li><span class="lang-ru">Управление корпоративными Instagram-аккаунтами и онлайн-магазинами.</span><span class="lang-en">Directed corporate Instagram accounts, digital stores, and e-commerce brands.</span><span class="lang-ar">إدارة الحسابات الكبرى ومتاجر الإنستغرام التجارية الإلكترونية.</span></li>
+        <li><span class="lang-ru">Разработка рекламных кампаний и анализ конверсий с высоким ROI.</span><span class="lang-en">Engineered marketing visuals and audited conversion data with high ROI results.</span><span class="lang-ar">تصميم المواد الإعلانية الإبداعية مع قياس دقيق لمعدلات ROI.</span></li>
+      </ul>
+    </div>
+
+    <div class="card exp-card fade-up delay-3" style="border-left-color:var(--pink);color:var(--pink);">
+      <div class="exp-header">
+        <div class="exp-title">
+          <span class="lang-ru">Специалист по 3D-моделированию и визуализации</span>
+          <span class="lang-en">3D Creative Designer &amp; Visualization Engineer</span>
+          <span class="lang-ar">أخصائي تصميم وتجسيم ثلاثي الأبعاد</span>
+        </div>
+        <span class="exp-badge" style="background:rgba(240,47,194,0.07);color:var(--pink);border-color:rgba(240,47,194,0.2);">Freelance │ 2020 — Present</span>
+      </div>
+      <ul class="exp-list">
+        <li><span class="lang-ru">Создание детализированных 3D-моделей в Blender для игр и визуализации.</span><span class="lang-en">Sculpted game-ready 3D objects and structural layouts inside Blender.</span><span class="lang-ar">بناء النماذج ثلاثية الأبعاد المعقدة بدقة متناهية عبر Blender.</span></li>
+        <li><span class="lang-ru">Разработка игровых ассетов, готовых для анимации и запекания света.</span><span class="lang-en">Optimized mesh systems with UV wrapping and custom textures for real-time rendering.</span><span class="lang-ar">تطوير أصول الألعاب الرقمية المجهزة للتحريك والإضاءة.</span></li>
+        <li><span class="lang-ru">Производство фотореалистичной архитектурной визуализации в Unreal Engine.</span><span class="lang-en">Produced photorealistic architectural visualizations and cinematic trailers in Unreal Engine.</span><span class="lang-ar">تصميم المحاكاة المعمارية عالية الجودة وإنتاج المقاطع السينمائية.</span></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
+<!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
 <div class="section" id="projects">
-    <div class="section-header fade-up">
-        <h2 class="section-title">
-            <span class="lang-ar">// سجل المشاريع الاستراتيجية</span>
-            <span class="lang-en">// Projects Archive</span>
-            <span class="lang-ru">// Реестр проектов</span>
-        </h2>
-        <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--purple));"></div>
-    </div>
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">projects.archive</span>
+    <h2 class="section-title">
+      <span class="lang-ru">Реестр проектов</span>
+      <span class="lang-en">Projects Archive</span>
+      <span class="lang-ar">سجل المشاريع</span>
+    </h2>
+    <div class="section-line" style="background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--cyan);"></div>
+  </div>
 
-    <div style="margin-bottom:2rem;">
-        <h3 class="fade-up" style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);">
-            <i class="fa-solid fa-gamepad"></i> [01]
-            <span class="lang-ar">ألعاب الفيديو</span><span class="lang-en">GAME PRODUCTION</span><span class="lang-ru">ИГРОВАЯ РАЗРАБОТКА</span>
-        </h3>
-        <div class="projects-grid">
-            <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
-                <div>
-                    <div class="project-title" style="color:#67e8f9;"><i class="fa-solid fa-cart-shopping"></i>
-                        <span class="lang-ar">محاكي السوبر ماركت (3D)</span>
-                        <span class="lang-en">Supermarket Simulator (3D)</span>
-                        <span class="lang-ru">Симулятор Супермаркета (3D)</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة محاكاة ثلاثية أبعاد مدعومة بذكاء اصطناعي عميق تتغير فيها تصرفات المشترين والبيئة ديناميكياً مع كل قرار للاعب.</span>
-                        <span class="lang-en">Fully immersive 3D simulation powered by a Deep AI framework where buyer interactions adapt dynamically based on player choices.</span>
-                        <span class="lang-ru">3D-симулятор с продвинутым Deep AI, где поведение покупателей меняется на основе каждого решения игрока.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--cyan);">UNREAL ENGINE / MOBILE & PC</span>
-            </div>
-            <div class="card project-card fade-up delay-1" style="border-top-color:#ef4444;">
-                <div>
-                    <div class="project-title" style="color:#f87171;"><i class="fa-solid fa-virus"></i>
-                        <span class="lang-ar">محاكاة الفيروس (3D - AAA)</span>
-                        <span class="lang-en">Virus Simulator (3D - AAA)</span>
-                        <span class="lang-ru">Симулятор Вируса (3D - AAA)</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة ضخمة بجرافيك سينمائي AAA. تلعب دور فيروس يسعى لاختراق جسم الإنسان، بناء جيش فيروسات، والحذر من خلايا الدم البيضاء.</span>
-                        <span class="lang-en">AAA-quality project where you control a pathogen, infiltrate human physiology, synthesize cell armies, and evade white blood cell swarms.</span>
-                        <span class="lang-ru">AAA-проект: управляй вирусом, проникай в организм, строй армию микробов и борись с лейкоцитами.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:#f87171;">HIGH-END CINEMATIC / IN-DEVELOPMENT</span>
-            </div>
-            <div class="card project-card fade-up delay-2" style="border-top-color:var(--purple);">
-                <div>
-                    <div class="project-title" style="color:#c4b5fd;"><i class="fa-solid fa-shield-halved"></i>
-                        <span class="lang-ar">استراتيجية دفاع القواعد (STR)</span>
-                        <span class="lang-en">Base Defense Strategy (STR)</span>
-                        <span class="lang-ru">Стратегия Защиты Баз (STR)</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة استراتيجية تكتيكية للهواتف بعالمين: خريطة معارك فضائية وخريطة معارك في العصور الوسطى.</span>
-                        <span class="lang-en">Mobile tactical strategy with dual thematic modes: sci-fi space battlefields and historical medieval fortress sieges.</span>
-                        <span class="lang-ru">Мобильная тактическая стратегия с двумя режимами: футуристический космос и историческое Средневековье.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--purple);">CROSS-PLATFORM MOBILE STR</span>
-            </div>
-            <div class="card project-card fade-up" style="border-top-color:var(--amber);">
-                <div>
-                    <div class="project-title" style="color:#fde68a;"><i class="fa-solid fa-mask"></i>
-                        <span class="lang-ar">محاكي سرقة بنك (2.5D Stealth)</span>
-                        <span class="lang-en">Bank Robbery Simulator (2.5D)</span>
-                        <span class="lang-ru">Симулятор Ограбления (2.5D)</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة حركية ثنائية ونصف الأبعاد تعتمد التسلل والاختفاء وتجنب حراس الأمن وتعطيل كاميرات المراقبة.</span>
-                        <span class="lang-en">2.5D side-scroller relying on stealth algorithms, concealment, pattern tracking, and bypassing security lasers.</span>
-                        <span class="lang-ru">Стелс-экшен в 2.5D на механиках скрытности, обходе охраны и отключении лазерной сигнализации.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--amber);">UNITY FRAMEWORK / STEALTH LOGIC</span>
-            </div>
-            <div class="card project-card fade-up delay-1" style="border-top-color:var(--fuchsia);">
-                <div>
-                    <div class="project-title" style="color:#f0abfc;"><i class="fa-solid fa-user-astronaut"></i>
-                        <span class="lang-ar">باتل رويال في الفضاء (Multiplayer)</span>
-                        <span class="lang-en">Space Battle Royale (Multiplayer)</span>
-                        <span class="lang-ru">Космическая Королевская Битва</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة قتال جماعي عبر الإنترنت في بيئات فضائية مفتوحة مع فيزيائيات انعدام الجاذبية ومزامنة الخوادم.</span>
-                        <span class="lang-en">Online survival in zero-gravity space maps with net-authoritative server synchronization and orbital combat mechanics.</span>
-                        <span class="lang-ru">Сетевой экшен на выживание в космосе с физикой нулевой гравитации и оптимизированной репликацией.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--fuchsia);">MULTIPLAYER INFRASTRUCTURE / STEAM</span>
-            </div>
-            <div class="card project-card fade-up delay-2" style="border-top-color:#34d399;">
-                <div>
-                    <div class="project-title" style="color:#6ee7b7;"><i class="fa-solid fa-car-burst"></i>
-                        <span class="lang-ar">لعبة سباق سيارات خفيفة</span>
-                        <span class="lang-en">Lightweight Car Racing</span>
-                        <span class="lang-ru">Аркадные Автогонки</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">لعبة سباقات محسّنة لتعمل بسلاسة فائقة على جميع فئات الهواتف الضعيفة والقوية بمعدل فريمات عالٍ وثابت.</span>
-                        <span class="lang-en">Arcade racing heavily optimized for maximum FPS on all device tiers, including low-end mobile hardware.</span>
-                        <span class="lang-ru">Аркадные гонки с глубокой оптимизацией для стабильного FPS на любых смартфонах.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:#34d399;">HYPER-OPTIMIZED MOBILE</span>
-            </div>
-        </div>
+  <div style="margin-bottom:2.5rem;">
+    <div class="sub-header fade-up" style="color:var(--cyan);">
+      <i class="fa-solid fa-gamepad"></i>
+      <span class="lang-ru">ИГРОВАЯ РАЗРАБОТКА</span>
+      <span class="lang-en">GAME PRODUCTION</span>
+      <span class="lang-ar">ألعاب الفيديو</span>
     </div>
+    <div class="projects-grid">
+      <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
+        <div>
+          <div class="project-icon" style="background:rgba(0,212,255,0.1);color:var(--cyan);"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div class="project-title" style="color:var(--cyan);">
+            <span class="lang-ru">Симулятор Супермаркета (3D)</span>
+            <span class="lang-en">Supermarket Simulator (3D)</span>
+            <span class="lang-ar">محاكي السوبر ماركت (3D)</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">3D-симулятор с продвинутым Deep AI, где поведение покупателей меняется динамически на основе каждого решения игрока.</span>
+            <span class="lang-en">Fully immersive 3D simulation powered by Deep AI where buyer interactions adapt dynamically based on player choices.</span>
+            <span class="lang-ar">لعبة محاكاة ثلاثية أبعاد مدعومة بذكاء اصطناعي عميق تتغير فيها تصرفات المشترين ديناميكياً.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">UNREAL ENGINE</span><span class="project-tag">MOBILE &amp; PC</span><span class="project-tag">DEEP AI</span></div>
+      </div>
 
-    <div>
-        <h3 class="fade-up" style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--purple);margin-bottom:1rem;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);">
-            <i class="fa-solid fa-layer-group"></i> [02]
-            <span class="lang-ar">البرمجيات المؤسسية</span><span class="lang-en">ENTERPRISE SOFTWARE</span><span class="lang-ru">КОРПОРАТИВНЫЙ СТЕК</span>
-        </h3>
-        <div class="projects-grid">
-            <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
-                <div>
-                    <div class="project-title" style="color:#67e8f9;"><i class="fa-solid fa-shield-cat"></i>
-                        <span class="lang-ar">برنامج الشبكة الافتراضية (VPN)</span>
-                        <span class="lang-en">Secure VPN Application</span>
-                        <span class="lang-ru">VPN-приложение</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">برنامج متكامل مشفر لحماية البيانات وتجاوز الحجب الجغرافي مع خوادم دولية متعددة.</span>
-                        <span class="lang-en">Full VPN client with layered encryption, geoblock circumvention, and low-latency global server handshakes.</span>
-                        <span class="lang-ru">Полнофункциональный VPN-клиент с шифрованием и быстрым переключением между серверами.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--cyan);">NETWORK SECURITY / CRYPTO FLOW</span>
-            </div>
-            <div class="card project-card fade-up delay-1" style="border-top-color:var(--amber);">
-                <div>
-                    <div class="project-title" style="color:#fde68a;"><i class="fa-solid fa-scale-balanced"></i>
-                        <span class="lang-ar">الإدارة المالية للشركات (ERP)</span>
-                        <span class="lang-en">Enterprise Financial Platform (ERP)</span>
-                        <span class="lang-ru">Корпоративный ERP-Финансы</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">نظام مؤسسي ضخم يعالج التدفقات المالية، الحسابات البنكية، مراقبة الميزانيات والتقارير الضريبية والتحليلات المتقدمة.</span>
-                        <span class="lang-en">Enterprise ERP asset with financial analytics, accounting workflows, automated ledger balancing, and deep business metrics.</span>
-                        <span class="lang-ru">Корпоративная ERP-система с финансовой аналитикой, бюджетированием и предиктивными данными.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--amber);">ERP ARCHITECTURE / ANALYTICS</span>
-            </div>
-            <div class="card project-card fade-up delay-2" style="border-top-color:var(--fuchsia);">
-                <div>
-                    <div class="project-title" style="color:#f0abfc;"><i class="fa-solid fa-truck-ramp-box"></i>
-                        <span class="lang-ar">منصة التوصيل والخدمات اللوجستية</span>
-                        <span class="lang-en">Full-Cycle Delivery & Logistics</span>
-                        <span class="lang-ru">Платформа Доставки</span>
-                    </div>
-                    <p class="project-desc">
-                        <span class="lang-ar">منصة لوجستية متكاملة: تطبيق العميل، تطبيق المندوب، لوحة تحكم إدارية مع تتبع حي GPS.</span>
-                        <span class="lang-en">End-to-end logistics ecosystem: Client app, Driver routing tool, and Management Portal with real-time GPS tracking.</span>
-                        <span class="lang-ru">Комплексная логистика: приложение клиента, курьера и административная панель с GPS-трекингом.</span>
-                    </p>
-                </div>
-                <span class="project-tag" style="color:var(--fuchsia);">FLUTTER / FIREBASE / GEOLOCATION</span>
-            </div>
+      <div class="card project-card fade-up delay-1" style="border-top-color:#ef4444;">
+        <div>
+          <div class="project-icon" style="background:rgba(239,68,68,0.1);color:#f87171;"><i class="fa-solid fa-virus"></i></div>
+          <div class="project-title" style="color:#f87171;">
+            <span class="lang-ru">Симулятор Вируса (3D — AAA)</span>
+            <span class="lang-en">Virus Simulator (3D — AAA)</span>
+            <span class="lang-ar">محاكاة الفيروس (3D - AAA)</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">AAA-проект: управляй вирусом, проникай в организм, строй армию микробов и борись с лейкоцитами в кинематографичной графике.</span>
+            <span class="lang-en">AAA-quality game where you control a pathogen, infiltrate human physiology, synthesize cell armies, and evade white blood cell swarms.</span>
+            <span class="lang-ar">لعبة ضخمة بجرافيك سينمائي AAA تلعب دور فيروس يسعى لاختراق جسم الإنسان.</span>
+          </p>
         </div>
+        <div class="project-tags"><span class="project-tag">AAA CINEMATIC</span><span class="project-tag">IN DEVELOPMENT</span></div>
+      </div>
+
+      <div class="card project-card fade-up delay-2" style="border-top-color:var(--violet);">
+        <div>
+          <div class="project-icon" style="background:rgba(124,92,252,0.1);color:var(--violet);"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="project-title" style="color:#c4b5fd;">
+            <span class="lang-ru">Стратегия Защиты Баз (STR)</span>
+            <span class="lang-en">Base Defense Strategy (STR)</span>
+            <span class="lang-ar">استراتيجية دفاع القواعد</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Мобильная тактическая стратегия с двумя режимами: футуристический космос и историческое Средневековье.</span>
+            <span class="lang-en">Mobile tactical strategy with dual thematic modes: sci-fi space battlefields and historical medieval fortress sieges.</span>
+            <span class="lang-ar">لعبة استراتيجية تكتيكية للهواتف بعالمين: خريطة فضائية وخريطة العصور الوسطى.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">CROSS-PLATFORM</span><span class="project-tag">STRATEGY</span></div>
+      </div>
+
+      <div class="card project-card fade-up" style="border-top-color:var(--amber);">
+        <div>
+          <div class="project-icon" style="background:rgba(255,181,71,0.1);color:var(--amber);"><i class="fa-solid fa-mask"></i></div>
+          <div class="project-title" style="color:#fde68a;">
+            <span class="lang-ru">Симулятор Ограбления (2.5D Stealth)</span>
+            <span class="lang-en">Bank Robbery Simulator (2.5D)</span>
+            <span class="lang-ar">محاكي سرقة بنك (2.5D)</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Стелс-экшен в 2.5D с механиками скрытности, обходом охраны и отключением лазерной сигнализации.</span>
+            <span class="lang-en">2.5D side-scroller relying on stealth algorithms, concealment, pattern tracking, and bypassing security lasers.</span>
+            <span class="lang-ar">لعبة حركية تعتمد التسلل وتجنب الحراس وتعطيل كاميرات المراقبة.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">UNITY</span><span class="project-tag">STEALTH LOGIC</span></div>
+      </div>
+
+      <div class="card project-card fade-up delay-1" style="border-top-color:var(--pink);">
+        <div>
+          <div class="project-icon" style="background:rgba(240,47,194,0.1);color:var(--pink);"><i class="fa-solid fa-user-astronaut"></i></div>
+          <div class="project-title" style="color:#f0abfc;">
+            <span class="lang-ru">Космическая Королевская Битва</span>
+            <span class="lang-en">Space Battle Royale (Multiplayer)</span>
+            <span class="lang-ar">باتل رويال في الفضاء</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Сетевой экшен на выживание в космосе с физикой нулевой гравитации и оптимизированной репликацией серверов.</span>
+            <span class="lang-en">Online survival in zero-gravity space maps with net-authoritative server synchronization and orbital combat mechanics.</span>
+            <span class="lang-ar">لعبة قتال جماعي عبر الإنترنت في بيئات فضائية مفتوحة مع فيزيائيات انعدام الجاذبية.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">MULTIPLAYER</span><span class="project-tag">STEAM</span></div>
+      </div>
+
+      <div class="card project-card fade-up delay-2" style="border-top-color:var(--green);">
+        <div>
+          <div class="project-icon" style="background:rgba(0,229,160,0.1);color:var(--green);"><i class="fa-solid fa-car-burst"></i></div>
+          <div class="project-title" style="color:#6ee7b7;">
+            <span class="lang-ru">Аркадные Автогонки</span>
+            <span class="lang-en">Lightweight Car Racing</span>
+            <span class="lang-ar">لعبة سباق سيارات خفيفة</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Аркадные гонки с глубокой оптимизацией для стабильного FPS на любых смартфонах, включая бюджетные.</span>
+            <span class="lang-en">Arcade racing heavily optimized for maximum FPS on all device tiers, including low-end mobile hardware.</span>
+            <span class="lang-ar">لعبة سباقات محسّنة للعمل بسلاسة على جميع فئات الهواتف.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">HYPER-OPTIMIZED</span><span class="project-tag">MOBILE</span></div>
+      </div>
     </div>
+  </div>
+
+  <div>
+    <div class="sub-header fade-up" style="color:var(--violet);">
+      <i class="fa-solid fa-layer-group"></i>
+      <span class="lang-ru">КОРПОРАТИВНЫЙ СТЕК</span>
+      <span class="lang-en">ENTERPRISE SOFTWARE</span>
+      <span class="lang-ar">البرمجيات المؤسسية</span>
+    </div>
+    <div class="projects-grid">
+      <div class="card project-card fade-up" style="border-top-color:var(--cyan);">
+        <div>
+          <div class="project-icon" style="background:rgba(0,212,255,0.1);color:var(--cyan);"><i class="fa-solid fa-shield-cat"></i></div>
+          <div class="project-title" style="color:var(--cyan);">
+            <span class="lang-ru">VPN-приложение</span>
+            <span class="lang-en">Secure VPN Application</span>
+            <span class="lang-ar">برنامج الشبكة الافتراضية (VPN)</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Полнофункциональный VPN-клиент с шифрованием и быстрым переключением между глобальными серверами.</span>
+            <span class="lang-en">Full VPN client with layered encryption, geoblock circumvention, and low-latency global server handshakes.</span>
+            <span class="lang-ar">برنامج متكامل مشفر لحماية البيانات وتجاوز الحجب الجغرافي.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">NETWORK SECURITY</span><span class="project-tag">ENCRYPTION</span></div>
+      </div>
+
+      <div class="card project-card fade-up delay-1" style="border-top-color:var(--amber);">
+        <div>
+          <div class="project-icon" style="background:rgba(255,181,71,0.1);color:var(--amber);"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="project-title" style="color:#fde68a;">
+            <span class="lang-ru">Корпоративный ERP-Финансы</span>
+            <span class="lang-en">Enterprise Financial Platform (ERP)</span>
+            <span class="lang-ar">الإدارة المالية للشركات (ERP)</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Корпоративная ERP-система с финансовой аналитикой, бюджетированием и предиктивными данными для бизнеса.</span>
+            <span class="lang-en">Enterprise ERP with financial analytics, accounting workflows, automated ledger balancing, and deep business metrics.</span>
+            <span class="lang-ar">نظام مؤسسي ضخم يعالج التدفقات المالية والحسابات والتقارير الضريبية.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">ERP</span><span class="project-tag">ANALYTICS</span></div>
+      </div>
+
+      <div class="card project-card fade-up delay-2" style="border-top-color:var(--pink);">
+        <div>
+          <div class="project-icon" style="background:rgba(240,47,194,0.1);color:var(--pink);"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div class="project-title" style="color:#f0abfc;">
+            <span class="lang-ru">Платформа Доставки и Логистики</span>
+            <span class="lang-en">Full-Cycle Delivery &amp; Logistics</span>
+            <span class="lang-ar">منصة التوصيل والخدمات اللوجستية</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-ru">Комплексная логистика: приложение клиента, курьера и административная панель с GPS-трекингом в реальном времени.</span>
+            <span class="lang-en">End-to-end logistics: Client app, Driver routing tool, and Management Portal with real-time GPS tracking.</span>
+            <span class="lang-ar">منصة لوجستية متكاملة: تطبيق العميل، تطبيق المندوب، لوحة تحكم إدارية مع تتبع حي GPS.</span>
+          </p>
+        </div>
+        <div class="project-tags"><span class="project-tag">FLUTTER</span><span class="project-tag">FIREBASE</span><span class="project-tag">GPS</span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- GALLERY -->
+<!-- ═══════════════════════ GALLERY ═══════════════════════ -->
 <div class="section" id="gallery">
-    <div class="section-header fade-up">
-        <h2 class="section-title">
-            <span class="lang-ar">// معرض الأصول الإبداعية</span>
-            <span class="lang-en">// Visual Archive</span>
-            <span class="lang-ru">// Графический архив</span>
-        </h2>
-        <div class="section-line" style="background:linear-gradient(90deg,var(--fuchsia),var(--cyan));"></div>
-    </div>
-    <div class="gallery-grid">
-        <div class="gallery-item fade-up"><img src="img1.jpg" alt="Asset 1" loading="lazy"></div>
-        <div class="gallery-item fade-up delay-1"><img src="img2.jpg" alt="Asset 2" loading="lazy"></div>
-        <div class="gallery-item fade-up delay-2"><img src="img3.jpg" alt="Asset 3" loading="lazy"></div>
-        <div class="gallery-item fade-up delay-3"><img src="img4.jpg" alt="Asset 4" loading="lazy"></div>
-        <div class="gallery-item fade-up delay-4"><img src="img5.jpg" alt="Asset 5" loading="lazy"></div>
-    </div>
+  <div class="section-header fade-up">
+    <span class="section-eyebrow">visual.archive</span>
+    <h2 class="section-title">
+      <span class="lang-ru">Графический архив</span>
+      <span class="lang-en">Visual Archive</span>
+      <span class="lang-ar">معرض الأصول الإبداعية</span>
+    </h2>
+    <div class="section-line" style="background:linear-gradient(90deg,var(--pink),var(--cyan));color:var(--pink);"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item fade-up"><img src="img1.jpg" alt="Asset 1" loading="lazy"></div>
+    <div class="gallery-item fade-up delay-1"><img src="img2.jpg" alt="Asset 2" loading="lazy"></div>
+    <div class="gallery-item fade-up delay-2"><img src="img3.jpg" alt="Asset 3" loading="lazy"></div>
+    <div class="gallery-item fade-up delay-3"><img src="img4.jpg" alt="Asset 4" loading="lazy"></div>
+    <div class="gallery-item fade-up delay-4"><img src="img5.jpg" alt="Asset 5" loading="lazy"></div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- EDUCATION -->
+<!-- ═══════════════════════ EDUCATION ═══════════════════════ -->
 <div class="section">
-    <div class="card fade-up" style="max-width:700px;margin:0 auto;padding:1.5rem;border-left:3px solid var(--amber);">
-        <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:0.12em;margin-bottom:8px;">// ACADEMIC FOUNDATION</div>
-        <div style="font-size:clamp(14px,3vw,17px);font-weight:800;color:var(--amber);margin-bottom:6px;">Bachelor's Degree in Technical Science</div>
-        <p style="font-size:clamp(11px,2vw,13px);color:#cbd5e1;line-height:1.7;">
-            <span class="lang-ar">درجة البكالوريوس في هندسة تقنيات أنظمة الاتصالات والمعلومات والمعالجة البرمجية.</span>
-            <span class="lang-en">Infocommunication Technologies and Communication Systems Engineering degree.</span>
-            <span class="lang-ru">Высшее техническое образование в сфере инфокоммуникационных технологий и систем связи.</span>
-        </p>
-    </div>
+  <div class="card edu-card fade-up">
+    <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:0.15em;margin-bottom:8px;">// ACADEMIC_FOUNDATION</div>
+    <div class="edu-degree">Bachelor's Degree — Technical Science</div>
+    <p class="edu-desc">
+      <span class="lang-ru">Высшее техническое образование в сфере инфокоммуникационных технологий и систем связи.</span>
+      <span class="lang-en">Infocommunication Technologies and Communication Systems Engineering.</span>
+      <span class="lang-ar">درجة البكالوريوس في هندسة تقنيات أنظمة الاتصالات والمعلومات والمعالجة البرمجية.</span>
+    </p>
+  </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer>
-    <div class="footer-name">HANY REDA &bull; SENIOR TECHNICAL PORTFOLIO</div>
-    <div class="footer-links">
-        <a href="mailto:Developeractionobject@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="https://wa.me/79969382354" target="_blank" title="WhatsApp" style="color:#34d399;"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://t.me/+79969382354" target="_blank" title="Telegram" style="color:#38bdf8;"><i class="fa-brands fa-telegram"></i></a>
-    </div>
-    <div class="footer-copy">
-        <span class="lang-ar">&copy; 2026 هاني رضا. جميع الحقوق محفوظة.</span>
-        <span class="lang-en">&copy; 2026 Hany Reda. All rights reserved.</span>
-        <span class="lang-ru">&copy; 2026 Хани Реда. Все права защищены.</span>
-    </div>
+  <span class="footer-logo">HANY REDA</span>
+  <div class="footer-links">
+    <a href="mailto:Developeractionobject@gmail.com" title="Email" style="color:#f87171;border-color:rgba(239,68,68,0.2);" onclick="trackContact('Gmail-Footer')"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://wa.me/79969382354" target="_blank" title="WhatsApp" style="color:#34d399;border-color:rgba(16,185,129,0.2);" onclick="trackContact('WhatsApp-Footer')"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://t.me/+79969382354" target="_blank" title="Telegram" style="color:#38bdf8;border-color:rgba(14,165,233,0.2);" onclick="trackContact('Telegram-Footer')"><i class="fa-brands fa-telegram"></i></a>
+  </div>
+  <div class="footer-copy">
+    <span class="lang-ru">&copy; 2026 Хани Реда. Все права защищены.</span>
+    <span class="lang-en">&copy; 2026 Hany Reda. All rights reserved.</span>
+    <span class="lang-ar">&copy; 2026 هاني رضا. جميع الحقوق محفوظة.</span>
+  </div>
 </footer>
 
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
 <script>
+/* ── LANGUAGE SWITCHER ── */
 function setLanguage(lang) {
-    ['ar','en','ru'].forEach(function(l) {
-        document.querySelectorAll('.lang-' + l).forEach(function(el) {
-            el.style.display = 'none';
-        });
-        var btn = document.getElementById('btn-' + l);
-        if (btn) btn.classList.remove('active');
-    });
-    document.querySelectorAll('.lang-' + lang).forEach(function(el) {
-        el.style.display = 'inline';
-    });
-    var activeBtn = document.getElementById('btn-' + lang);
-    if (activeBtn) activeBtn.classList.add('active');
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+  ['ar','en','ru'].forEach(function(l) {
+    document.querySelectorAll('.lang-'+l).forEach(function(el){ el.style.display='none'; });
+    var b = document.getElementById('btn-'+l);
+    if(b) b.classList.remove('active');
+  });
+  document.querySelectorAll('.lang-'+lang).forEach(function(el){ el.style.display='inline'; });
+  var ab = document.getElementById('btn-'+lang);
+  if(ab) ab.classList.add('active');
+  document.documentElement.dir = lang==='ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  trackLanguage(lang);
 }
 
-// Progress bar
-window.addEventListener('scroll', function() {
-    var scrollTop = window.scrollY;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = progress + '%';
+/* ── TYPEWRITER ── */
+var phrases = [
+  'Unreal Engine Developer',
+  'Flutter & Mobile Expert',
+  'AI Integration Specialist',
+  '3D Modeling & Visualization',
+  'B2B Negotiations Leader',
+  'Game Architecture Designer'
+];
+var pi=0, ci=0, deleting=false, tw=document.getElementById('typewriter');
+function type() {
+  var ph=phrases[pi], speed=deleting?40:80;
+  if(!deleting){ tw.textContent=ph.slice(0,++ci); if(ci===ph.length){ deleting=true; speed=2000; } }
+  else { tw.textContent=ph.slice(0,--ci); if(ci===0){ deleting=false; pi=(pi+1)%phrases.length; speed=400; } }
+  setTimeout(type,speed);
+}
+type();
 
-    // Hide scroll indicator after scrolling 100px
-    var indicator = document.getElementById('scrollIndicator');
-    if (scrollTop > 100) {
-        indicator.classList.add('hidden');
-    } else {
-        indicator.classList.remove('hidden');
-    }
-
-    // Navbar opacity
-    var nb = document.getElementById('navbar');
-    nb.style.background = scrollTop > 50 ? 'rgba(3,2,13,0.97)' : 'rgba(3,2,13,0.85)';
-}, { passive: true });
-
-// Intersection Observer
-var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+/* ── AURORA CANVAS ── */
+(function(){
+  var canvas=document.getElementById('aurora-canvas');
+  var ctx=canvas.getContext('2d');
+  var W,H,t=0;
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize,{passive:true});
+  var particles=[];
+  for(var i=0;i<70;i++){
+    particles.push({
+      x:Math.random()*100, y:Math.random()*100,
+      vx:(Math.random()-0.5)*0.015, vy:(Math.random()-0.5)*0.012,
+      size:Math.random()*1.4+0.3,
+      color:['#00d4ff','#7c5cfc','#f02fc2','#00e5a0'][Math.floor(Math.random()*4)],
+      alpha:Math.random()*0.6+0.1
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.fade-up').forEach(function(el) {
-    observer.observe(el);
-});
-
-// Particles
-(function() {
-    var canvas = document.getElementById('particles-canvas');
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-    var W, H;
-
-    function resize() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-    }
-
-    function createParticle() {
-        return {
-            x: Math.random() * W,
-            y: Math.random() * H,
-            r: Math.random() * 1.5 + 0.3,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
-            alpha: Math.random() * 0.5 + 0.1,
-            color: ['#06b6d4','#8b5cf6','#d946ef'][Math.floor(Math.random() * 3)]
-        };
-    }
-
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-    for (var i = 0; i < 80; i++) particles.push(createParticle());
-
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (var i = 0; i < particles.length; i++) {
-            var p = particles[i];
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.globalAlpha = p.alpha;
-            ctx.fill();
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > W) p.vx *= -1;
-            if (p.y < 0 || p.y > H) p.vy *= -1;
-        }
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(draw);
-    }
-    draw();
+  }
+  function drawAurora(){
+    ctx.clearRect(0,0,W,H);
+    var blobs=[
+      {x:0.75,y:-0.1,r:0.55,c:'rgba(124,92,252,0.13)'},
+      {x:0.1,y:0.45,r:0.6,c:'rgba(0,212,255,0.1)'},
+      {x:0.85,y:0.7,r:0.45,c:'rgba(240,47,194,0.09)'},
+      {x:0.4,y:1.0,r:0.5,c:'rgba(0,229,160,0.07)'}
+    ];
+    blobs.forEach(function(b){
+      var bx=b.x*W+Math.sin(t*0.0006+b.x*10)*W*0.06;
+      var by=b.y*H+Math.cos(t*0.0007+b.y*8)*H*0.05;
+      var gr=ctx.createRadialGradient(bx,by,0,bx,by,b.r*Math.max(W,H));
+      gr.addColorStop(0,b.c); gr.addColorStop(1,'transparent');
+      ctx.fillStyle=gr; ctx.fillRect(0,0,W,H);
+    });
+    ctx.globalAlpha=1;
+    particles.forEach(function(p){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>100) p.vx*=-1;
+      if(p.y<0||p.y>100) p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x/100*W,p.y/100*H,p.size,0,Math.PI*2);
+      ctx.fillStyle=p.color; ctx.globalAlpha=p.alpha; ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    t++; requestAnimationFrame(drawAurora);
+  }
+  drawAurora();
 })();
 
-// Init
-window.addEventListener('DOMContentLoaded', function() {
-    setLanguage('ru');
+/* ── SCROLL EFFECTS ── */
+window.addEventListener('scroll',function(){
+  var st=window.scrollY;
+  var dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress-bar').style.width=(dh>0?(st/dh*100):0)+'%';
+  var ind=document.getElementById('scrollIndicator');
+  st>80 ? ind.classList.add('hidden') : ind.classList.remove('hidden');
+  var nb=document.getElementById('navbar');
+  nb.style.background=st>60?'rgba(2,5,16,0.97)':'rgba(2,5,16,0.6)';
+},{passive:true});
+
+/* ── INTERSECTION OBSERVER (fade + scale + section tracking) ── */
+var _trackedSections = {};
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // Track named sections
+      var sid = e.target.id;
+      if(sid && !_trackedSections[sid]){
+        _trackedSections[sid] = true;
+        trackSectionView(sid);
+      }
+    }
+  });
+},{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-up,.fade-left,.scale-in').forEach(function(el){ obs.observe(el); });
+['skills','experience','projects','gallery','videos'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) obs.observe(el);
 });
+
+/* ── COUNTER ANIMATION ── */
+function animateCount(el, target) {
+  var start=0, dur=1600, step=Math.ceil(target/40);
+  var timer=setInterval(function(){
+    start+=step; if(start>=target){ start=target; clearInterval(timer); }
+    el.textContent=start+(target===100?'%':'+');
+  },dur/40);
+}
+var countObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var el=e.target, t=parseInt(el.dataset.count);
+      animateCount(el,t); countObs.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(function(el){ countObs.observe(el); });
+
+/* ── CARD MAGNETIC HOVER ── */
+document.querySelectorAll('.card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-0.5;
+    var y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform='translateY(-6px) rotateX('+(y*-4)+'deg) rotateY('+(x*4)+'deg)';
+    card.style.transition='transform 0.1s';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='';
+    card.style.transition='all 0.4s cubic-bezier(0.16,1,0.3,1)';
+  });
+});
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded',function(){ setLanguage('ru'); });
 </script>
 </body>
 </html>

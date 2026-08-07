@@ -729,3 +729,72 @@ html[dir="rtl"] .adv-list li::before{
   .lang-meter i{transition:none;}
   .lang-card:hover{transform:none;}
 }
+
+/* ── PORTRAIT + AVAILABILITY ───────────────────────────────────────────── */
+.hero-photo{
+  width:clamp(104px,15vw,132px);aspect-ratio:1;border-radius:50%;
+  object-fit:cover;margin:0 auto 20px;display:block;
+  border:2px solid rgba(34,211,238,.35);
+  box-shadow:0 0 0 6px rgba(34,211,238,.06),0 18px 44px -18px rgba(0,0,0,.9);
+}
+.avail-strip{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:8px 10px;margin:16px 0 4px;
+}
+.avail-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 14px;border-radius:100px;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--dim);
+}
+.avail-chip i{font-size:9px;color:var(--cyan);}
+.avail-chip.live{border-color:rgba(52,211,153,.32);background:rgba(52,211,153,.07);color:#a7f3d0;}
+.avail-chip.live i{color:var(--green);}
+.avail-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 3px rgba(52,211,153,.18);flex-shrink:0;
+}
+
+/* ── EXPERIENCE / EDUCATION ────────────────────────────────────────────── */
+.bg-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start;}
+@media(max-width:900px){.bg-grid{grid-template-columns:1fr;}}
+.bg-block{padding:clamp(20px,2.6vw,28px);}
+.bg-h{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.job{position:relative;padding-inline-start:22px;padding-bottom:20px;}
+.job:last-child{padding-bottom:0;}
+.job::before{
+  content:'';position:absolute;inset-inline-start:0;top:6px;
+  width:9px;height:9px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 3px rgba(34,211,238,.14);
+}
+.job::after{
+  content:'';position:absolute;inset-inline-start:4px;top:19px;bottom:0;
+  width:1px;background:var(--border);
+}
+.job:last-child::after{display:none;}
+.job-role{font-size:13.5px;font-weight:700;color:#fff;line-height:1.35;}
+.job-org{font-family:var(--mono);font-size:10px;color:var(--cyan);margin-top:3px;}
+.job-period{font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-top:2px;}
+.job-desc{font-size:12px;color:var(--muted);line-height:1.8;margin-top:7px;}
+
+.edu-card2{padding:18px;border-radius:var(--r-md);background:rgba(255,255,255,.025);border:1px solid var(--border);}
+.edu-deg{font-size:13.5px;font-weight:700;color:#fff;line-height:1.35;}
+.edu-school{font-size:11.5px;color:var(--dim);margin-top:6px;line-height:1.65;}
+.edu-where{font-family:var(--mono);font-size:9.5px;color:var(--cyan);margin-top:5px;}
+.edu-detail{font-size:11px;color:var(--muted);line-height:1.75;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
+.cert-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.cert-list li{font-size:11.5px;color:var(--dim);line-height:1.7;padding-inline-start:22px;position:relative;}
+.cert-list li::before{
+  content:'\f559';font-family:'Font Awesome 6 Free';font-weight:900;font-size:10px;
+  position:absolute;inset-inline-start:0;top:1px;color:var(--amber);
+}
+.avail-card{
+  margin-top:16px;padding:18px;border-radius:var(--r-md);
+  background:linear-gradient(140deg,rgba(52,211,153,.06),rgba(34,211,238,.05));
+  border:1px solid rgba(52,211,153,.22);
+}
+.avail-card p{font-size:12px;color:var(--dim);line-height:1.85;}
+.avail-card .bg-h{color:var(--green);border-color:rgba(52,211,153,.2);}

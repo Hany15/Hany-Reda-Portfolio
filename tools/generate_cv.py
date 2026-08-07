@@ -129,6 +129,9 @@ def build(content, path):
     f += section(content["l_summary"])
     f.append(Paragraph(content["summary"], S["body"]))
 
+    f += section(content["l_avail"])
+    f.append(Paragraph(content["avail"], S["body"]))
+
     f += section(content["l_competencies"])
     f.append(Paragraph("  •  ".join(content["competencies"]), S["body"]))
 
@@ -187,6 +190,8 @@ EN = {
  "tagline": "Reinforcement Learning · Simulation &amp; Digital Twins · Autonomous Systems · Explainable AI · Production Software Architecture",
  "contact": CONTACT_EN,
 
+ "l_avail": "Availability",
+ "avail": "Based in Tomsk, Russia. Available for remote or on-site work, and open to roles with Russian and Egyptian companies.",
  "l_summary": "Professional Summary",
  "summary":
    "Software engineer and technical project lead who builds complete intelligent systems rather than isolated models. "
@@ -314,8 +319,8 @@ EN = {
 
  "l_education": "Education",
  "education": {
-   "degree": "Bachelor of Computer Engineering",
-   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · Tomsk, Russia · Expected graduation: 2028",
+   "degree": "Bachelor of Software Engineering — 4th year",
+   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · Tomsk, Russia",
    "courses": "Relevant coursework: Algorithms, Data Structures, Operating Systems, Software Engineering, Artificial Intelligence, "
               "Computer Vision, Machine Learning, Networking, Databases.",
  },
@@ -342,6 +347,8 @@ RU = {
  "tagline": "Обучение с подкреплением · Моделирование и цифровые двойники · Автономные системы · Объяснимый ИИ · Архитектура промышленного ПО",
  "contact": CONTACT_RU,
 
+ "l_avail": "Доступность",
+ "avail": "Нахожусь в Томске, Россия. Готов работать удалённо или в офисе, открыт к предложениям от российских и египетских компаний.",
  "l_summary": "Профиль",
  "summary":
    "Инженер-программист и технический руководитель проектов, создающий целостные интеллектуальные системы, а не отдельные модели. "
@@ -475,9 +482,9 @@ RU = {
 
  "l_education": "Образование",
  "education": {
-   "degree": "Бакалавр компьютерной инженерии",
+   "degree": "Программная инженерия — 4-й курс",
    "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · Томск, Россия · "
-           "Ожидаемое окончание: 2028",
+           "",
    "courses": "Профильные дисциплины: алгоритмы, структуры данных, операционные системы, программная инженерия, "
               "искусственный интеллект, компьютерное зрение, машинное обучение, сети, базы данных.",
  },

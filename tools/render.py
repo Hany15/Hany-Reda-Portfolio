@@ -89,6 +89,19 @@ def render(tpl, lang, tr):
     doc = re.sub(r'(<meta name="twitter:title" content=")[^"]*(">)', r"\g<1>%s\g<2>" % title, doc, count=1)
     doc = re.sub(r'(<meta name="twitter:description" content=")[^"]*(">)', r"\g<1>%s\g<2>" % desc, doc, count=1)
 
+    # og:image — a branded card per language, not a project screenshot
+    card = SITE + "/assets/img/og-%s.png" % lang
+    doc = re.sub(r'(<meta property="og:image" content=")[^"]*(">)', r"\g<1>%s\g<2>" % card, doc, count=1)
+    doc = re.sub(r'(<meta name="twitter:image" content=")[^"]*(">)', r"\g<1>%s\g<2>" % card, doc, count=1)
+    doc = doc.replace(
+        '<meta property="og:image" content="%s">' % card,
+        '\n'.join([
+            '<meta property="og:image" content="%s">' % card,
+            '<meta property="og:image:width" content="1200">',
+            '<meta property="og:image:height" content="630">',
+            '<meta property="og:image:alt" content="%s">' % esc(t("photo.alt")),
+        ]), 1)
+
     alts = "".join(
         '<link rel="alternate" hreflang="%s" href="%s/%s">\n' % (l, SITE, SUBDIR[l]) for l in LANGS
     ) + '<link rel="alternate" hreflang="x-default" href="%s/">\n' % SITE
@@ -107,7 +120,7 @@ def render(tpl, lang, tr):
        "jobTitle": t("role.full"),
        "description": t("meta.desc"),
        "url": page_url,
-       "image": SITE + "/assets/img/projects/twin-ops-1200.webp",
+       "image": SITE + "/assets/img/profile-640.webp",
        "email": "mailto:developeractionobject@gmail.com",
        "address": {"@type": "PostalAddress", "addressLocality": "Tomsk", "addressCountry": "RU"},
        "alumniOf": {"@type": "CollegeOrUniversity",

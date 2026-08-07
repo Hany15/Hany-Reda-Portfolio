@@ -142,7 +142,7 @@ def build():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/main.css?v=dd45fe56">
+<link rel="stylesheet" href="assets/css/main.css?v=0e505760">
 </head>
 <body>
 
@@ -163,7 +163,7 @@ def build():
       <a href="#projects" data-i18n="nav.projects"></a>
       <a href="#capabilities" data-i18n="nav.capabilities"></a>
       <a href="#process" data-i18n="nav.process"></a>
-      <a href="#strengths" data-i18n="nav.about"></a>
+      <a href="#background" data-i18n="nav.about"></a>
       <a href="#contact" data-i18n="nav.contact"></a>
     </nav>
     <div class="nav-right">
@@ -182,7 +182,7 @@ def build():
   <a href="#projects" data-i18n="nav.projects"></a>
   <a href="#capabilities" data-i18n="nav.capabilities"></a>
   <a href="#process" data-i18n="nav.process"></a>
-  <a href="#strengths" data-i18n="nav.about"></a>
+  <a href="#background" data-i18n="nav.about"></a>
   <a href="#contact" data-i18n="nav.contact"></a>
 </nav>
 
@@ -190,12 +190,22 @@ def build():
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
+  <img class="hero-photo" src="assets/img/profile-640.webp"
+       srcset="assets/img/profile-320.webp 320w, assets/img/profile-640.webp 640w"
+       sizes="132px" width="132" height="132" fetchpriority="high"
+       data-i18n-attr="alt:photo.alt" alt="">
   <p class="hero-badge"><i aria-hidden="true"></i><span data-i18n="hero.badge"></span></p>
   <h1 class="hero-name">MOHAMED HANY REDA</h1>
   <p class="hero-role" data-i18n="role.full"></p>
   <p class="hero-headline" data-i18n="hero.headline"></p>
   <p class="hero-support" data-i18n="hero.support"></p>
   <p class="hero-spec" data-i18n="hero.spec"></p>
+  <div class="avail-strip">
+    <span class="avail-chip live"><span class="avail-dot" aria-hidden="true"></span><span data-i18n="avail.status"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span data-i18n="avail.location"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-laptop" aria-hidden="true"></i><span data-i18n="avail.mode"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-globe" aria-hidden="true"></i><span data-i18n="avail.markets"></span></span>
+  </div>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span data-i18n="hero.cta.projects"></span></a>
     <a class="btn btn-ghost" href="https://github.com/Hany15" target="_blank" rel="noopener" onclick="trackContact('GitHub-Hero')"><i class="fa-brands fa-github" aria-hidden="true"></i><span data-i18n="hero.cta.github"></span></a>
@@ -322,6 +332,62 @@ def build():
     <p data-i18n="ps.value"></p>
     <a class="btn btn-primary" href="#contact" onclick="trackContact('Strengths-CTA')">
       <i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="ps.cta"></span></a>
+  </div>
+</section>
+
+''')
+
+    # ── Experience / Education / Certifications ─────────────────────────────
+    w('''<!-- ═══ BACKGROUND ═══ -->
+<section class="section" id="background">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-i18n="exp.eyebrow"></span>
+    <h2 class="sec-title" data-i18n="exp.title"></h2>
+    <p class="sec-sub" data-i18n="exp.sub"></p>
+  </div>
+  <div class="bg-grid">
+    <div class="bg-block card reveal">
+      <p class="bg-h" data-i18n="exp.workTitle"></p>
+''')
+    # only job 1 has a documented date range; rendering an empty <p> for the
+    # others would leave a stray gap and an unused translation key
+    JOBS_WITH_PERIOD = {1}
+    for n in range(1, 5):
+        period = ('        <p class="job-period" data-i18n="exp.j%d.period"></p>\n' % n
+                  if n in JOBS_WITH_PERIOD else '')
+        w(f'''      <div class="job">
+        <h3 class="job-role" data-i18n="exp.j{n}.role"></h3>
+        <p class="job-org" data-i18n="exp.j{n}.org"></p>
+{period}        <p class="job-desc" data-i18n="exp.j{n}.desc"></p>
+      </div>
+''')
+    w('''    </div>
+
+    <div>
+      <div class="bg-block card reveal" data-d="1">
+        <p class="bg-h" data-i18n="exp.eduTitle"></p>
+        <div class="edu-card2">
+          <p class="edu-deg" data-i18n="exp.edu.degree"></p>
+          <p class="edu-school" data-i18n="exp.edu.school"></p>
+          <p class="edu-where" data-i18n="exp.edu.where"></p>
+          <p class="edu-detail" data-i18n="exp.edu.detail"></p>
+        </div>
+      </div>
+
+      <div class="bg-block card reveal" data-d="2" style="margin-top:16px">
+        <p class="bg-h" data-i18n="exp.certTitle"></p>
+        <ul class="cert-list">
+          <li data-i18n="exp.c1"></li>
+          <li data-i18n="exp.c2"></li>
+          <li data-i18n="exp.c3"></li>
+        </ul>
+      </div>
+
+      <div class="avail-card reveal" data-d="3">
+        <p class="bg-h" data-i18n="avail.status"></p>
+        <p data-i18n="avail.note"></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -547,8 +613,8 @@ def build():
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div>
 </div>
 
-<script src="assets/js/i18n.js?v=de2a2a45"></script>
-<script src="assets/js/main.js?v=8a5d7402"></script>
+<script src="assets/js/i18n.js?v=3ca17276"></script>
+<script src="assets/js/main.js?v=619307e3"></script>
 </body>
 </html>
 ''')

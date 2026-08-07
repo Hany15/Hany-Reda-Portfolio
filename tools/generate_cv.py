@@ -191,7 +191,7 @@ EN = {
  "contact": CONTACT_EN,
 
  "l_avail": "Availability",
- "avail": "Based in Tomsk, Russia. Available for remote or on-site work, and open to roles with Russian and Egyptian companies.",
+ "avail": "Based in Tomsk, Russia, with a Russian work permit. Available on-site, remotely or hybrid, and open to business trips. Not relocating. Full-time employment.",
  "l_summary": "Professional Summary",
  "summary":
    "Software engineer and technical project lead who builds complete intelligent systems rather than isolated models. "
@@ -287,40 +287,60 @@ EN = {
 
  "l_experience": "Professional Experience",
  "experience": [
-  {"role": "Freelance Software &amp; AI Engineer  |  Self-Employed",
-   "meta": "2022 — Present",
+  {"role": "Full-Stack Developer / Technical Owner  |  HMS &mdash; medical equipment manufacturer",
+   "meta": "January 2024 &mdash; Present",
    "points": [
-     "Design and deliver complete software and AI products end to end — requirements, architecture, implementation and deployment.",
-     "Build reinforcement-learning and simulation systems, and integrate computer-vision models into production-facing tools.",
-     "Design backend systems and relational databases, and integrate internal and third-party REST APIs.",
-     "Act as the technical point of contact for clients, translating business requirements into actionable engineering tasks.",
+     "Own the corporate web product end to end: gather requirements from internal stakeholders and translate them into scoped, estimated work with realistic deadlines.",
+     "Make the technical and architectural calls; build front end and back end, responsive layout, and integration with internal company systems.",
+     "Carry every feature through development, testing, release and support, surfacing technical risk before it reaches a release.",
+     "Agree priorities with stakeholders and explain technical constraints in business language.",
    ]},
-  {"role": "Software Developer  |  HMS Medical Equipment Company",
-   "meta": "",
+  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift &mdash; digital gifting e-commerce",
+   "meta": "January 2024 &mdash; Present",
    "points": [
-     "Developed the company's web presence and ERP/AI platform work, translating business requirements with stakeholders directly.",
-     "Built responsive interfaces with consistent performance across devices, and optimised page performance.",
+     "Own the client side and UX of a premium digital-gifting platform, running features from requirement through QA to production deploy.",
+     "Built the interface and UX layer &mdash; responsive layout, animation, cross-browser behaviour and performance tuning.",
+     "Set up and maintain hosting and deployment on Firebase Hosting, giving a predictable, repeatable release process with no downtime.",
    ]},
-  {"role": "Software Engineer  |  Enterprise Inventory Management System",
-   "meta": "",
+  {"role": "Technical Project Lead / Full-Stack Developer  |  HMS",
+   "meta": "January 2023 &mdash; June 2023",
    "points": [
-     "Designed and built a complete inventory management solution deployed over the company's internal network.",
-     "Implemented authentication and role-based permissions across admin and staff users.",
-     "Built an admin dashboard covering inventory management and operational reporting.",
-     "Designed the SQLite schema and the internal networking layer connecting client workstations.",
+     "Led a team of 8 on a corporate web product while contributing to the build as a full-stack developer.",
+     "Planned phases, decomposed and assigned work, and tracked schedule, quality and milestone delivery.",
+     "Independently managed a project budget of roughly $10,000 &mdash; planning spend, allocating budget and paying contributors.",
+     "Unblocked developers on hard problems and took on critical modules where extra support was needed.",
    ]},
-  {"role": "Android Game Developer  |  Independent / Google Play",
-   "meta": "",
+  {"role": "Technical Project Manager / Product Engineer  |  Freelance &middot; Self-employed",
+   "meta": "June 2022 &mdash; Present",
    "points": [
-     "Designed, developed and published 3 Android games on Google Play, each taken from concept through store release.",
-     "Achieved more than 5,000 combined downloads; ran Google Ads campaigns to support visibility and acquisition.",
+     "Single point of accountability between client and delivery: discovery interviews, requirements formalised into SRS, user stories and acceptance criteria, phase planning and risk management.",
+     "Led a team of 10 on an AI logistics system with a budget of roughly $13,000 over 11 months (January&ndash;November 2024).",
+     "Design solution architecture and make the stack and integration decisions; build AI features &mdash; ML models in product services, LLM tooling, computer vision and explainable AI.",
+     "Build cross-platform Flutter applications for mobile, web and desktop, plus backend services, relational databases and REST integrations.",
+   ]},
+  {"role": "Unreal Engine Developer / Independent Product Owner  |  Independent (indie)",
+   "meta": "January 2020 &mdash; Present",
+   "points": [
+     "Ship own games and desktop products from concept to store listing, promotion and updates.",
+     "Built networked multiplayer with server authority (Advanced Sessions) and cloud player data (Microsoft PlayFab) &mdash; a distributed client-server system assembled solo.",
+     "Published 3 Android titles on Google Play with 5,000+ combined downloads, handling store requirements and release management end to end.",
+     "Authored and published an Unreal Engine (Blueprints) course on Udemy; ran Google Ads acquisition campaigns.",
+     "Key project &mdash; PROJECT NOVA: multiplayer sci-fi shooter on Unreal Engine 5 (C++ and Blueprints) with character replication, matchmaking, Nanite/Lumen and Niagara effects.",
+   ]},
+  {"role": "Media Team Lead  |  Resala Charity Organization, Egypt",
+   "meta": "January 2020 &mdash; December 2020",
+   "points": [
+     "Led the media function at one of the largest charities in Egypt and the Middle East: organised team workflow, assigned ownership and tracked delivery.",
+     "Coordinated people and activities across campaigns and events, managing deadlines under limited resources.",
+     "Communicated with organisational stakeholders and resolved conflicts within the team.",
+     "Completed a six-month leadership and management development programme.",
    ]},
  ],
 
  "l_education": "Education",
  "education": {
-   "degree": "Bachelor of Software Engineering — 4th year",
-   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · Tomsk, Russia",
+   "degree": "Bachelor — Computer Science &amp; Engineering",
+   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · Tomsk, Russia · 2026",
    "courses": "Relevant coursework: Algorithms, Data Structures, Operating Systems, Software Engineering, Artificial Intelligence, "
               "Computer Vision, Machine Learning, Networking, Databases.",
  },
@@ -333,8 +353,8 @@ EN = {
  ],
 
  "l_languages": "Languages",
- "languages": "<b>Arabic</b> — Native &nbsp;•&nbsp; <b>English</b> — Professional Working Proficiency &nbsp;•&nbsp; "
-              "<b>Russian</b> — Professional Working Proficiency &nbsp;•&nbsp; <b>German</b> — Basic",
+ "languages": "<b>Arabic</b> — Native &nbsp;•&nbsp; <b>English</b> — C2, full professional &nbsp;•&nbsp; "
+              "<b>Russian</b> — B2, upper-intermediate",
 }
 
 RU = {
@@ -348,7 +368,7 @@ RU = {
  "contact": CONTACT_RU,
 
  "l_avail": "Доступность",
- "avail": "Нахожусь в Томске, Россия. Готов работать удалённо или в офисе, открыт к предложениям от российских и египетских компаний.",
+ "avail": "Живу в Томске, есть разрешение на работу в России. Готов работать в офисе, удалённо или гибридно, готов к командировкам. К переезду не готов. Полная занятость.",
  "l_summary": "Профиль",
  "summary":
    "Инженер-программист и технический руководитель проектов, создающий целостные интеллектуальные системы, а не отдельные модели. "
@@ -450,41 +470,60 @@ RU = {
 
  "l_experience": "Опыт работы",
  "experience": [
-  {"role": "Инженер по разработке ПО и ИИ  |  Фриланс",
-   "meta": "2022 — настоящее время",
+  {"role": "Full-Stack Developer / Technical Owner  |  HMS &mdash; производитель медицинского оборудования",
+   "meta": "Январь 2024 &mdash; настоящее время",
    "points": [
-     "Проектирую и поставляю законченные программные и ИИ-продукты: требования, архитектура, реализация и развёртывание.",
-     "Разрабатываю системы обучения с подкреплением и моделирования, интегрирую модели компьютерного зрения в рабочие инструменты.",
-     "Проектирую backend-системы и реляционные базы данных, интегрирую внутренние и сторонние REST API.",
-     "Выступаю техническим контактным лицом для клиентов, перевожу бизнес-требования в конкретные инженерные задачи.",
+     "Отвечаю за корпоративный веб-продукт целиком: собираю требования от внутренних заказчиков и перевожу их в задачи, объём работ и реалистичные сроки.",
+     "Принимаю технические и архитектурные решения; разрабатываю frontend и backend, адаптивную вёрстку и интеграцию с внутренними системами компании.",
+     "Веду каждую фичу по циклу разработка &rarr; тестирование &rarr; релиз &rarr; поддержка, выявляя технические риски до релиза.",
+     "Согласую приоритеты со стейкхолдерами и объясняю технические ограничения на понятном для бизнеса языке.",
    ]},
-  {"role": "Разработчик ПО  |  HMS Medical Equipment Company",
-   "meta": "",
+  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift &mdash; e-commerce цифровых подарков",
+   "meta": "Январь 2024 &mdash; настоящее время",
    "points": [
-     "Разработка веб-присутствия компании и работ по платформе ERP/ИИ, согласование требований напрямую с заказчиками.",
-     "Создание адаптивных интерфейсов со стабильной производительностью на всех устройствах и оптимизация скорости загрузки.",
+     "Отвечаю за клиентскую часть и UX премиальной платформы цифровых подарков, веду фичи от требований через контроль качества до продакшна.",
+     "Реализовал интерфейс и UX-слой &mdash; адаптивная вёрстка, анимации, кроссбраузерность и оптимизация производительности.",
+     "Настроил и поддерживаю хостинг и деплой на Firebase Hosting: предсказуемый и повторяемый процесс выпуска без простоев.",
    ]},
-  {"role": "Инженер-программист  |  Корпоративная система управления складом",
-   "meta": "",
+  {"role": "Technical Project Lead / Full-Stack Developer  |  HMS",
+   "meta": "Январь 2023 &mdash; июнь 2023",
    "points": [
-     "Спроектировал и построил комплексное решение для управления складом, развёрнутое во внутренней сети компании.",
-     "Реализовал аутентификацию и ролевой доступ для администраторов и сотрудников.",
-     "Разработал админ-панель для управления запасами и операционной отчётности.",
-     "Спроектировал схему SQLite и сетевой уровень, связывающий рабочие станции с системой.",
+     "Руководил командой из 8 специалистов при разработке корпоративного веб-продукта, совмещая руководство с разработкой.",
+     "Планировал этапы, декомпозировал и распределял задачи, контролировал сроки, качество и ключевые этапы.",
+     "Самостоятельно управлял бюджетом проекта около $10&nbsp;000: планировал расходы, распределял бюджет и организовывал выплаты участникам.",
+     "Помогал разработчикам решать сложные задачи и подключался к критическим модулям.",
    ]},
-  {"role": "Разработчик мобильных игр  |  Независимо / Google Play",
-   "meta": "",
+  {"role": "Technical Project Manager / Product Engineer  |  Фриланс &middot; Самозанятость",
+   "meta": "Июнь 2022 &mdash; настоящее время",
    "points": [
-     "Спроектировал, разработал и опубликовал 3 игры для Android в Google Play — от идеи до релиза в магазине.",
-     "Более 5 000 суммарных загрузок; вёл кампании Google Ads для повышения видимости и привлечения пользователей.",
+     "Единая точка ответственности между заказчиком и реализацией: интервью, формализация требований в ТЗ/SRS, user stories и критерии приёмки, планирование этапов и управление рисками.",
+     "Руководил командой из 10 специалистов на логистической AI-системе с бюджетом около $13&nbsp;000 в течение 11 месяцев (январь&ndash;ноябрь 2024).",
+     "Проектирую архитектуру решений и принимаю решения по стеку и интеграциям; внедряю AI &mdash; ML-модели в продуктовых сервисах, LLM-инструменты, computer vision и объяснимый AI.",
+     "Создаю кроссплатформенные приложения на Flutter для mobile, web и desktop, backend-сервисы, реляционные БД и интеграции REST API.",
+   ]},
+  {"role": "Unreal Engine Developer / Independent Product Owner  |  Независимая разработка (indie)",
+   "meta": "Январь 2020 &mdash; настоящее время",
+   "points": [
+     "Выпускаю собственные игры и десктоп-продукты от концепции до публикации, продвижения и обновлений.",
+     "Спроектировал сетевой мультиплеер с серверной авторизацией (Advanced Sessions) и облачным хранением данных игроков (Microsoft PlayFab) &mdash; распределённая клиент-серверная система, собранная самостоятельно.",
+     "Опубликовал 3 игры для Android в Google Play с 5&nbsp;000+ загрузок, полностью пройдя требования стора и релиз-менеджмент.",
+     "Создал и опубликовал авторский курс по Unreal Engine (Blueprints) на Udemy; вёл рекламные кампании в Google Ads.",
+     "Ключевой проект &mdash; PROJECT NOVA: многопользовательский sci-fi шутер на Unreal Engine 5 (C++ и Blueprints): репликация персонажей, матчмейкинг, Nanite/Lumen и эффекты Niagara.",
+   ]},
+  {"role": "Руководитель медианаправления  |  Resala Charity Organization, Египет",
+   "meta": "Январь 2020 &mdash; декабрь 2020",
+   "points": [
+     "Руководил медианаправлением в одной из крупнейших благотворительных организаций Египта и Ближнего Востока: организовывал рабочие процессы, распределял ответственность и контролировал выполнение.",
+     "Координировал людей и активности при подготовке кампаний и мероприятий, управляя дедлайнами при ограниченных ресурсах.",
+     "Вёл коммуникацию со стейкхолдерами организации и разрешал конфликтные ситуации внутри команды.",
+     "Прошёл шестимесячную программу развития лидерства и управления.",
    ]},
  ],
 
  "l_education": "Образование",
  "education": {
-   "degree": "Программная инженерия — 4-й курс",
-   "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · Томск, Россия · "
-           "",
+   "degree": "Бакалавр — информатика и вычислительная техника",
+   "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · Томск, Россия · 2026",
    "courses": "Профильные дисциплины: алгоритмы, структуры данных, операционные системы, программная инженерия, "
               "искусственный интеллект, компьютерное зрение, машинное обучение, сети, базы данных.",
  },
@@ -497,8 +536,8 @@ RU = {
  ],
 
  "l_languages": "Языки",
- "languages": "<b>Арабский</b> — родной &nbsp;•&nbsp; <b>Английский</b> — профессиональный рабочий уровень &nbsp;•&nbsp; "
-              "<b>Русский</b> — профессиональный рабочий уровень &nbsp;•&nbsp; <b>Немецкий</b> — базовый",
+ "languages": "<b>Арабский</b> — родной &nbsp;•&nbsp; <b>Английский</b> — C2, в совершенстве &nbsp;•&nbsp; "
+              "<b>Русский</b> — B2, средне-продвинутый",
 }
 
 

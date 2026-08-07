@@ -34,6 +34,9 @@ CAPS = [
 ]
 
 STATS = [
+    ("6",      "+",  "var(--cyan)",   "impact.years",      "impact.years.note"),
+    ("10",     "",   "var(--violet)", "impact.team",       "impact.team.note"),
+    ("13000",  " USD","var(--green)", "impact.budget",     "impact.budget.note"),
     ("12",     "+",  "var(--cyan)",   "impact.projects",   "impact.projects.note"),
     ("530",    "+",  "var(--violet)", "impact.tests",      "impact.tests.note"),
     ("96400",  "",   "var(--pink)",   "impact.throughput", "impact.throughput.note"),
@@ -52,29 +55,12 @@ RANGE = [
      ["JavaScript","Firebase"]),
 ]
 
-# Professional Strengths section.  Bar widths are visual weight only — no
-# numeric proficiency is ever displayed, so nothing reads as a "100%" claim.
-LANGS_SPOKEN = [
-    ("ps.lang.ar", "AR", "ps.level.native", "var(--green)",  92),
-    ("ps.lang.en", "EN", "ps.level.pro",    "var(--cyan)",   78),
-    ("ps.lang.ru", "RU", "ps.level.pro",    "var(--violet)", 72),
-]
-
-STYLE_CARDS = [
-    ("ps.s1", "fa-hand-holding-heart", "var(--cyan)"),
-    ("ps.s2", "fa-wind",               "var(--violet)"),
-    ("ps.s3", "fa-shuffle",            "var(--pink)"),
-    ("ps.s4", "fa-people-group",       "var(--green)"),
-    ("ps.s5", "fa-comments",           "var(--amber)"),
-    ("ps.s6", "fa-bullseye",           "var(--cyan)"),
-]
-
 # Professional Strengths.  Bar widths are visual weight only — no numeric
 # proficiency is displayed, so nothing reads as a "100% mastery" claim.
 LANGS_SPOKEN = [
     ("ps.lang.ar", "AR", "ps.level.native", "var(--green)",  92),
-    ("ps.lang.en", "EN", "ps.level.pro",    "var(--cyan)",   78),
-    ("ps.lang.ru", "RU", "ps.level.pro",    "var(--violet)", 72),
+    ("ps.lang.en", "EN", "ps.level.c2",     "var(--cyan)",   88),
+    ("ps.lang.ru", "RU", "ps.level.b2",     "var(--violet)", 66),
 ]
 
 STYLE_CARDS = [
@@ -204,7 +190,8 @@ def build():
     <span class="avail-chip live"><span class="avail-dot" aria-hidden="true"></span><span data-i18n="avail.status"></span></span>
     <span class="avail-chip"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span data-i18n="avail.location"></span></span>
     <span class="avail-chip"><i class="fa-solid fa-laptop" aria-hidden="true"></i><span data-i18n="avail.mode"></span></span>
-    <span class="avail-chip"><i class="fa-solid fa-globe" aria-hidden="true"></i><span data-i18n="avail.markets"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-plane" aria-hidden="true"></i><span data-i18n="avail.trips"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-id-card" aria-hidden="true"></i><span data-i18n="avail.markets"></span></span>
   </div>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span data-i18n="hero.cta.projects"></span></a>
@@ -351,8 +338,8 @@ def build():
 ''')
     # only job 1 has a documented date range; rendering an empty <p> for the
     # others would leave a stray gap and an unused translation key
-    JOBS_WITH_PERIOD = {1}
-    for n in range(1, 5):
+    JOBS_WITH_PERIOD = set(range(1, 7))   # every role now has dates
+    for n in range(1, 7):
         period = ('        <p class="job-period" data-i18n="exp.j%d.period"></p>\n' % n
                   if n in JOBS_WITH_PERIOD else '')
         w(f'''      <div class="job">
@@ -613,7 +600,7 @@ def build():
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div>
 </div>
 
-<script src="assets/js/i18n.js?v=3ca17276"></script>
+<script src="assets/js/i18n.js?v=00020a7c"></script>
 <script src="assets/js/main.js?v=619307e3"></script>
 </body>
 </html>

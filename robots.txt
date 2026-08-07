@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hany15.github.io/Hany-Reda-Portfolio/sitemap.xml

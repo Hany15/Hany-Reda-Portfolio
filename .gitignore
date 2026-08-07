@@ -1,0 +1,18 @@
+# ── build artefacts ────────────────────────────────────────────────────────
+.template.html
+.verify-tmp.html
+__pycache__/
+*.pyc
+
+# ── local tooling, not part of the site ────────────────────────────────────
+.agents/
+.claude/
+skills-lock.json
+
+# ── media kept locally but not published (unused by the current site) ──────
+_archive/
+
+# ── OS noise ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

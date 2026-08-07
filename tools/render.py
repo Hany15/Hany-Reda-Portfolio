@@ -122,7 +122,6 @@ def render(tpl, lang, tr):
        "url": page_url,
        "image": SITE + "/assets/img/profile-640.webp",
        "email": "mailto:developeractionobject@gmail.com",
-       "address": {"@type": "PostalAddress", "addressLocality": "Tomsk", "addressCountry": "RU"},
        "alumniOf": {"@type": "CollegeOrUniversity",
                     "name": "Tomsk State University of Control Systems and Radioelectronics (TUSUR)"},
        "knowsLanguage": [

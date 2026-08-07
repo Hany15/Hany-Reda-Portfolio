@@ -188,10 +188,9 @@ def build():
   <p class="hero-spec" data-i18n="hero.spec"></p>
   <div class="avail-strip">
     <span class="avail-chip live"><span class="avail-dot" aria-hidden="true"></span><span data-i18n="avail.status"></span></span>
-    <span class="avail-chip"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span data-i18n="avail.location"></span></span>
     <span class="avail-chip"><i class="fa-solid fa-laptop" aria-hidden="true"></i><span data-i18n="avail.mode"></span></span>
     <span class="avail-chip"><i class="fa-solid fa-plane" aria-hidden="true"></i><span data-i18n="avail.trips"></span></span>
-    <span class="avail-chip"><i class="fa-solid fa-id-card" aria-hidden="true"></i><span data-i18n="avail.markets"></span></span>
+    <span class="avail-chip"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span data-i18n="avail.employment"></span></span>
   </div>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span data-i18n="hero.cta.projects"></span></a>
@@ -600,7 +599,7 @@ def build():
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div>
 </div>
 
-<script src="assets/js/i18n.js?v=00020a7c"></script>
+<script src="assets/js/i18n.js?v=9f5ee755"></script>
 <script src="assets/js/main.js?v=619307e3"></script>
 </body>
 </html>

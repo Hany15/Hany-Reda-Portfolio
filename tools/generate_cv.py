@@ -164,7 +164,7 @@ def build(content, path):
 # ══════════════════════════════════════════════════════════════════════════
 LINK = ('<a href="{u}" color="#0E6E8C">{t}</a>')
 CONTACT_EN = (
-    "developeractionobject@gmail.com &nbsp;|&nbsp; Tomsk, Russia<br/>"
+    "developeractionobject@gmail.com<br/>"
     + LINK.format(u="https://wa.me/79969382354", t="WhatsApp +7 996 938 2354") + " &nbsp;|&nbsp; "
     + LINK.format(u="https://t.me/Hany_230", t="Telegram @Hany_230") + "<br/>"
     + LINK.format(u="https://github.com/Hany15", t="github.com/Hany15") + " &nbsp;|&nbsp; "
@@ -172,7 +172,7 @@ CONTACT_EN = (
     + " &nbsp;|&nbsp; " + LINK.format(u="https://hany15.github.io/Hany-Reda-Portfolio/", t="hany15.github.io/Hany-Reda-Portfolio")
 )
 CONTACT_RU = (
-    "developeractionobject@gmail.com &nbsp;|&nbsp; Томск, Россия<br/>"
+    "developeractionobject@gmail.com<br/>"
     + LINK.format(u="https://wa.me/79969382354", t="WhatsApp +7 996 938 2354") + " &nbsp;|&nbsp; "
     + LINK.format(u="https://t.me/Hany_230", t="Telegram @Hany_230") + "<br/>"
     + LINK.format(u="https://github.com/Hany15", t="github.com/Hany15") + " &nbsp;|&nbsp; "
@@ -191,7 +191,7 @@ EN = {
  "contact": CONTACT_EN,
 
  "l_avail": "Availability",
- "avail": "Based in Tomsk, Russia, with a Russian work permit. Available on-site, remotely or hybrid, and open to business trips. Not relocating. Full-time employment.",
+ "avail": "Available on-site, remotely or hybrid, and open to business trips. Looking for full-time employment.",
  "l_summary": "Professional Summary",
  "summary":
    "Software engineer and technical project lead who builds complete intelligent systems rather than isolated models. "
@@ -340,7 +340,7 @@ EN = {
  "l_education": "Education",
  "education": {
    "degree": "Bachelor — Computer Science &amp; Engineering",
-   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · Tomsk, Russia · 2026",
+   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · 2026",
    "courses": "Relevant coursework: Algorithms, Data Structures, Operating Systems, Software Engineering, Artificial Intelligence, "
               "Computer Vision, Machine Learning, Networking, Databases.",
  },
@@ -368,7 +368,7 @@ RU = {
  "contact": CONTACT_RU,
 
  "l_avail": "Доступность",
- "avail": "Живу в Томске, есть разрешение на работу в России. Готов работать в офисе, удалённо или гибридно, готов к командировкам. К переезду не готов. Полная занятость.",
+ "avail": "Готов работать в офисе, удалённо или гибридно, готов к командировкам. Ищу работу на полную занятость.",
  "l_summary": "Профиль",
  "summary":
    "Инженер-программист и технический руководитель проектов, создающий целостные интеллектуальные системы, а не отдельные модели. "
@@ -523,7 +523,7 @@ RU = {
  "l_education": "Образование",
  "education": {
    "degree": "Бакалавр — информатика и вычислительная техника",
-   "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · Томск, Россия · 2026",
+   "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · 2026",
    "courses": "Профильные дисциплины: алгоритмы, структуры данных, операционные системы, программная инженерия, "
               "искусственный интеллект, компьютерное зрение, машинное обучение, сети, базы данных.",
  },

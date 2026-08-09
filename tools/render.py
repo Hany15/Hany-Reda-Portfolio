@@ -170,6 +170,8 @@ def render(tpl, lang, tr):
     doc = re.sub(r'(<span class="stat-num"[^>]*data-count="([\d.]+)"[^>]*data-suffix="([^"]*)"[^>]*>)0</span>',
                  fill_count, doc)
 
+    doc = doc.replace("__ISO__", datetime.date.today().isoformat())
+
     # ── rewrite relative asset paths for the /ru/ and /ar/ subdirectories
     if prefix:
         doc = re.sub(r'((?:href|src|srcset)=")(assets/|cv/)', r"\1%s\2" % prefix, doc)

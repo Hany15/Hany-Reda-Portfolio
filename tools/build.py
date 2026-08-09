@@ -128,7 +128,7 @@ def build():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/main.css?v=0e505760">
+<link rel="stylesheet" href="assets/css/main.css?v=4ebae11d">
 </head>
 <body>
 
@@ -146,6 +146,7 @@ def build():
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#hero" data-i18n="nav.home"></a>
+      <a href="#delivery" data-i18n="deliv.eyebrow"></a>
       <a href="#projects" data-i18n="nav.projects"></a>
       <a href="#capabilities" data-i18n="nav.capabilities"></a>
       <a href="#process" data-i18n="nav.process"></a>
@@ -206,6 +207,14 @@ def build():
        data-i18n-attr="aria-label:cv.aria.ru" onclick="trackContact('CV-RU')">
       <span class="flag">RU</span><span data-i18n="cv.ru"></span></a>
     <span class="cv-hint" data-i18n="cv.hint"></span>
+    <span class="cv-onepage">
+      <span data-i18n="cv.onepage"></span>
+      <a href="cv/cv_en_1page.pdf" download="Mohamed-Hany-Reda-CV-EN-1page.pdf"
+         data-i18n-attr="aria-label:cv.aria.en1" onclick="trackContact('CV-EN-1page')">EN</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="cv/cv_ru_1page.pdf" download="Mohamed-Hany-Reda-CV-RU-1page.pdf"
+         data-i18n-attr="aria-label:cv.aria.ru1" onclick="trackContact('CV-RU-1page')">RU</a>
+    </span>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll"></span><span class="chev"></span></div>
 </section>
@@ -400,6 +409,70 @@ def build():
   <p class="impact-caveat reveal" data-i18n="impact.sub"></p>
 </section>
 
+''')
+
+    # ── Commercial / team delivery (sits before the engineering projects so a
+    #    recruiter sees paid, team-led work first) ─────────────────────────────
+    w('''<!-- ═══ DELIVERY ═══ -->
+<section class="section" id="delivery">
+  <div class="sec-head reveal">
+    <span class="eyebrow" data-i18n="deliv.eyebrow"></span>
+    <h2 class="sec-title" data-i18n="deliv.title"></h2>
+    <p class="sec-sub" data-i18n="deliv.sub"></p>
+  </div>
+  <div class="deliv-grid">
+
+    <article class="deliv card reveal">
+      <p class="deliv-kicker" data-i18n="d1.kicker"></p>
+      <h3 class="deliv-title" data-i18n="d1.title"></h3>
+      <p class="deliv-desc" data-i18n="d1.desc"></p>
+      <div class="deliv-metrics">
+        <div class="deliv-m"><b>10</b><span data-i18n="d1.m1"></span></div>
+        <div class="deliv-m"><b>13,000 USD</b><span data-i18n="d1.m2"></span></div>
+        <div class="deliv-m"><b data-i18n="d1.m3v"></b><span data-i18n="d1.m3"></span></div>
+      </div>
+      <div class="deliv-foot">
+        <span class="deliv-note"><i class="fa-solid fa-lock" aria-hidden="true"></i><span data-i18n="deliv.noRepo"></span></span>
+      </div>
+    </article>
+
+    <article class="deliv card reveal" data-d="1">
+      <p class="deliv-kicker" data-i18n="d2.kicker"></p>
+      <h3 class="deliv-title" data-i18n="d2.title"></h3>
+      <p class="deliv-desc" data-i18n="d2.desc"></p>
+      <div class="deliv-metrics">
+        <div class="deliv-m"><b>8</b><span data-i18n="d2.m1"></span></div>
+        <div class="deliv-m"><b>10,000 USD</b><span data-i18n="d2.m2"></span></div>
+        <div class="deliv-m"><b data-i18n="d2.m3v"></b><span data-i18n="d2.m3"></span></div>
+      </div>
+      <div class="deliv-foot">
+        <span class="deliv-note"><i class="fa-solid fa-lock" aria-hidden="true"></i><span data-i18n="deliv.noRepo"></span></span>
+      </div>
+    </article>
+
+    <article class="deliv card reveal" data-d="2">
+      <p class="deliv-kicker" data-i18n="d3.kicker"></p>
+      <h3 class="deliv-title" data-i18n="d3.title"></h3>
+      <p class="deliv-desc" data-i18n="d3.desc"></p>
+      <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Git</span></div>
+      <div class="deliv-foot">
+        <span class="deliv-note"><i class="fa-solid fa-lock" aria-hidden="true"></i><span data-i18n="deliv.noRepo"></span></span>
+      </div>
+    </article>
+
+    <article class="deliv card reveal" data-d="3">
+      <p class="deliv-kicker" data-i18n="d4.kicker"></p>
+      <h3 class="deliv-title" data-i18n="d4.title"></h3>
+      <p class="deliv-desc" data-i18n="d4.desc"></p>
+      <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">UX/UI</span><span class="tag">Firebase Hosting</span></div>
+      <div class="deliv-foot">
+        <a class="btn btn-ghost btn-sm" href="https://auragift.web.app" target="_blank" rel="noopener" onclick="trackContact(\'AuraGift-Delivery\')"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span data-i18n="d4.live"></span></a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
 <!-- ═══ PROJECTS ═══ -->
 <section class="section" id="projects">
   <div class="sec-head reveal">
@@ -559,6 +632,8 @@ def build():
     <p class="contact-text" data-i18n="contact.text"></p>
     <div class="contact-btns">
       <a class="btn btn-primary" href="mailto:developeractionobject@gmail.com" onclick="trackContact('Email')"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span data-i18n="contact.cta"></span></a>
+      <a class="btn btn-ghost" href="tel:+79969382354"
+         data-i18n-attr="aria-label:contact.aria.phone" onclick="trackContact('Phone')"><i class="fa-solid fa-phone" aria-hidden="true"></i><span data-i18n="contact.phone"></span></a>
       <a class="btn btn-ghost" href="https://t.me/Hany_230" target="_blank" rel="noopener me"
          data-i18n-attr="aria-label:contact.aria.telegram" onclick="trackContact('Telegram')"><i class="fa-brands fa-telegram" aria-hidden="true"></i><span data-i18n="contact.telegram"></span></a>
       <a class="btn btn-ghost" href="https://wa.me/79969382354" target="_blank" rel="noopener"
@@ -576,6 +651,14 @@ def build():
        data-i18n-attr="aria-label:cv.aria.ru" onclick="trackContact('CV-RU')">
       <span class="flag">RU</span><span data-i18n="cv.ru"></span></a>
     <span class="cv-hint" data-i18n="cv.hint"></span>
+    <span class="cv-onepage">
+      <span data-i18n="cv.onepage"></span>
+      <a href="cv/cv_en_1page.pdf" download="Mohamed-Hany-Reda-CV-EN-1page.pdf"
+         data-i18n-attr="aria-label:cv.aria.en1" onclick="trackContact('CV-EN-1page')">EN</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="cv/cv_ru_1page.pdf" download="Mohamed-Hany-Reda-CV-RU-1page.pdf"
+         data-i18n-attr="aria-label:cv.aria.ru1" onclick="trackContact('CV-RU-1page')">RU</a>
+    </span>
   </div>
   </div>
 </section>
@@ -585,6 +668,7 @@ def build():
 <footer>
   <div class="foot-social">
     <a href="mailto:developeractionobject@gmail.com" data-i18n-attr="aria-label:contact.email" aria-label="Email" onclick="trackContact('Email-Footer')"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+    <a href="tel:+79969382354" data-i18n-attr="aria-label:contact.aria.phone" onclick="trackContact('Phone-Footer')"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
     <a href="https://t.me/Hany_230" target="_blank" rel="noopener me" data-i18n-attr="aria-label:contact.aria.telegram" onclick="trackContact('Telegram-Footer')"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
     <a href="https://wa.me/79969382354" target="_blank" rel="noopener" data-i18n-attr="aria-label:contact.aria.whatsapp" onclick="trackContact('WhatsApp-Footer')"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
     <a href="https://github.com/Hany15" target="_blank" rel="noopener" data-i18n-attr="aria-label:contact.github" aria-label="GitHub" onclick="trackContact('GitHub-Footer')"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
@@ -592,6 +676,7 @@ def build():
     <a href="https://hany15.github.io/Hany-Reda-Portfolio/" target="_blank" rel="noopener" data-i18n-attr="aria-label:contact.portfolio" aria-label="Portfolio"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
   </div>
   <p class="foot-copy">&copy; 2026 Mohamed Hany Reda. <span data-i18n="footer.rights"></span><br><span data-i18n="footer.built"></span></p>
+  <p class="foot-updated"><span data-i18n="footer.updated"></span>: <time datetime="__ISO__">__ISO__</time></p>
 </footer>
 
 <!-- ═══ PROJECT MODAL ═══ -->
@@ -599,7 +684,7 @@ def build():
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div>
 </div>
 
-<script src="assets/js/i18n.js?v=9f5ee755"></script>
+<script src="assets/js/i18n.js?v=1205b0e8"></script>
 <script src="assets/js/main.js?v=619307e3"></script>
 </body>
 </html>

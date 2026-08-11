@@ -182,19 +182,19 @@ CONTACT_RU = (
 
 EN = {
  "pdf_title": "Mohamed Hany Reda - CV",
- "pdf_subject": "Technical IT Project Manager | Software Engineer | AI & Digital Products",
+ "pdf_subject": "Full-Stack Software Engineer",
  "footer": "Mohamed Hany Reda  —  Curriculum Vitae",
  "page_word": "Page",
  "name": "MOHAMED HANY REDA",
- "title": "Technical IT Project Manager &nbsp;|&nbsp; Software Engineer &nbsp;|&nbsp; AI &amp; Digital Products",
- "tagline": "Reinforcement Learning · Simulation &amp; Digital Twins · Autonomous Systems · Explainable AI · Production Software Architecture",
+ "title": "Full-Stack Software Engineer &nbsp;&middot;&nbsp; AI &amp; Machine Learning",
+ "tagline": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker &nbsp;|&nbsp; 6+ years · led teams up to 10",
  "contact": CONTACT_EN,
 
  "l_avail": "Availability",
  "avail": "Available on-site, remotely or hybrid, and open to business trips. Looking for full-time employment.",
  "l_summary": "Professional Summary",
  "summary":
-   "Software engineer and technical project lead who builds complete intelligent systems rather than isolated models. "
+   "Full-stack software engineer with six years building web, mobile and AI products end to end. "
    "My work spans deterministic simulation and digital twins, reinforcement-learning decision systems, explainable computer "
    "vision, and multi-tenant enterprise architecture — each delivered as a working product with a data layer, an interface, "
    "and automated tests. I connect business goals, product requirements and engineering execution, and my engineering "
@@ -359,12 +359,12 @@ EN = {
 
 RU = {
  "pdf_title": "Мохамед Хани Реда - Резюме",
- "pdf_subject": "Технический менеджер IT-проектов | Инженер-программист | ИИ и цифровые продукты",
+ "pdf_subject": "Full-Stack разработчик",
  "footer": "Мохамед Хани Реда  —  Резюме",
  "page_word": "Стр.",
  "name": "МОХАМЕД ХАНИ РЕДА",
- "title": "Технический менеджер IT-проектов &nbsp;|&nbsp; Инженер-программист &nbsp;|&nbsp; ИИ и цифровые продукты",
- "tagline": "Обучение с подкреплением · Моделирование и цифровые двойники · Автономные системы · Объяснимый ИИ · Архитектура промышленного ПО",
+ "title": "Full-Stack разработчик &nbsp;&middot;&nbsp; ИИ и машинное обучение",
+ "tagline": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker &nbsp;|&nbsp; 6+ лет · команды до 10 человек",
  "contact": CONTACT_RU,
 
  "l_avail": "Доступность",

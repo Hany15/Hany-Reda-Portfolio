@@ -8,10 +8,10 @@ window.I18N = {
 
 /* ─────────────────────────── ENGLISH ─────────────────────────── */
 en: {
-  "meta.title": "Mohamed Hany Reda | AI & Software Engineer",
-  "meta.desc": "AI and Software Engineer specializing in reinforcement learning, simulation, digital twins, autonomous systems, explainable AI, and production software architecture.",
+  "meta.title": "Mohamed Hany Reda | Full-Stack Software Engineer",
+  "meta.desc": "Full-Stack Software Engineer with 6+ years building web, mobile and AI products end to end — JavaScript, Python, Flutter, FastAPI, PostgreSQL and PyTorch. Has led teams of up to 10.",
 
-  "role.full": "Technical IT Project Manager | Software Engineer | AI & Digital Products",
+  "role.full": "Full-Stack Software Engineer",
 
   "nav.home": "Home",
   "nav.projects": "Projects",
@@ -23,10 +23,10 @@ en: {
   "nav.close": "Close menu",
   "nav.langLabel": "Select language",
 
-  "hero.badge": "Open to AI engineering & applied RL roles",
-  "hero.spec": "Reinforcement Learning · Simulation & Digital Twins · Autonomous Systems · AI Products",
-  "hero.headline": "Engineering intelligent systems beyond the model.",
-  "hero.support": "I build complete intelligent systems — from reinforcement-learning agents and digital twins to explainable AI products and production-ready software platforms.",
+  "hero.badge": "Open to Full-Stack, Backend and AI engineering roles",
+  "hero.spec": "Full-Stack Development · AI &amp; Machine Learning · Cross-Platform Apps · Backend &amp; APIs",
+  "hero.headline": "I build and ship complete software products.",
+  "hero.support": "Six years building web, mobile and AI products end to end — requirements, architecture, code, tests and release. I have also led teams of up to 10 and owned project budgets, so I understand delivery as well as I understand code.",
   "hero.cta.projects": "Explore Featured Projects",
   "hero.cta.github": "View GitHub",
   "hero.cta.contact": "Contact Me",
@@ -441,15 +441,16 @@ en: {
   "cv.onepage": "One-page version:",
   "cv.aria.en1": "Download one-page CV in English, PDF",
   "cv.aria.ru1": "Download one-page CV in Russian, PDF",
+  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
   "a11y.progress": "Reading progress"
 },
 
 /* ─────────────────────────── РУССКИЙ ─────────────────────────── */
 ru: {
-  "meta.title": "Мохамед Хани Реда | Инженер ИИ и ПО",
-  "meta.desc": "Инженер в области искусственного интеллекта и программного обеспечения: обучение с подкреплением, моделирование, цифровые двойники, автономные системы, объяснимый ИИ и архитектура промышленного ПО.",
+  "meta.title": "Мохамед Хани Реда | Full-Stack разработчик",
+  "meta.desc": "Full-Stack разработчик с опытом более 6 лет: веб-, мобильные и AI-продукты от требований до релиза — JavaScript, Python, Flutter, FastAPI, PostgreSQL, PyTorch. Руководил командами до 10 человек.",
 
-  "role.full": "Технический менеджер IT-проектов | Инженер-программист | ИИ и цифровые продукты",
+  "role.full": "Full-Stack разработчик",
 
   "nav.home": "Главная",
   "nav.projects": "Проекты",
@@ -461,10 +462,10 @@ ru: {
   "nav.close": "Закрыть меню",
   "nav.langLabel": "Выбор языка",
 
-  "hero.badge": "Открыт к проектам в области ИИ и прикладного обучения с подкреплением",
-  "hero.spec": "Обучение с подкреплением · Моделирование и цифровые двойники · Автономные системы · ИИ-продукты",
-  "hero.headline": "Инженерия интеллектуальных систем — за пределами модели.",
-  "hero.support": "Я создаю целостные интеллектуальные системы — от агентов обучения с подкреплением и цифровых двойников до объяснимых ИИ-продуктов и программных платформ, готовых к промышленной эксплуатации.",
+  "hero.badge": "Открыт к позициям Full-Stack, Backend и AI-разработки",
+  "hero.spec": "Full-Stack разработка · ИИ и машинное обучение · Кроссплатформенные приложения · Бэкенд и API",
+  "hero.headline": "Создаю и довожу до релиза законченные программные продукты.",
+  "hero.support": "Шесть лет разрабатываю веб-, мобильные и AI-продукты по полному циклу — требования, архитектура, код, тесты и релиз. Руководил командами до 10 человек и отвечал за бюджеты проектов, поэтому понимаю поставку не хуже, чем код.",
   "hero.cta.projects": "Смотреть проекты",
   "hero.cta.github": "Открыть GitHub",
   "hero.cta.contact": "Связаться со мной",
@@ -879,15 +880,16 @@ ru: {
   "cv.onepage": "Версия на одну страницу:",
   "cv.aria.en1": "Скачать резюме на одну страницу на английском, PDF",
   "cv.aria.ru1": "Скачать резюме на одну страницу на русском, PDF",
+  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
   "a11y.progress": "Прогресс чтения"
 },
 
 /* ─────────────────────────── العربية ─────────────────────────── */
 ar: {
-  "meta.title": "محمد هاني رضا | مهندس ذكاء اصطناعي وبرمجيات",
-  "meta.desc": "مهندس ذكاء اصطناعي وبرمجيات متخصص في التعلّم المعزز والمحاكاة والتوأم الرقمي والأنظمة ذاتية التشغيل والذكاء الاصطناعي القابل للتفسير وهندسة البرمجيات الإنتاجية.",
+  "meta.title": "محمد هاني رضا | مهندس برمجيات Full-Stack",
+  "meta.desc": "مهندس برمجيات Full-Stack بخبرة تتجاوز 6 سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — JavaScript وPython وFlutter وFastAPI وPostgreSQL وPyTorch. قاد فرقاً حتى 10 أشخاص.",
 
-  "role.full": "مدير تقني لمشاريع تكنولوجيا المعلومات | مهندس برمجيات | منتجات الذكاء الاصطناعي والمنتجات الرقمية",
+  "role.full": "مهندس برمجيات Full-Stack",
 
   "nav.home": "الرئيسية",
   "nav.projects": "المشاريع",
@@ -899,10 +901,10 @@ ar: {
   "nav.close": "إغلاق القائمة",
   "nav.langLabel": "اختيار اللغة",
 
-  "hero.badge": "متاح لفرص هندسة الذكاء الاصطناعي والتعلّم المعزز التطبيقي",
-  "hero.spec": "التعلّم المعزز · المحاكاة والتوأم الرقمي · الأنظمة ذاتية التشغيل · منتجات الذكاء الاصطناعي",
-  "hero.headline": "هندسة أنظمة ذكية تتجاوز حدود النموذج.",
-  "hero.support": "أبني أنظمة ذكية متكاملة — من وكلاء التعلّم المعزز والتوائم الرقمية إلى منتجات ذكاء اصطناعي قابلة للتفسير ومنصات برمجية جاهزة للتشغيل الإنتاجي.",
+  "hero.badge": "متاح لوظائف Full-Stack والـBackend وهندسة الذكاء الاصطناعي",
+  "hero.spec": "تطوير Full-Stack · الذكاء الاصطناعي وتعلّم الآلة · تطبيقات متعددة المنصات · الخلفية وواجهات البرمجة",
+  "hero.headline": "أبني منتجات برمجية متكاملة وأوصلها إلى الإطلاق.",
+  "hero.support": "ست سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — المتطلبات والبنية والشيفرة والاختبارات والإصدار. قدت أيضاً فرقاً حتى 10 أشخاص وتوليت ميزانيات المشاريع، لذا أفهم التسليم بقدر ما أفهم الشيفرة.",
   "hero.cta.projects": "استعرض المشاريع",
   "hero.cta.github": "زيارة GitHub",
   "hero.cta.contact": "تواصل معي",
@@ -1317,6 +1319,7 @@ ar: {
   "cv.onepage": "نسخة من صفحة واحدة:",
   "cv.aria.en1": "تحميل سيرة ذاتية من صفحة واحدة بالإنجليزية، PDF",
   "cv.aria.ru1": "تحميل سيرة ذاتية من صفحة واحدة بالروسية، PDF",
+  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
   "a11y.progress": "تقدّم القراءة"
 }
 };

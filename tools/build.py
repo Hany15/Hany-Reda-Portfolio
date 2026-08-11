@@ -128,7 +128,7 @@ def build():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/main.css?v=4ebae11d">
+<link rel="stylesheet" href="assets/css/main.css?v=09c6f1a6">
 </head>
 <body>
 
@@ -184,6 +184,7 @@ def build():
   <p class="hero-badge"><i aria-hidden="true"></i><span data-i18n="hero.badge"></span></p>
   <h1 class="hero-name">MOHAMED HANY REDA</h1>
   <p class="hero-role" data-i18n="role.full"></p>
+  <p class="hero-stack" data-i18n="role.stack"></p>
   <p class="hero-headline" data-i18n="hero.headline"></p>
   <p class="hero-support" data-i18n="hero.support"></p>
   <p class="hero-spec" data-i18n="hero.spec"></p>
@@ -684,7 +685,7 @@ def build():
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div>
 </div>
 
-<script src="assets/js/i18n.js?v=1205b0e8"></script>
+<script src="assets/js/i18n.js?v=676f64e9"></script>
 <script src="assets/js/main.js?v=619307e3"></script>
 </body>
 </html>

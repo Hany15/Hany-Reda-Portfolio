@@ -95,12 +95,12 @@ def build_one(c, path):
 
 EN = {
  "pdf_title": "Mohamed Hany Reda - CV (one page)",
- "pdf_subject": "Technical IT Project Manager | Software Engineer | AI & Digital Products",
+ "pdf_subject": "Full-Stack Software Engineer",
  "name": "MOHAMED HANY REDA",
- "title": "Technical IT Project Manager &nbsp;|&nbsp; Software Engineer &nbsp;|&nbsp; AI &amp; Digital Products",
+ "title": "Full-Stack Software Engineer &nbsp;&middot;&nbsp; AI &amp; Machine Learning",
  "contact": CONTACT_EN,
  "l_profile": "Profile",
- "profile": "Software engineer and technical project lead with 6+ years across engineering, delivery and product. "
+ "profile": "Full-stack software engineer with 6+ years building web, mobile and AI products end to end. "
             "I run products through the full cycle — requirements, architecture, build, test, release — and have led "
             "teams of up to 10 while owning the project budget. Available on-site, remotely or hybrid, and open to "
             "business trips.",
@@ -152,13 +152,12 @@ EN = {
 
 RU = {
  "pdf_title": "Мохамед Хани Реда - Резюме (одна страница)",
- "pdf_subject": "Технический менеджер IT-проектов | Инженер-программист | ИИ и цифровые продукты",
+ "pdf_subject": "Full-Stack разработчик",
  "name": "МОХАМЕД ХАНИ РЕДА",
- "title": "Технический менеджер IT-проектов &nbsp;|&nbsp; Инженер-программист &nbsp;|&nbsp; ИИ и цифровые продукты",
+ "title": "Full-Stack разработчик &nbsp;&middot;&nbsp; ИИ и машинное обучение",
  "contact": CONTACT_RU,
  "l_profile": "Профиль",
- "profile": "Инженер-программист и технический руководитель проектов с опытом более 6 лет в разработке, поставке и "
-            "продукте. Веду продукты по полному циклу — требования, архитектура, разработка, тестирование, релиз — "
+ "profile": "Full-Stack разработчик с опытом более 6 лет: веб-, мобильные и AI-продукты от требований до релиза. Веду продукты по полному циклу — требования, архитектура, разработка, тестирование, релиз — "
             "и руководил командами до 10 человек с ответственностью за бюджет. Готов работать в офисе, удалённо или "
             "гибридно, готов к командировкам.",
  "l_highlights": "Ключевые достижения",

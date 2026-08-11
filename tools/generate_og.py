@@ -35,14 +35,14 @@ def shape_ar(text):
         return text
 
 CARDS = {
- "en": {"role": "Technical IT Project Manager  |  Software Engineer",
-        "spec": "Reinforcement Learning  ·  Digital Twins  ·  Autonomous Systems  ·  Explainable AI",
+ "en": {"role": "Full-Stack Software Engineer",
+        "spec": "JavaScript  ·  Python  ·  Flutter  ·  FastAPI  ·  PostgreSQL  ·  PyTorch  ·  Docker",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": False},
- "ru": {"role": "Технический менеджер IT-проектов  |  Инженер-программист",
-        "spec": "Обучение с подкреплением  ·  Цифровые двойники  ·  Автономные системы",
+ "ru": {"role": "Full-Stack разработчик",
+        "spec": "JavaScript  ·  Python  ·  Flutter  ·  FastAPI  ·  PostgreSQL  ·  PyTorch",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": False},
- "ar": {"role": "مدير تقني لمشاريع تكنولوجيا المعلومات  |  مهندس برمجيات",
-        "spec": "التعلّم المعزز · التوائم الرقمية · الأنظمة ذاتية التشغيل",
+ "ar": {"role": "مهندس برمجيات Full-Stack",
+        "spec": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": True},
 }
 

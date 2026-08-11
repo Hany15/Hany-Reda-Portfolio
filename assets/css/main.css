@@ -835,3 +835,11 @@ html[dir="rtl"] .adv-list li::before{
 }
 .cv-onepage a:hover{text-decoration:underline;}
 .cv-onepage .sep{color:var(--border);}
+
+/* stack line directly under the hero role — the concrete keywords a
+   recruiter scans for, kept separate from the role itself */
+.hero-stack{
+  font-family:var(--mono);font-size:clamp(9.5px,1.7vw,11.5px);
+  color:var(--muted);letter-spacing:.03em;margin-bottom:18px;
+  max-width:760px;line-height:1.9;
+}

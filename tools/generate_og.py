@@ -36,13 +36,13 @@ def shape_ar(text):
 
 CARDS = {
  "en": {"role": "Full-Stack Software Engineer",
-        "spec": "JavaScript  ·  Python  ·  Flutter  ·  FastAPI  ·  PostgreSQL  ·  PyTorch  ·  Docker",
+        "spec": "JavaScript  ·  React  ·  Node.js  ·  Python  ·  FastAPI  ·  PostgreSQL  ·  Docker",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": False},
  "ru": {"role": "Full-Stack разработчик",
-        "spec": "JavaScript  ·  Python  ·  Flutter  ·  FastAPI  ·  PostgreSQL  ·  PyTorch",
+        "spec": "JavaScript  ·  React  ·  Node.js  ·  Python  ·  FastAPI  ·  PostgreSQL",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": False},
  "ar": {"role": "مهندس برمجيات Full-Stack",
-        "spec": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch",
+        "spec": "JavaScript · React · Node.js · Python · FastAPI · PostgreSQL",
         "foot": "hany15.github.io/Hany-Reda-Portfolio", "rtl": True},
 }
 

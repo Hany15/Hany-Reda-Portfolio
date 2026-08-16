@@ -129,12 +129,6 @@ def build(content, path):
     f += section(content["l_summary"])
     f.append(Paragraph(content["summary"], S["body"]))
 
-    f += section(content["l_avail"])
-    f.append(Paragraph(content["avail"], S["body"]))
-
-    f += section(content["l_competencies"])
-    f.append(Paragraph("  •  ".join(content["competencies"]), S["body"]))
-
     f += section(content["l_skills"])
     f.append(skills_table(content["skills"]))
 
@@ -150,9 +144,6 @@ def build(content, path):
     f.append(Paragraph(content["education"]["degree"], S["role"]))
     f.append(Paragraph(content["education"]["meta"], S["meta"]))
     f.append(Paragraph(content["education"]["courses"], S["small"]))
-
-    f += section(content["l_certs"])
-    f += bullets(content["certs"])
 
     f += section(content["l_languages"])
     f.append(Paragraph(content["languages"], S["body"]))
@@ -183,363 +174,237 @@ CONTACT_RU = (
 EN = {
  "pdf_title": "Mohamed Hany Reda - CV",
  "pdf_subject": "Full-Stack Software Engineer",
- "footer": "Mohamed Hany Reda  —  Curriculum Vitae",
+ "footer": "Mohamed Hany Reda  \u2014  Curriculum Vitae",
  "page_word": "Page",
  "name": "MOHAMED HANY REDA",
- "title": "Full-Stack Software Engineer &nbsp;&middot;&nbsp; AI &amp; Machine Learning",
- "tagline": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker &nbsp;|&nbsp; 6+ years · led teams up to 10",
+ "title": "Full-Stack Software Engineer",
+ "tagline": "Remote \u2014 available worldwide, open to relocation &nbsp;|&nbsp; 3+ years of experience &nbsp;|&nbsp; led engineering teams of up to 10",
  "contact": CONTACT_EN,
 
- "l_avail": "Availability",
- "avail": "Available on-site, remotely or hybrid, and open to business trips. Looking for full-time employment.",
  "l_summary": "Professional Summary",
  "summary":
-   "Full-stack software engineer with six years building web, mobile and AI products end to end. "
-   "My work spans deterministic simulation and digital twins, reinforcement-learning decision systems, explainable computer "
-   "vision, and multi-tenant enterprise architecture — each delivered as a working product with a data layer, an interface, "
-   "and automated tests. I connect business goals, product requirements and engineering execution, and my engineering "
-   "background lets me understand technical dependencies, identify delivery risks early, and make project decisions with "
-   "real technical context. Working proficiency in English and Russian alongside native Arabic supports collaboration "
-   "across international teams.",
-
- "l_competencies": "Core Competencies",
- "competencies": [
-   "Technical Project Planning &amp; Roadmapping", "Requirements Analysis", "Scope &amp; Change Management",
-   "Risk Identification &amp; Mitigation", "Stakeholder Communication", "Cross-Functional Coordination",
-   "Technical Decision Support", "Product &amp; Business Alignment", "System Architecture",
-   "Reproducible Engineering", "Explainability &amp; Safety by Design", "Multilingual Collaboration",
- ],
+   "Full-stack software engineer with 3+ years shipping production web, mobile and AI-enabled products end to end "
+   "\u2014 architecture, backend APIs, frontend UI, automated testing and deployment. Sole owner of a multi-tenant "
+   "ERP built on FastAPI, PostgreSQL and React with database-level tenant isolation, and of a live e-commerce "
+   "platform with zero-downtime releases. Comfortable taking a feature from requirements through production, and "
+   "have also led engineering teams of up to 10 and owned project budgets when a project needed it. Native Arabic, "
+   "C2 English, B2 Russian \u2014 able to work directly with teams across three markets.",
 
  "l_skills": "Technical Skills",
  "skills": [
-   ("Languages", "Python, Dart, C++, C#, SQL, JavaScript"),
-   ("AI / ML", "PyTorch, EfficientNet, Computer Vision, Grad-CAM, OpenCV, Scikit-learn, Albumentations, Explainable AI"),
-   ("Reinforcement Learning", "PPO, SAC, A2C, Multi-Agent RL, CTDE, Safe-RL, LSTM policies, Self-Play, Domain Randomization"),
-   ("Simulation", "Discrete-Event Simulation, Entity-Component-System, Deterministic Replay, Procedural Generation, "
-                  "Sensor Simulation, Operations Research (Erlang C, M/M/c, Little's Law)"),
-   ("Backend", "FastAPI, PostgreSQL, SQLAlchemy, Redis, SQLite, REST APIs, Clean Architecture, Multi-Tenant Systems, RBAC"),
-   ("Visualization", "Three.js, Pygame, PySide6, Streamlit, Flutter, Unreal Engine 5, Firebase"),
-   ("Engineering", "Docker, Git, Pytest, CI, Ruff, MyPy, ONNX"),
+   ("Frontend", "JavaScript, React, Three.js, Flutter/Dart, responsive UI, cross-browser development"),
+   ("Backend", "Python, FastAPI, Node.js, Firebase Cloud Functions, REST APIs, Clean Architecture, RBAC, multi-tenant systems"),
+   ("Databases", "PostgreSQL, SQLAlchemy, Redis, SQLite, Row-Level Security"),
+   ("DevOps &amp; Tooling", "Docker, Git, CI, Pytest, Ruff, MyPy"),
+   ("Delivery &amp; Leadership", "Agile, Scrum, Kanban, requirements analysis, SRS, user stories, backlog, risk and release management; team leadership up to 10, budget ownership, stakeholder communication"),
+   ("Also experienced with", "PyTorch, computer vision, reinforcement learning (PPO/SAC/A2C), Grad-CAM explainability, Unreal Engine 5"),
  ],
 
  "l_projects": "Key Projects",
  "projects": [
-  {"name": 'High-Throughput Sorting-Center Digital Twin',
-   "meta": 'Python · PyTorch · PPO · Multi-Agent RL · LSTM · Discrete-Event Simulation · Three.js — '
-           '<a href="https://github.com/Hany15/Amazon-sorting-center-digital-twin" color="#0E6E8C">repository</a>',
-   "points": [
-     "Built a logistics digital twin of a 400-lane sorting centre on a custom deterministic discrete-event engine with an "
-     "Entity-Component-System architecture, making every run reproducible from a single seed.",
-     "Modelled ~96,400 items/hour against a 100,000 items/hour design target, validated against classical queueing-theory baselines.",
-     "Implemented PPO-based parcel routing, multi-agent coordination using centralised training with decentralised execution (CTDE), "
-     "and an LSTM predictive-maintenance model.",
-     "Added a fault-injection Chaos Agent, time-machine replay with scenario branching, a 2D operations centre and a browser-based 3D twin.",
-     "530+ automated tests documented in the repository, with Ruff and MyPy in the toolchain.",
-   ]},
-  {"name": "Strict Drone Safe-RL — Autonomous Control Research Platform",
-   "meta": 'Python · PyTorch · PPO · LSTM · Gymnasium · ONNX · Docker — '
-           '<a href="https://github.com/Hany15/drone-rl-flight-control" color="#0E6E8C">repository</a>',
-   "points": [
-     "Trained drone-control policies under wind, sensor drift, control latency, motor degradation and GPS-denied navigation.",
-     "PPO with an LSTM actor-critic under Automatic Domain Randomization, plus a Rapid Motor Adaptation-inspired module for online "
-     "adaptation to changing dynamics.",
-     "Simulated IMU, VIO and LiDAR sensing; five-stage fault-injection curriculum; TrainingGuardian stability monitoring.",
-     "Hard safety limits and emergency fail-safe design, with an ONNX export path for edge deployment.",
-   ],
-   "note": "Simulation and research platform. No real-world autonomous flight validation is claimed."},
-  {"name": "Fracture Detection AI — Explainable Medical Imaging Product",
-   "meta": 'Python · PyTorch · EfficientNet-B0 · Grad-CAM · Streamlit · SQLite · ReportLab — '
-           '<a href="https://github.com/Hany15/AI-Medical-Assistant-" color="#0E6E8C">repository</a>',
-   "points": [
-     "End-to-end computer-vision product for bone-fracture detection on the 4,083-image FracAtlas X-ray dataset.",
-     "Measured results: 90.21% accuracy, 89.31% ROC AUC, 76.67% precision, 63.89% recall, 69.70% F1.",
-     "Grad-CAM overlays make every prediction inspectable; shipped as a Streamlit application and Telegram bot with automated "
-     "PDF reporting and local SQLite prediction history.",
-     "Trilingual interface (English, Arabic, Russian); 21/21 documented tests passing.",
-   ],
-   "note": "Research and portfolio software. Not a certified medical device."},
-  {"name": "HMS — Multi-Tenant Enterprise ERP &amp; AI Platform",
-   "meta": 'Python · FastAPI · PostgreSQL · SQLAlchemy · Redis · React · Docker — '
+  {"name": "HMS \u2014 Multi-Tenant Enterprise ERP &amp; AI Platform",
+   "meta": 'Python \u00b7 FastAPI \u00b7 PostgreSQL \u00b7 SQLAlchemy \u00b7 Redis \u00b7 React \u00b7 Docker \u2014 '
            '<a href="https://github.com/Hany15/hms-ai-erp-platform" color="#0E6E8C">repository</a>',
    "points": [
-     "Multi-tenant ERP covering inventory, warehousing, procurement, sales/CRM, finance, maintenance and HR in one Clean Architecture codebase.",
+     "Sole owner of a multi-tenant ERP covering inventory, procurement, sales/CRM, finance, maintenance and HR in one Clean Architecture codebase.",
      "Enforced tenant isolation with PostgreSQL Row-Level Security at the database layer rather than trusting application code.",
      "Saudi ZATCA Phase 1 e-invoicing compliance, RBAC and audit logging, full Arabic/English RTL support.",
-     "Offline rule-based advisor that runs without any external LLM, with provider-agnostic LLM agents as an optional layer.",
    ]},
-  {"name": "AI Evolution Racing Lab — Explainable RL Research",
-   "meta": 'Python · PyTorch · Stable-Baselines3 · PPO/SAC/A2C · Gymnasium — '
-           '<a href="https://github.com/Hany15/ai-evolution-racing-lab" color="#0E6E8C">repository</a>',
+  {"name": "AuraGift \u2014 Live E-Commerce Platform",
+   "meta": 'JavaScript \u00b7 Node.js \u00b7 Firebase Cloud Functions \u00b7 Firebase Hosting \u00b7 UX/UI \u2014 '
+           '<a href="https://auragift.web.app" color="#0E6E8C">auragift.web.app</a>',
    "points": [
-     "Self-evolving simulation where procedurally generated worlds and adaptive difficulty memory drive RL driver training across generations.",
-     "Explainability layer combining policy-entropy confidence, input-gradient saliency and neural activation visualisation.",
-     "AI tournaments, evolution timeline and automated research reports.",
+     "Own the client side and UX of a premium digital-gifting platform in production.",
+     "Built serverless order- and payment-processing logic with Node.js on Firebase Cloud Functions.",
+     "Set up and maintain a repeatable, zero-downtime deployment pipeline on Firebase Hosting.",
    ]},
-  {"name": "Multi-Agent Autonomous Simulation Platform",
-   "meta": 'Python · PyTorch · Multi-Agent RL · PySide6 · SQLite — '
-           '<a href="https://github.com/Hany15/-AI-Powered-Air-Defense-Simulation-Platform-" color="#0E6E8C">repository</a>',
+  {"name": "High-Throughput Sorting-Center Digital Twin",
+   "meta": 'Python \u00b7 PyTorch \u00b7 Three.js \u00b7 Discrete-Event Simulation \u00b7 Pytest \u2014 '
+           '<a href="https://github.com/Hany15/Amazon-sorting-center-digital-twin" color="#0E6E8C">repository</a>',
    "points": [
-     "Multi-agent self-play across navigator, observer and interceptor roles in procedurally generated environments with dynamic "
-     "weather and day/night cycles.",
-     "Decision-probability and value-estimate logging with SQLite episodic memory, surfaced through a real-time PySide6 monitoring dashboard.",
+     "Built a 400-lane logistics digital twin on a custom deterministic simulation engine, modelling ~96,400 items/hour.",
+     "Browser-based 3D operations view (Three.js) and a full automated test suite of 530+ tests.",
+   ]},
+  {"name": "Fracture Detection AI \u2014 Explainable Medical Imaging",
+   "meta": 'Python \u00b7 PyTorch \u00b7 EfficientNet-B0 \u00b7 Streamlit \u2014 '
+           '<a href="https://github.com/Hany15/AI-Medical-Assistant-" color="#0E6E8C">repository</a>',
+   "points": [
+     "End-to-end computer-vision product for bone-fracture detection: 90.21% accuracy, Grad-CAM explanations.",
+     "Shipped as a Streamlit web app and Telegram bot with automated PDF reporting.",
+   ],
+   "note": "Research and portfolio software. Not a certified medical device."},
+  {"name": "Additional engineering projects",
+   "meta": "Reinforcement-learning research, multi-agent simulation, cross-platform apps, Unreal Engine",
+   "points": [
+     'Full list and source code at <a href="https://hany15.github.io/Hany-Reda-Portfolio/" color="#0E6E8C">hany15.github.io/Hany-Reda-Portfolio</a>.',
    ]},
  ],
 
  "l_experience": "Professional Experience",
  "experience": [
-  {"role": "Full-Stack Developer / Technical Owner  |  HMS &mdash; medical equipment manufacturer",
-   "meta": "January 2024 &mdash; Present",
+  {"role": "Full-Stack Developer / Technical Owner  |  HMS \u2014 medical equipment manufacturer",
+   "meta": "Jan 2024 \u2014 Present",
    "points": [
-     "Own the corporate web product end to end: gather requirements from internal stakeholders and translate them into scoped, estimated work with realistic deadlines.",
-     "Make the technical and architectural calls; build front end and back end, responsive layout, and integration with internal company systems.",
-     "Carry every feature through development, testing, release and support, surfacing technical risk before it reaches a release.",
-     "Agree priorities with stakeholders and explain technical constraints in business language.",
+     "Own the corporate web product end to end: requirements, architecture, front end and back end, release and support.",
+     "Make the technical and architectural calls; integrate with internal company systems; surface technical risk before release.",
    ]},
-  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift &mdash; digital gifting e-commerce",
-   "meta": "January 2024 &mdash; Present",
+  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift \u2014 digital gifting e-commerce",
+   "meta": "Jan 2024 \u2014 Present",
    "points": [
-     "Own the client side and UX of a premium digital-gifting platform, running features from requirement through QA to production deploy.",
-     "Built the interface and UX layer &mdash; responsive layout, animation, cross-browser behaviour and performance tuning.",
-     "Set up and maintain hosting and deployment on Firebase Hosting, giving a predictable, repeatable release process with no downtime.",
+     "Own the client side and UX of a live premium platform, from requirement through QA to production deploy.",
+     "Built serverless Node.js functions on Firebase Cloud Functions to process orders and payments.",
+     "Built the interface and UX layer \u2014 responsive layout, animation, cross-browser behaviour, performance tuning.",
    ]},
   {"role": "Technical Project Lead / Full-Stack Developer  |  HMS",
-   "meta": "January 2023 &mdash; June 2023",
+   "meta": "Jan 2023 \u2014 Jun 2023",
    "points": [
      "Led a team of 8 on a corporate web product while contributing to the build as a full-stack developer.",
-     "Planned phases, decomposed and assigned work, and tracked schedule, quality and milestone delivery.",
-     "Independently managed a project budget of roughly $10,000 &mdash; planning spend, allocating budget and paying contributors.",
-     "Unblocked developers on hard problems and took on critical modules where extra support was needed.",
+     "Independently managed a project budget of roughly $10,000, and unblocked developers on hard technical problems.",
    ]},
-  {"role": "Technical Project Manager / Product Engineer  |  Freelance &middot; Self-employed",
-   "meta": "June 2022 &mdash; Present",
+  {"role": "Full-Stack Developer / Technical Project Manager  |  Freelance \u2014 Self-employed",
+   "meta": "Jun 2022 \u2014 Present",
    "points": [
-     "Single point of accountability between client and delivery: discovery interviews, requirements formalised into SRS, user stories and acceptance criteria, phase planning and risk management.",
-     "Led a team of 10 on an AI logistics system with a budget of roughly $13,000 over 11 months (January&ndash;November 2024).",
-     "Design solution architecture and make the stack and integration decisions; build AI features &mdash; ML models in product services, LLM tooling, computer vision and explainable AI.",
-     "Build cross-platform Flutter applications for mobile, web and desktop, plus backend services, relational databases and REST integrations.",
+     "Single point of accountability between client and delivery: requirements, architecture, build and handover.",
+     "Led a team of 10 on an AI-enabled logistics system, ~$13,000 budget over 11 months; built cross-platform Flutter apps, backend services and REST integrations.",
    ]},
   {"role": "Unreal Engine Developer / Independent Product Owner  |  Independent (indie)",
-   "meta": "January 2020 &mdash; Present",
+   "meta": "Jan 2020 \u2014 Present",
    "points": [
-     "Ship own games and desktop products from concept to store listing, promotion and updates.",
-     "Built networked multiplayer with server authority (Advanced Sessions) and cloud player data (Microsoft PlayFab) &mdash; a distributed client-server system assembled solo.",
-     "Published 3 Android titles on Google Play with 5,000+ combined downloads, handling store requirements and release management end to end.",
-     "Authored and published an Unreal Engine (Blueprints) course on Udemy; ran Google Ads acquisition campaigns.",
-     "Key project &mdash; PROJECT NOVA: multiplayer sci-fi shooter on Unreal Engine 5 (C++ and Blueprints) with character replication, matchmaking, Nanite/Lumen and Niagara effects.",
+     "Shipped 3 Android titles on Google Play (5,000+ combined downloads); built networked multiplayer with server authority and cloud player data.",
    ]},
   {"role": "Media Team Lead  |  Resala Charity Organization, Egypt",
-   "meta": "January 2020 &mdash; December 2020",
+   "meta": "Jan 2020 \u2014 Dec 2020",
    "points": [
-     "Led the media function at one of the largest charities in Egypt and the Middle East: organised team workflow, assigned ownership and tracked delivery.",
-     "Coordinated people and activities across campaigns and events, managing deadlines under limited resources.",
-     "Communicated with organisational stakeholders and resolved conflicts within the team.",
-     "Completed a six-month leadership and management development programme.",
+     "Led the media function at one of the largest charities in Egypt and the Middle East; completed a six-month leadership programme.",
    ]},
  ],
 
- "l_education": "Education",
+ "l_education": "Education &amp; Certifications",
  "education": {
-   "degree": "Bachelor — Computer Science &amp; Engineering",
-   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) · 2026",
-   "courses": "Relevant coursework: Algorithms, Data Structures, Operating Systems, Software Engineering, Artificial Intelligence, "
-              "Computer Vision, Machine Learning, Networking, Databases.",
+   "degree": "Bachelor \u2014 Computer Science &amp; Engineering",
+   "meta": "Tomsk State University of Control Systems and Radioelectronics (TUSUR) \u00b7 2026",
+   "courses": "IBM Professional Course \u2014 Certificate of Appreciation &nbsp;\u00b7&nbsp; TUSUR \u2014 Recognition for "
+              "contributing to an educational VR system &nbsp;\u00b7&nbsp; Unreal Engine course author (Udemy, 2024) "
+              "&nbsp;\u00b7&nbsp; Digital Marketing (Google, 2021)",
  },
 
- "l_certs": "Certifications &amp; Recognition",
- "certs": [
-   "IBM Professional Course — Certificate of Appreciation",
-   "Resala Charity Organization — Certificate of Appreciation, Media Development Manager",
-   "Tomsk State University (TUSUR) — Recognition for contributing to an educational Virtual Reality (VR) system",
- ],
-
  "l_languages": "Languages",
- "languages": "<b>Arabic</b> — Native &nbsp;•&nbsp; <b>English</b> — C2, full professional &nbsp;•&nbsp; "
-              "<b>Russian</b> — B2, upper-intermediate",
+ "languages": "<b>Arabic</b> \u2014 Native &nbsp;\u00b7&nbsp; <b>English</b> \u2014 C2, full professional &nbsp;\u00b7&nbsp; "
+              "<b>Russian</b> \u2014 B2, upper-intermediate",
 }
 
 RU = {
- "pdf_title": "Мохамед Хани Реда - Резюме",
- "pdf_subject": "Full-Stack разработчик",
- "footer": "Мохамед Хани Реда  —  Резюме",
- "page_word": "Стр.",
- "name": "МОХАМЕД ХАНИ РЕДА",
- "title": "Full-Stack разработчик &nbsp;&middot;&nbsp; ИИ и машинное обучение",
- "tagline": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker &nbsp;|&nbsp; 6+ лет · команды до 10 человек",
+ "pdf_title": "\u041c\u043e\u0445\u0430\u043c\u0435\u0434 \u0425\u0430\u043d\u0438 \u0420\u0435\u0434\u0430 - \u0420\u0435\u0437\u044e\u043c\u0435",
+ "pdf_subject": "Full-Stack \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a",
+ "footer": "\u041c\u043e\u0445\u0430\u043c\u0435\u0434 \u0425\u0430\u043d\u0438 \u0420\u0435\u0434\u0430  \u2014  \u0420\u0435\u0437\u044e\u043c\u0435",
+ "page_word": "\u0421\u0442\u0440.",
+ "name": "\u041c\u041e\u0425\u0410\u041c\u0415\u0414 \u0425\u0410\u041d\u0418 \u0420\u0415\u0414\u0410",
+ "title": "Full-Stack \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a",
+ "tagline": "\u0423\u0434\u0430\u043b\u0451\u043d\u043d\u043e \u2014 \u0433\u043e\u0442\u043e\u0432 \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0438\u0437 \u043b\u044e\u0431\u043e\u0439 \u0442\u043e\u0447\u043a\u0438 \u043c\u0438\u0440\u0430, \u0433\u043e\u0442\u043e\u0432 \u043a \u043f\u0435\u0440\u0435\u0435\u0437\u0434\u0443 &nbsp;|&nbsp; 3+ \u043b\u0435\u0442 \u043e\u043f\u044b\u0442\u0430 &nbsp;|&nbsp; \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u043b \u043a\u043e\u043c\u0430\u043d\u0434\u0430\u043c\u0438 \u0434\u043e 10 \u0447\u0435\u043b\u043e\u0432\u0435\u043a",
  "contact": CONTACT_RU,
 
- "l_avail": "Доступность",
- "avail": "Готов работать в офисе, удалённо или гибридно, готов к командировкам. Ищу работу на полную занятость.",
- "l_summary": "Профиль",
+ "l_summary": "\u041f\u0440\u043e\u0444\u0438\u043b\u044c",
  "summary":
-   "Инженер-программист и технический руководитель проектов, создающий целостные интеллектуальные системы, а не отдельные модели. "
-   "Мои работы охватывают детерминированное моделирование и цифровые двойники, системы принятия решений на основе обучения с "
-   "подкреплением, объяснимое компьютерное зрение и мультиарендную корпоративную архитектуру — каждая доведена до рабочего "
-   "продукта со слоем данных, интерфейсом и автоматическими тестами. Связываю бизнес-цели, продуктовые требования и техническую "
-   "реализацию; инженерный опыт позволяет понимать технические зависимости, заранее выявлять риски срыва сроков и принимать "
-   "управленческие решения с учётом реального технического контекста. Профессиональное владение английским и русским наряду с "
-   "родным арабским обеспечивает работу в международных командах.",
+   "Full-Stack \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u0441 \u043e\u043f\u044b\u0442\u043e\u043c \u0431\u043e\u043b\u0435\u0435 3 \u043b\u0435\u0442: \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u044e \u0432 \u043f\u0440\u043e\u0434\u0430\u043a\u0448\u0435\u043d \u0432\u0435\u0431-, \u043c\u043e\u0431\u0438\u043b\u044c\u043d\u044b\u0435 \u0438 AI-\u043f\u0440\u043e\u0434\u0443\u043a\u0442\u044b \u043f\u043e \u043f\u043e\u043b\u043d\u043e\u043c\u0443 \u0446\u0438\u043a\u043b\u0443 \u2014 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430, backend API, frontend UI, \u0430\u0432\u0442\u043e\u0442\u0435\u0441\u0442\u044b \u0438 \u0440\u0430\u0437\u0432\u0451\u0440\u0442\u044b\u0432\u0430\u043d\u0438\u0435. \u0415\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u0440\u0435\u043d\u0434\u043d\u043e\u0439 ERP \u043d\u0430 FastAPI, PostgreSQL \u0438 React \u0441 \u0438\u0437\u043e\u043b\u044f\u0446\u0438\u0435\u0439 \u0430\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u043e\u0432 \u043d\u0430 \u0443\u0440\u043e\u0432\u043d\u0435 \u0411\u0414, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0435\u0439 e-commerce \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u044b \u0441 \u0440\u0435\u043b\u0438\u0437\u0430\u043c\u0438 \u0431\u0435\u0437 \u043f\u0440\u043e\u0441\u0442\u043e\u0435\u0432. \u0412\u0435\u0434\u0443 \u0444\u0438\u0447\u0443 \u043e\u0442 \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u0439 \u0434\u043e \u043f\u0440\u043e\u0434\u0430\u043a\u0448\u0435\u043d\u0430; \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u043b \u043a\u043e\u043c\u0430\u043d\u0434\u0430\u043c\u0438 \u0434\u043e 10 \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u0438 \u043e\u0442\u0432\u0435\u0447\u0430\u043b \u0437\u0430 \u0431\u044e\u0434\u0436\u0435\u0442\u044b \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432. \u0410\u0440\u0430\u0431\u0441\u043a\u0438\u0439 \u2014 \u0440\u043e\u0434\u043d\u043e\u0439, \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u0438\u0439 \u2014 C2, \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u2014 B2.",
 
- "l_competencies": "Ключевые компетенции",
- "competencies": [
-   "Планирование проектов и дорожные карты", "Анализ требований", "Управление объёмом и изменениями",
-   "Выявление и снижение рисков", "Коммуникация с заинтересованными сторонами", "Кросс-функциональная координация",
-   "Поддержка технических решений", "Согласование продукта и бизнеса", "Архитектура систем",
-   "Воспроизводимая инженерия", "Объяснимость и безопасность по замыслу", "Многоязычное взаимодействие",
- ],
-
- "l_skills": "Технические навыки",
+ "l_skills": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043d\u0430\u0432\u044b\u043a\u0438",
  "skills": [
-   ("Языки", "Python, Dart, C++, C#, SQL, JavaScript"),
-   ("ИИ / ML", "PyTorch, EfficientNet, компьютерное зрение, Grad-CAM, OpenCV, Scikit-learn, Albumentations, объяснимый ИИ"),
-   ("Обучение с подкреплением", "PPO, SAC, A2C, многоагентное RL, CTDE, Safe-RL, политики на LSTM, самоигра, рандомизация предметной области"),
-   ("Моделирование", "Дискретно-событийное моделирование, Entity-Component-System, детерминированное воспроизведение, "
-                     "процедурная генерация, моделирование датчиков, исследование операций (Erlang C, M/M/c, закон Литтла)"),
-   ("Бэкенд", "FastAPI, PostgreSQL, SQLAlchemy, Redis, SQLite, REST API, Clean Architecture, мультиарендные системы, RBAC"),
-   ("Визуализация", "Three.js, Pygame, PySide6, Streamlit, Flutter, Unreal Engine 5, Firebase"),
-   ("Инженерия", "Docker, Git, Pytest, CI, Ruff, MyPy, ONNX"),
+   ("Frontend", "JavaScript, React, Three.js, Flutter/Dart, \u0430\u0434\u0430\u043f\u0442\u0438\u0432\u043d\u0430\u044f \u0432\u0451\u0440\u0441\u0442\u043a\u0430, \u043a\u0440\u043e\u0441\u0441\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u043d\u043e\u0441\u0442\u044c"),
+   ("Backend", "Python, FastAPI, Node.js, Firebase Cloud Functions, REST API, Clean Architecture, RBAC, \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u0440\u0435\u043d\u0434\u043d\u044b\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b"),
+   ("\u0411\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", "PostgreSQL, SQLAlchemy, Redis, SQLite, Row-Level Security"),
+   ("DevOps \u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b", "Docker, Git, CI, Pytest, Ruff, MyPy"),
+   ("\u0422\u0430\u043a\u0436\u0435 \u0440\u0430\u0431\u043e\u0442\u0430\u043b \u0441", "PyTorch, \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u043e\u0435 \u0437\u0440\u0435\u043d\u0438\u0435, \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u0435 \u0441 \u043f\u043e\u0434\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0438\u0435\u043c (PPO/SAC/A2C), Grad-CAM, Unreal Engine 5"),
  ],
 
- "l_projects": "Ключевые проекты",
+ "l_projects": "\u041a\u043b\u044e\u0447\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0435\u043a\u0442\u044b",
  "projects": [
-  {"name": "Цифровой двойник высокопроизводительного сортировочного центра",
-   "meta": 'Python · PyTorch · PPO · многоагентное RL · LSTM · дискретно-событийное моделирование · Three.js — '
-           '<a href="https://github.com/Hany15/Amazon-sorting-center-digital-twin" color="#0E6E8C">репозиторий</a>',
+  {"name": "HMS \u2014 \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u0440\u0435\u043d\u0434\u043d\u0430\u044f ERP \u0438 AI-\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430",
+   "meta": 'Python \u00b7 FastAPI \u00b7 PostgreSQL \u00b7 SQLAlchemy \u00b7 Redis \u00b7 React \u00b7 Docker \u2014 '
+           '<a href="https://github.com/Hany15/hms-ai-erp-platform" color="#0E6E8C">\u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0439</a>',
    "points": [
-     "Построил логистический цифровой двойник сортировочного центра на 400 линий на собственном детерминированном "
-     "дискретно-событийном движке с архитектурой Entity-Component-System: любой прогон воспроизводится по одной начальной величине.",
-     "Смоделирована производительность ~96 400 единиц в час при целевом показателе 100 000 единиц в час; результаты проверены "
-     "относительно классических моделей теории массового обслуживания.",
-     "Реализована маршрутизация посылок на основе PPO, координация агентов по схеме централизованного обучения с "
-     "децентрализованным исполнением (CTDE) и прогнозное обслуживание на LSTM.",
-     "Добавлены внедрение отказов (Chaos Agent), воспроизведение записей с ветвлением сценариев, операционный центр 2D и "
-     "3D-двойник в браузере.",
-     "В репозитории задокументировано более 530 автоматических тестов; в инструментарии Ruff и MyPy.",
+     "\u0415\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u043c\u0443\u043b\u044c\u0442\u0438\u0430\u0440\u0435\u043d\u0434\u043d\u043e\u0439 ERP: \u0441\u043a\u043b\u0430\u0434, \u0437\u0430\u043a\u0443\u043f\u043a\u0438, \u043f\u0440\u043e\u0434\u0430\u0436\u0438 \u0438 CRM, \u0444\u0438\u043d\u0430\u043d\u0441\u044b, \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u0435 \u0438 \u043a\u0430\u0434\u0440\u044b \u0432 \u0435\u0434\u0438\u043d\u043e\u0439 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u0435 \u043d\u0430 Clean Architecture.",
+     "\u0418\u0437\u043e\u043b\u044f\u0446\u0438\u044f \u0430\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u043e\u0432 \u0447\u0435\u0440\u0435\u0437 Row-Level Security \u0432 PostgreSQL \u043d\u0430 \u0443\u0440\u043e\u0432\u043d\u0435 \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445, \u0430 \u043d\u0435 \u043d\u0430 \u0434\u043e\u0432\u0435\u0440\u0438\u0438 \u043a \u043a\u043e\u0434\u0443 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f.",
+     "\u0421\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435 ZATCA Phase 1 (\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f), RBAC \u0438 \u0436\u0443\u0440\u043d\u0430\u043b \u0430\u0443\u0434\u0438\u0442\u0430, \u043f\u043e\u043b\u043d\u0430\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430 \u0430\u0440\u0430\u0431\u0441\u043a\u043e\u0433\u043e/\u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u0433\u043e \u0438 RTL.",
    ]},
-  {"name": "Strict Drone Safe-RL — исследовательская платформа автономного управления",
-   "meta": 'Python · PyTorch · PPO · LSTM · Gymnasium · ONNX · Docker — '
-           '<a href="https://github.com/Hany15/drone-rl-flight-control" color="#0E6E8C">репозиторий</a>',
+  {"name": "AuraGift \u2014 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0430\u044f e-commerce \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430",
+   "meta": 'JavaScript \u00b7 Node.js \u00b7 Firebase Cloud Functions \u00b7 Firebase Hosting \u00b7 UX/UI \u2014 '
+           '<a href="https://auragift.web.app" color="#0E6E8C">auragift.web.app</a>',
    "points": [
-     "Обучение политик управления дроном в условиях ветра, дрейфа датчиков, задержек управления, деградации двигателей и "
-     "навигации без GPS.",
-     "PPO с актор-критиком на LSTM при автоматической рандомизации предметной области и модуль в духе Rapid Motor Adaptation "
-     "для адаптации к изменяющейся динамике на лету.",
-     "Моделирование датчиков IMU, VIO и LiDAR; пятиэтапная программа внедрения отказов; монитор устойчивости TrainingGuardian.",
-     "Жёсткие ограничения безопасности и аварийная защита, экспорт в ONNX для периферийных устройств.",
+     "\u041e\u0442\u0432\u0435\u0447\u0430\u044e \u0437\u0430 \u043a\u043b\u0438\u0435\u043d\u0442\u0441\u043a\u0443\u044e \u0447\u0430\u0441\u0442\u044c \u0438 UX \u043f\u0440\u0435\u043c\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u044b \u0446\u0438\u0444\u0440\u043e\u0432\u044b\u0445 \u043f\u043e\u0434\u0430\u0440\u043a\u043e\u0432 \u0432 \u043f\u0440\u043e\u0434\u0430\u043a\u0448\u0435\u043d\u0435.",
+     "\u0420\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043b \u0431\u0435\u0441\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e \u043b\u043e\u0433\u0438\u043a\u0443 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0438 \u043f\u043b\u0430\u0442\u0435\u0436\u0435\u0439 \u043d\u0430 Node.js \u0432 Firebase Cloud Functions.",
+     "\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u043b \u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u044e \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0435\u043c\u044b\u0439 \u043f\u0440\u043e\u0446\u0435\u0441\u0441 \u0434\u0435\u043f\u043b\u043e\u044f \u0431\u0435\u0437 \u043f\u0440\u043e\u0441\u0442\u043e\u0435\u0432 \u043d\u0430 Firebase Hosting.",
+   ]},
+  {"name": "\u0426\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u0434\u0432\u043e\u0439\u043d\u0438\u043a \u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043e\u0447\u043d\u043e\u0433\u043e \u0446\u0435\u043d\u0442\u0440\u0430",
+   "meta": 'Python \u00b7 PyTorch \u00b7 Three.js \u00b7 \u0434\u0438\u0441\u043a\u0440\u0435\u0442\u043d\u043e-\u0441\u043e\u0431\u044b\u0442\u0438\u0439\u043d\u043e\u0435 \u043c\u043e\u0434\u0435\u043b\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u00b7 Pytest \u2014 '
+           '<a href="https://github.com/Hany15/Amazon-sorting-center-digital-twin" color="#0E6E8C">\u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0439</a>',
+   "points": [
+     "\u041f\u043e\u0441\u0442\u0440\u043e\u0438\u043b \u0446\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u0434\u0432\u043e\u0439\u043d\u0438\u043a \u043d\u0430 400 \u043b\u0438\u043d\u0438\u0439 \u043d\u0430 \u0441\u043e\u0431\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u043c \u0434\u0435\u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u043c \u0434\u0432\u0438\u0436\u043a\u0435, \u043c\u043e\u0434\u0435\u043b\u0438\u0440\u0443\u044e\u0449\u0438\u0439 ~96 400 \u0435\u0434\u0438\u043d\u0438\u0446 \u0432 \u0447\u0430\u0441.",
+     "3D-\u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435 (Three.js) \u0438 \u043d\u0430\u0431\u043e\u0440 \u0438\u0437 \u0431\u043e\u043b\u0435\u0435 530 \u0430\u0432\u0442\u043e\u0442\u0435\u0441\u0442\u043e\u0432.",
+   ]},
+  {"name": "Fracture Detection AI \u2014 \u043e\u0431\u044a\u044f\u0441\u043d\u0438\u043c\u0430\u044f \u043c\u0435\u0434\u0438\u0446\u0438\u043d\u0441\u043a\u0430\u044f \u0432\u0438\u0437\u0443\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f",
+   "meta": 'Python \u00b7 PyTorch \u00b7 EfficientNet-B0 \u00b7 Streamlit \u2014 '
+           '<a href="https://github.com/Hany15/AI-Medical-Assistant-" color="#0E6E8C">\u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0439</a>',
+   "points": [
+     "\u0417\u0430\u043a\u043e\u043d\u0447\u0435\u043d\u043d\u044b\u0439 \u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u043e\u0433\u043e \u0437\u0440\u0435\u043d\u0438\u044f \u0434\u043b\u044f \u0432\u044b\u044f\u0432\u043b\u0435\u043d\u0438\u044f \u043f\u0435\u0440\u0435\u043b\u043e\u043c\u043e\u0432: \u0442\u043e\u0447\u043d\u043e\u0441\u0442\u044c 90,21%, \u043e\u0431\u044a\u044f\u0441\u043d\u0435\u043d\u0438\u044f Grad-CAM.",
+     "\u041f\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d \u043a\u0430\u043a \u0432\u0435\u0431-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 Streamlit \u0438 \u0431\u043e\u0442 Telegram \u0441 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u043c\u0438 PDF-\u043e\u0442\u0447\u0451\u0442\u0430\u043c\u0438.",
    ],
-   "note": "Платформа моделирования и исследований. Проверка реальных автономных полётов не заявляется."},
-  {"name": "Fracture Detection AI — объяснимый продукт медицинской визуализации",
-   "meta": 'Python · PyTorch · EfficientNet-B0 · Grad-CAM · Streamlit · SQLite · ReportLab — '
-           '<a href="https://github.com/Hany15/AI-Medical-Assistant-" color="#0E6E8C">репозиторий</a>',
+   "note": "\u0418\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u043e\u0435 \u0438 \u043f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435. \u041d\u0435 \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u0446\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u043c \u043c\u0435\u0434\u0438\u0446\u0438\u043d\u0441\u043a\u0438\u043c \u0438\u0437\u0434\u0435\u043b\u0438\u0435\u043c."},
+  {"name": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0438\u043d\u0436\u0435\u043d\u0435\u0440\u043d\u044b\u0435 \u043f\u0440\u043e\u0435\u043a\u0442\u044b",
+   "meta": "\u0418\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u044f \u043f\u043e RL, \u043c\u043d\u043e\u0433\u043e\u0430\u0433\u0435\u043d\u0442\u043d\u043e\u0435 \u043c\u043e\u0434\u0435\u043b\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435, \u043a\u0440\u043e\u0441\u0441\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0435\u043d\u043d\u044b\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f, Unreal Engine",
    "points": [
-     "Законченный продукт компьютерного зрения для выявления переломов на наборе рентгеновских снимков FracAtlas (4 083 изображения).",
-     "Измеренные результаты: точность 90,21%, ROC AUC 89,31%, precision 76,67%, recall 63,89%, F1 69,70%.",
-     "Наложения Grad-CAM делают каждый прогноз проверяемым; поставляется как приложение Streamlit и бот Telegram с "
-     "автоматической генерацией PDF-отчётов и локальной историей прогнозов в SQLite.",
-     "Трёхъязычный интерфейс (английский, арабский, русский); пройден 21 из 21 задокументированного теста.",
-   ],
-   "note": "Исследовательское и портфолио-приложение. Не является сертифицированным медицинским изделием."},
-  {"name": "HMS — мультиарендная корпоративная ERP и ИИ-платформа",
-   "meta": 'Python · FastAPI · PostgreSQL · SQLAlchemy · Redis · React · Docker — '
-           '<a href="https://github.com/Hany15/hms-ai-erp-platform" color="#0E6E8C">репозиторий</a>',
-   "points": [
-     "Мультиарендная ERP: склад, логистика, закупки, продажи и CRM, финансы, обслуживание и кадры в единой кодовой базе на Clean Architecture.",
-     "Изоляция арендаторов обеспечена через Row-Level Security в PostgreSQL на уровне базы данных, а не доверием к коду приложения.",
-     "Соответствие требованиям электронного выставления счетов ZATCA (Саудовская Аравия), RBAC и журнал аудита, полная "
-     "поддержка арабского и английского с RTL.",
-     "Офлайн-советник на правилах, работающий без внешних языковых моделей, с опциональными провайдер-независимыми LLM-агентами.",
-   ]},
-  {"name": "AI Evolution Racing Lab — исследование объяснимого RL",
-   "meta": 'Python · PyTorch · Stable-Baselines3 · PPO/SAC/A2C · Gymnasium — '
-           '<a href="https://github.com/Hany15/ai-evolution-racing-lab" color="#0E6E8C">репозиторий</a>',
-   "points": [
-     "Саморазвивающаяся симуляция: процедурно создаваемые миры и память адаптивной сложности управляют обучением "
-     "RL-гонщиков от поколения к поколению.",
-     "Слой объяснимости: оценка уверенности через энтропию политики, карты значимости по градиентам входа и визуализация активаций.",
-     "Турниры ИИ, хронология эволюции и автоматические исследовательские отчёты.",
-   ]},
-  {"name": "Платформа многоагентного автономного моделирования",
-   "meta": 'Python · PyTorch · многоагентное RL · PySide6 · SQLite — '
-           '<a href="https://github.com/Hany15/-AI-Powered-Air-Defense-Simulation-Platform-" color="#0E6E8C">репозиторий</a>',
-   "points": [
-     "Многоагентная самоигра с ролями навигатора, наблюдателя и перехватчика в процедурно создаваемых средах с динамической "
-     "погодой и сменой дня и ночи.",
-     "Журналирование вероятностей решений и оценок ценности с эпизодической памятью в SQLite, вывод в панель мониторинга "
-     "PySide6 в реальном времени.",
+     '\u041f\u043e\u043b\u043d\u044b\u0439 \u0441\u043f\u0438\u0441\u043e\u043a \u0438 \u0438\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0434: <a href="https://hany15.github.io/Hany-Reda-Portfolio/" color="#0E6E8C">hany15.github.io/Hany-Reda-Portfolio</a>.',
    ]},
  ],
 
- "l_experience": "Опыт работы",
+ "l_experience": "\u041e\u043f\u044b\u0442 \u0440\u0430\u0431\u043e\u0442\u044b",
  "experience": [
-  {"role": "Full-Stack Developer / Technical Owner  |  HMS &mdash; производитель медицинского оборудования",
-   "meta": "Январь 2024 &mdash; настоящее время",
+  {"role": "Full-Stack Developer / Technical Owner  |  HMS \u2014 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043c\u0435\u0434\u0438\u0446\u0438\u043d\u0441\u043a\u043e\u0433\u043e \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u044f",
+   "meta": "\u042f\u043d\u0432. 2024 \u2014 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f",
    "points": [
-     "Отвечаю за корпоративный веб-продукт целиком: собираю требования от внутренних заказчиков и перевожу их в задачи, объём работ и реалистичные сроки.",
-     "Принимаю технические и архитектурные решения; разрабатываю frontend и backend, адаптивную вёрстку и интеграцию с внутренними системами компании.",
-     "Веду каждую фичу по циклу разработка &rarr; тестирование &rarr; релиз &rarr; поддержка, выявляя технические риски до релиза.",
-     "Согласую приоритеты со стейкхолдерами и объясняю технические ограничения на понятном для бизнеса языке.",
+     "\u041e\u0442\u0432\u0435\u0447\u0430\u044e \u0437\u0430 \u043a\u043e\u0440\u043f\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0439 \u0432\u0435\u0431-\u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u0446\u0435\u043b\u0438\u043a\u043e\u043c: \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f, \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430, frontend \u0438 backend, \u0440\u0435\u043b\u0438\u0437 \u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430.",
+     "\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u044e \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0438 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u043d\u044b\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f; \u0438\u043d\u0442\u0435\u0433\u0440\u0438\u0440\u0443\u044e \u0441 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u043c\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u0430\u043c\u0438 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438; \u0432\u044b\u044f\u0432\u043b\u044f\u044e \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0440\u0438\u0441\u043a\u0438 \u0434\u043e \u0440\u0435\u043b\u0438\u0437\u0430.",
    ]},
-  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift &mdash; e-commerce цифровых подарков",
-   "meta": "Январь 2024 &mdash; настоящее время",
+  {"role": "Full-Stack Developer / Product Delivery Owner  |  AuraGift \u2014 e-commerce \u0446\u0438\u0444\u0440\u043e\u0432\u044b\u0445 \u043f\u043e\u0434\u0430\u0440\u043a\u043e\u0432",
+   "meta": "\u042f\u043d\u0432. 2024 \u2014 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f",
    "points": [
-     "Отвечаю за клиентскую часть и UX премиальной платформы цифровых подарков, веду фичи от требований через контроль качества до продакшна.",
-     "Реализовал интерфейс и UX-слой &mdash; адаптивная вёрстка, анимации, кроссбраузерность и оптимизация производительности.",
-     "Настроил и поддерживаю хостинг и деплой на Firebase Hosting: предсказуемый и повторяемый процесс выпуска без простоев.",
+     "\u041e\u0442\u0432\u0435\u0447\u0430\u044e \u0437\u0430 \u043a\u043b\u0438\u0435\u043d\u0442\u0441\u043a\u0443\u044e \u0447\u0430\u0441\u0442\u044c \u0438 UX \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0435\u0439 \u043f\u0440\u0435\u043c\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u044b \u2014 \u043e\u0442 \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u0439 \u0447\u0435\u0440\u0435\u0437 QA \u0434\u043e \u0434\u0435\u043f\u043b\u043e\u044f.",
+     "\u0420\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043b \u0431\u0435\u0441\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u044b\u0435 \u0444\u0443\u043d\u043a\u0446\u0438\u0438 \u043d\u0430 Node.js \u0432 Firebase Cloud Functions \u0434\u043b\u044f \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0438 \u043f\u043b\u0430\u0442\u0435\u0436\u0435\u0439.",
+     "\u041f\u043e\u0441\u0442\u0440\u043e\u0438\u043b \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0438 UX-\u0441\u043b\u043e\u0439 \u2014 \u0430\u0434\u0430\u043f\u0442\u0438\u0432\u043d\u0430\u044f \u0432\u0451\u0440\u0441\u0442\u043a\u0430, \u0430\u043d\u0438\u043c\u0430\u0446\u0438\u0438, \u043a\u0440\u043e\u0441\u0441\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u043d\u043e\u0441\u0442\u044c, \u043e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438.",
    ]},
   {"role": "Technical Project Lead / Full-Stack Developer  |  HMS",
-   "meta": "Январь 2023 &mdash; июнь 2023",
+   "meta": "\u042f\u043d\u0432. 2023 \u2014 \u0438\u044e\u043d\u044c 2023",
    "points": [
-     "Руководил командой из 8 специалистов при разработке корпоративного веб-продукта, совмещая руководство с разработкой.",
-     "Планировал этапы, декомпозировал и распределял задачи, контролировал сроки, качество и ключевые этапы.",
-     "Самостоятельно управлял бюджетом проекта около $10&nbsp;000: планировал расходы, распределял бюджет и организовывал выплаты участникам.",
-     "Помогал разработчикам решать сложные задачи и подключался к критическим модулям.",
+     "\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u043b \u043a\u043e\u043c\u0430\u043d\u0434\u043e\u0439 \u0438\u0437 8 \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u043d\u0430 \u043a\u043e\u0440\u043f\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u043e\u043c \u0432\u0435\u0431-\u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0435, \u0441\u043e\u0432\u043c\u0435\u0449\u0430\u044f \u0441 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u043e\u0439.",
+     "\u0421\u0430\u043c\u043e\u0441\u0442\u043e\u044f\u0442\u0435\u043b\u044c\u043d\u043e \u0443\u043f\u0440\u0430\u0432\u043b\u044f\u043b \u0431\u044e\u0434\u0436\u0435\u0442\u043e\u043c \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u043e\u043a\u043e\u043b\u043e $10 000 \u0438 \u043f\u043e\u043c\u043e\u0433\u0430\u043b \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430\u043c \u0441 \u0441\u043b\u043e\u0436\u043d\u044b\u043c\u0438 \u0437\u0430\u0434\u0430\u0447\u0430\u043c\u0438.",
    ]},
-  {"role": "Technical Project Manager / Product Engineer  |  Фриланс &middot; Самозанятость",
-   "meta": "Июнь 2022 &mdash; настоящее время",
+  {"role": "Full-Stack Developer / Technical Project Manager  |  \u0424\u0440\u0438\u043b\u0430\u043d\u0441 \u2014 \u0441\u0430\u043c\u043e\u0437\u0430\u043d\u044f\u0442\u043e\u0441\u0442\u044c",
+   "meta": "\u0418\u044e\u043d\u044c 2022 \u2014 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f",
    "points": [
-     "Единая точка ответственности между заказчиком и реализацией: интервью, формализация требований в ТЗ/SRS, user stories и критерии приёмки, планирование этапов и управление рисками.",
-     "Руководил командой из 10 специалистов на логистической AI-системе с бюджетом около $13&nbsp;000 в течение 11 месяцев (январь&ndash;ноябрь 2024).",
-     "Проектирую архитектуру решений и принимаю решения по стеку и интеграциям; внедряю AI &mdash; ML-модели в продуктовых сервисах, LLM-инструменты, computer vision и объяснимый AI.",
-     "Создаю кроссплатформенные приложения на Flutter для mobile, web и desktop, backend-сервисы, реляционные БД и интеграции REST API.",
+     "\u0415\u0434\u0438\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438 \u043c\u0435\u0436\u0434\u0443 \u0437\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u043e\u043c \u0438 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0435\u0439: \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f, \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430, \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u0438 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0430.",
+     "\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u043b \u043a\u043e\u043c\u0430\u043d\u0434\u043e\u0439 \u0438\u0437 10 \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u043d\u0430 \u043b\u043e\u0433\u0438\u0441\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0439 AI-\u0441\u0438\u0441\u0442\u0435\u043c\u0435, \u0431\u044e\u0434\u0436\u0435\u0442 ~$13 000 \u0437\u0430 11 \u043c\u0435\u0441\u044f\u0446\u0435\u0432; \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u043b \u043a\u0440\u043e\u0441\u0441\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0435\u043d\u043d\u044b\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f Flutter, backend-\u0441\u0435\u0440\u0432\u0438\u0441\u044b \u0438 REST-\u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0438.",
    ]},
-  {"role": "Unreal Engine Developer / Independent Product Owner  |  Независимая разработка (indie)",
-   "meta": "Январь 2020 &mdash; настоящее время",
+  {"role": "Unreal Engine Developer / Independent Product Owner  |  \u041d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u0430\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430 (indie)",
+   "meta": "\u042f\u043d\u0432. 2020 \u2014 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f",
    "points": [
-     "Выпускаю собственные игры и десктоп-продукты от концепции до публикации, продвижения и обновлений.",
-     "Спроектировал сетевой мультиплеер с серверной авторизацией (Advanced Sessions) и облачным хранением данных игроков (Microsoft PlayFab) &mdash; распределённая клиент-серверная система, собранная самостоятельно.",
-     "Опубликовал 3 игры для Android в Google Play с 5&nbsp;000+ загрузок, полностью пройдя требования стора и релиз-менеджмент.",
-     "Создал и опубликовал авторский курс по Unreal Engine (Blueprints) на Udemy; вёл рекламные кампании в Google Ads.",
-     "Ключевой проект &mdash; PROJECT NOVA: многопользовательский sci-fi шутер на Unreal Engine 5 (C++ и Blueprints): репликация персонажей, матчмейкинг, Nanite/Lumen и эффекты Niagara.",
+     "\u0412\u044b\u043f\u0443\u0441\u0442\u0438\u043b 3 \u0438\u0433\u0440\u044b \u0434\u043b\u044f Android \u0432 Google Play (5 000+ \u0437\u0430\u0433\u0440\u0443\u0437\u043e\u043a); \u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043b \u0441\u0435\u0442\u0435\u0432\u043e\u0439 \u043c\u0443\u043b\u044c\u0442\u0438\u043f\u043b\u0435\u0435\u0440 \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u043d\u043e\u0439 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u0435\u0439 \u0438 \u043e\u0431\u043b\u0430\u0447\u043d\u044b\u043c \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435\u043c \u0434\u0430\u043d\u043d\u044b\u0445 \u0438\u0433\u0440\u043e\u043a\u043e\u0432.",
    ]},
-  {"role": "Руководитель медианаправления  |  Resala Charity Organization, Египет",
-   "meta": "Январь 2020 &mdash; декабрь 2020",
+  {"role": "\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043c\u0435\u0434\u0438\u0430\u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f  |  Resala Charity Organization, \u0415\u0433\u0438\u043f\u0435\u0442",
+   "meta": "\u042f\u043d\u0432. 2020 \u2014 \u0434\u0435\u043a. 2020",
    "points": [
-     "Руководил медианаправлением в одной из крупнейших благотворительных организаций Египта и Ближнего Востока: организовывал рабочие процессы, распределял ответственность и контролировал выполнение.",
-     "Координировал людей и активности при подготовке кампаний и мероприятий, управляя дедлайнами при ограниченных ресурсах.",
-     "Вёл коммуникацию со стейкхолдерами организации и разрешал конфликтные ситуации внутри команды.",
-     "Прошёл шестимесячную программу развития лидерства и управления.",
+     "\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u043b \u043c\u0435\u0434\u0438\u0430\u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435\u043c \u0432 \u043e\u0434\u043d\u043e\u0439 \u0438\u0437 \u043a\u0440\u0443\u043f\u043d\u0435\u0439\u0448\u0438\u0445 \u0431\u043b\u0430\u0433\u043e\u0442\u0432\u043e\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0439 \u0415\u0433\u0438\u043f\u0442\u0430; \u043f\u0440\u043e\u0448\u0451\u043b \u0448\u0435\u0441\u0442\u0438\u043c\u0435\u0441\u044f\u0447\u043d\u0443\u044e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u043b\u0438\u0434\u0435\u0440\u0441\u0442\u0432\u0430.",
    ]},
  ],
 
- "l_education": "Образование",
+ "l_education": "\u041e\u0431\u0440\u0430\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0438 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u044b",
  "education": {
-   "degree": "Бакалавр — информатика и вычислительная техника",
-   "meta": "Томский государственный университет систем управления и радиоэлектроники (ТУСУР) · 2026",
-   "courses": "Профильные дисциплины: алгоритмы, структуры данных, операционные системы, программная инженерия, "
-              "искусственный интеллект, компьютерное зрение, машинное обучение, сети, базы данных.",
+   "degree": "\u0411\u0430\u043a\u0430\u043b\u0430\u0432\u0440 \u2014 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430 \u0438 \u0432\u044b\u0447\u0438\u0441\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0435\u0445\u043d\u0438\u043a\u0430",
+   "meta": "\u0422\u043e\u043c\u0441\u043a\u0438\u0439 \u0433\u043e\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u0441\u0438\u0441\u0442\u0435\u043c \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u0438 \u0440\u0430\u0434\u0438\u043e\u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u0438\u043a\u0438 (\u0422\u0423\u0421\u0423\u0420) \u00b7 2026",
+   "courses": "IBM Professional Course \u2014 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442 &nbsp;\u00b7&nbsp; \u0422\u0423\u0421\u0423\u0420 \u2014 \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u0438\u0435 \u0437\u0430 \u0432\u043a\u043b\u0430\u0434 \u0432 \u043e\u0431\u0440\u0430\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0443\u044e VR-\u0441\u0438\u0441\u0442\u0435\u043c\u0443 &nbsp;\u00b7&nbsp; \u0410\u0432\u0442\u043e\u0440\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0441 \u043f\u043e Unreal Engine (Udemy, 2024) &nbsp;\u00b7&nbsp; \u0426\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u043c\u0430\u0440\u043a\u0435\u0442\u0438\u043d\u0433 (Google, 2021)",
  },
 
- "l_certs": "Сертификаты и признание",
- "certs": [
-   "IBM Professional Course — сертификат за достижения",
-   "Благотворительная организация «Resala» — сертификат, менеджер по развитию медиа",
-   "ТУСУР — признание за вклад в разработку образовательной системы виртуальной реальности (VR)",
- ],
-
- "l_languages": "Языки",
- "languages": "<b>Арабский</b> — родной &nbsp;•&nbsp; <b>Английский</b> — C2, в совершенстве &nbsp;•&nbsp; "
-              "<b>Русский</b> — B2, средне-продвинутый",
+ "l_languages": "\u042f\u0437\u044b\u043a\u0438",
+ "languages": "<b>\u0410\u0440\u0430\u0431\u0441\u043a\u0438\u0439</b> \u2014 \u0440\u043e\u0434\u043d\u043e\u0439 &nbsp;\u00b7&nbsp; <b>\u0410\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u0438\u0439</b> \u2014 C2 &nbsp;\u00b7&nbsp; <b>\u0420\u0443\u0441\u0441\u043a\u0438\u0439</b> \u2014 B2",
 }
-
 
 if __name__ == "__main__":
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

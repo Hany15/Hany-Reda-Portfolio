@@ -100,7 +100,7 @@ EN = {
  "title": "Full-Stack Software Engineer &nbsp;&middot;&nbsp; AI &amp; Machine Learning",
  "contact": CONTACT_EN,
  "l_profile": "Profile",
- "profile": "Full-stack software engineer with 6+ years building web, mobile and AI products end to end. "
+ "profile": "Full-stack software engineer with 3+ years building web, mobile and AI products end to end. "
             "I run products through the full cycle — requirements, architecture, build, test, release — and have led "
             "teams of up to 10 while owning the project budget. Available on-site, remotely or hybrid, and open to "
             "business trips.",
@@ -157,7 +157,7 @@ RU = {
  "title": "Full-Stack разработчик &nbsp;&middot;&nbsp; ИИ и машинное обучение",
  "contact": CONTACT_RU,
  "l_profile": "Профиль",
- "profile": "Full-Stack разработчик с опытом более 6 лет: веб-, мобильные и AI-продукты от требований до релиза. Веду продукты по полному циклу — требования, архитектура, разработка, тестирование, релиз — "
+ "profile": "Full-Stack разработчик с опытом более 3 лет: веб-, мобильные и AI-продукты от требований до релиза. Веду продукты по полному циклу — требования, архитектура, разработка, тестирование, релиз — "
             "и руководил командами до 10 человек с ответственностью за бюджет. Готов работать в офисе, удалённо или "
             "гибридно, готов к командировкам.",
  "l_highlights": "Ключевые достижения",

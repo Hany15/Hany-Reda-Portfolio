@@ -9,7 +9,7 @@ window.I18N = {
 /* ─────────────────────────── ENGLISH ─────────────────────────── */
 en: {
   "meta.title": "Mohamed Hany Reda | Full-Stack Software Engineer",
-  "meta.desc": "Full-Stack Software Engineer with 6+ years building web, mobile and AI products end to end — JavaScript, Python, Flutter, FastAPI, PostgreSQL and PyTorch. Has led teams of up to 10.",
+  "meta.desc": "Full-Stack Software Engineer with 3+ years building web, mobile and AI products end to end — JavaScript, Python, Flutter, FastAPI, PostgreSQL and PyTorch. Has led teams of up to 10.",
 
   "role.full": "Full-Stack Software Engineer",
 
@@ -26,7 +26,7 @@ en: {
   "hero.badge": "Open to Full-Stack, Backend and AI engineering roles",
   "hero.spec": "Full-Stack Development · AI &amp; Machine Learning · Cross-Platform Apps · Backend &amp; APIs",
   "hero.headline": "I build and ship complete software products.",
-  "hero.support": "Six years building web, mobile and AI products end to end — requirements, architecture, code, tests and release. I have also led teams of up to 10 and owned project budgets, so I understand delivery as well as I understand code.",
+  "hero.support": "Three years building web, mobile and AI products end to end — requirements, architecture, code, tests and release. I have also led teams of up to 10 and owned project budgets, so I understand delivery as well as I understand code.",
   "hero.cta.projects": "Explore Featured Projects",
   "hero.cta.github": "View GitHub",
   "hero.cta.contact": "Contact Me",
@@ -360,8 +360,8 @@ en: {
   "why.fit5": "Teams that need one person to bridge business and engineering",
   "why.fit6": "Multilingual or cross-border product delivery",
   "avail.status": "Open to work",
-  "avail.mode": "On-site · Remote · Hybrid",
-  "avail.note": "Available on-site, remotely or hybrid, and open to business trips. Looking for full-time work.",
+  "avail.mode": "Remote worldwide · On-site · Hybrid",
+  "avail.note": "Available remotely worldwide, on-site or hybrid. Open to relocation and to business trips. Looking for full-time work.",
   "photo.alt": "Portrait of Mohamed Hany Reda",
   "exp.eyebrow": "background",
   "exp.title": "Experience &amp; Education",
@@ -389,7 +389,7 @@ en: {
   "exp.c1": "IBM Professional Course — Certificate of Appreciation",
   "exp.c2": "Resala Charity Organization — Certificate of Appreciation, Media Development Manager",
   "exp.c3": "TUSUR — Recognition for contributing to an educational Virtual Reality (VR) system",
-  "avail.trips": "Open to business trips",
+  "avail.trips": "Open to relocation · business trips",
   "ps.level.c2": "C2 — Full professional",
   "ps.level.b2": "B2 — Upper-intermediate",
   "exp.j2.period": "January 2024 — Present",
@@ -439,16 +439,19 @@ en: {
   "contact.aria.phone": "Call +7 996 938 2354",
   "footer.updated": "Last updated",
   "cv.onepage": "One-page version:",
+  "cv.targeted": "Role-focused:",
+  "cv.fs": "Full-Stack",
+  "cv.ai": "AI / ML",
   "cv.aria.en1": "Download one-page CV in English, PDF",
   "cv.aria.ru1": "Download one-page CV in Russian, PDF",
-  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
+  "role.stack": "JavaScript · React · Node.js · Python · FastAPI · PostgreSQL · Flutter · Docker",
   "a11y.progress": "Reading progress"
 },
 
 /* ─────────────────────────── РУССКИЙ ─────────────────────────── */
 ru: {
   "meta.title": "Мохамед Хани Реда | Full-Stack разработчик",
-  "meta.desc": "Full-Stack разработчик с опытом более 6 лет: веб-, мобильные и AI-продукты от требований до релиза — JavaScript, Python, Flutter, FastAPI, PostgreSQL, PyTorch. Руководил командами до 10 человек.",
+  "meta.desc": "Full-Stack разработчик с опытом более 3 лет: веб-, мобильные и AI-продукты от требований до релиза — JavaScript, Python, Flutter, FastAPI, PostgreSQL, PyTorch. Руководил командами до 10 человек.",
 
   "role.full": "Full-Stack разработчик",
 
@@ -799,8 +802,8 @@ ru: {
   "why.fit5": "Команды, которым нужен человек-мост между бизнесом и разработкой",
   "why.fit6": "Многоязычные и трансграничные продуктовые проекты",
   "avail.status": "Открыт к предложениям",
-  "avail.mode": "В офисе · Удалённо · Гибрид",
-  "avail.note": "Готов работать в офисе, удалённо или гибридно, готов к командировкам. Ищу работу на полную занятость.",
+  "avail.mode": "Удалённо по всему миру · В офисе · Гибрид",
+  "avail.note": "Готов работать удалённо из любой точки мира, в офисе или гибридно. Готов к переезду и к командировкам. Ищу работу на полную занятость.",
   "photo.alt": "Портрет Мохамеда Хани Реды",
   "exp.eyebrow": "биография",
   "exp.title": "Опыт и образование",
@@ -828,7 +831,7 @@ ru: {
   "exp.c1": "IBM Professional Course — сертификат за достижения",
   "exp.c2": "Благотворительная организация «Resala» — сертификат, менеджер по развитию медиа",
   "exp.c3": "ТУСУР — признание за вклад в разработку образовательной системы виртуальной реальности (VR)",
-  "avail.trips": "Готов к командировкам",
+  "avail.trips": "Готов к переезду и командировкам",
   "ps.level.c2": "C2 — в совершенстве",
   "ps.level.b2": "B2 — средне-продвинутый",
   "exp.j2.period": "Январь 2024 — настоящее время",
@@ -878,16 +881,19 @@ ru: {
   "contact.aria.phone": "Позвонить +7 996 938 2354",
   "footer.updated": "Обновлено",
   "cv.onepage": "Версия на одну страницу:",
+  "cv.targeted": "Под роль:",
+  "cv.fs": "Full-Stack",
+  "cv.ai": "AI / ML",
   "cv.aria.en1": "Скачать резюме на одну страницу на английском, PDF",
   "cv.aria.ru1": "Скачать резюме на одну страницу на русском, PDF",
-  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
+  "role.stack": "JavaScript · React · Node.js · Python · FastAPI · PostgreSQL · Flutter · Docker",
   "a11y.progress": "Прогресс чтения"
 },
 
 /* ─────────────────────────── العربية ─────────────────────────── */
 ar: {
   "meta.title": "محمد هاني رضا | مهندس برمجيات Full-Stack",
-  "meta.desc": "مهندس برمجيات Full-Stack بخبرة تتجاوز 6 سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — JavaScript وPython وFlutter وFastAPI وPostgreSQL وPyTorch. قاد فرقاً حتى 10 أشخاص.",
+  "meta.desc": "مهندس برمجيات Full-Stack بخبرة تتجاوز 3 سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — JavaScript وPython وFlutter وFastAPI وPostgreSQL وPyTorch. قاد فرقاً حتى 10 أشخاص.",
 
   "role.full": "مهندس برمجيات Full-Stack",
 
@@ -904,7 +910,7 @@ ar: {
   "hero.badge": "متاح لوظائف Full-Stack والـBackend وهندسة الذكاء الاصطناعي",
   "hero.spec": "تطوير Full-Stack · الذكاء الاصطناعي وتعلّم الآلة · تطبيقات متعددة المنصات · الخلفية وواجهات البرمجة",
   "hero.headline": "أبني منتجات برمجية متكاملة وأوصلها إلى الإطلاق.",
-  "hero.support": "ست سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — المتطلبات والبنية والشيفرة والاختبارات والإصدار. قدت أيضاً فرقاً حتى 10 أشخاص وتوليت ميزانيات المشاريع، لذا أفهم التسليم بقدر ما أفهم الشيفرة.",
+  "hero.support": "ثلاث سنوات في بناء منتجات الويب والجوال والذكاء الاصطناعي من الفكرة حتى الإطلاق — المتطلبات والبنية والشيفرة والاختبارات والإصدار. قدت أيضاً فرقاً حتى 10 أشخاص وتوليت ميزانيات المشاريع، لذا أفهم التسليم بقدر ما أفهم الشيفرة.",
   "hero.cta.projects": "استعرض المشاريع",
   "hero.cta.github": "زيارة GitHub",
   "hero.cta.contact": "تواصل معي",
@@ -1238,8 +1244,8 @@ ar: {
   "why.fit5": "الفرق التي تحتاج شخصاً يجسر بين الأعمال والهندسة",
   "why.fit6": "المنتجات متعددة اللغات والعابرة للحدود",
   "avail.status": "متاح للعمل",
-  "avail.mode": "في الموقع · عن بُعد · هجين",
-  "avail.note": "متاح للعمل في الموقع أو عن بُعد أو بنظام هجين، ومستعد لرحلات العمل. أبحث عن عمل بدوام كامل.",
+  "avail.mode": "عن بُعد عالميًا · في الموقع · هجين",
+  "avail.note": "متاح للعمل عن بُعد من أي مكان في العالم، أو في الموقع أو بنظام هجين. مستعد للانتقال ولرحلات العمل. أبحث عن عمل بدوام كامل.",
   "photo.alt": "صورة شخصية لمحمد هاني رضا",
   "exp.eyebrow": "الخلفية",
   "exp.title": "الخبرة والتعليم",
@@ -1267,7 +1273,7 @@ ar: {
   "exp.c1": "دورة IBM الاحترافية — شهادة تقدير",
   "exp.c2": "جمعية رسالة الخيرية — شهادة تقدير، مدير تطوير الإعلام",
   "exp.c3": "TUSUR — تقدير للمساهمة في تطوير نظام واقع افتراضي (VR) تعليمي",
-  "avail.trips": "مستعد لرحلات العمل",
+  "avail.trips": "مستعد للانتقال ورحلات العمل",
   "ps.level.c2": "C2 — إتقان تام",
   "ps.level.b2": "B2 — فوق المتوسط",
   "exp.j2.period": "يناير 2024 — حتى الآن",
@@ -1317,9 +1323,12 @@ ar: {
   "contact.aria.phone": "الاتصال على ‎+7 996 938 2354",
   "footer.updated": "آخر تحديث",
   "cv.onepage": "نسخة من صفحة واحدة:",
+  "cv.targeted": "حسب الوظيفة:",
+  "cv.fs": "Full-Stack",
+  "cv.ai": "AI / ML",
   "cv.aria.en1": "تحميل سيرة ذاتية من صفحة واحدة بالإنجليزية، PDF",
   "cv.aria.ru1": "تحميل سيرة ذاتية من صفحة واحدة بالروسية، PDF",
-  "role.stack": "JavaScript · Python · Flutter · FastAPI · PostgreSQL · PyTorch · Docker",
+  "role.stack": "JavaScript · React · Node.js · Python · FastAPI · PostgreSQL · Flutter · Docker",
   "a11y.progress": "تقدّم القراءة"
 }
 };

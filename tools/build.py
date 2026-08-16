@@ -34,7 +34,7 @@ CAPS = [
 ]
 
 STATS = [
-    ("6",      "+",  "var(--cyan)",   "impact.years",      "impact.years.note"),
+    ("3",      "+",  "var(--cyan)",   "impact.years",      "impact.years.note"),
     ("10",     "",   "var(--violet)", "impact.team",       "impact.team.note"),
     ("13000",  " USD","var(--green)", "impact.budget",     "impact.budget.note"),
     ("12",     "+",  "var(--cyan)",   "impact.projects",   "impact.projects.note"),
@@ -215,6 +215,17 @@ def build():
       <span class="sep" aria-hidden="true">·</span>
       <a href="cv/cv_ru_1page.pdf" download="Mohamed-Hany-Reda-CV-RU-1page.pdf"
          data-i18n-attr="aria-label:cv.aria.ru1" onclick="trackContact('CV-RU-1page')">RU</a>
+    </span>
+    <span class="cv-onepage cv-targeted">
+      <span data-i18n="cv.targeted"></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.fs"></span>
+        <a href="cv/cv_fullstack_en.pdf" download="Mohamed-Hany-Reda-CV-FullStack-EN.pdf" onclick="trackContact('CV-FS-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_fullstack_ru.pdf" download="Mohamed-Hany-Reda-CV-FullStack-RU.pdf" onclick="trackContact('CV-FS-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.ai"></span>
+        <a href="cv/cv_ai_en.pdf" download="Mohamed-Hany-Reda-CV-AI-EN.pdf" onclick="trackContact('CV-AI-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_ai_ru.pdf" download="Mohamed-Hany-Reda-CV-AI-RU.pdf" onclick="trackContact('CV-AI-RU')">RU</a></span>
     </span>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll"></span><span class="chev"></span></div>
@@ -659,6 +670,17 @@ def build():
       <span class="sep" aria-hidden="true">·</span>
       <a href="cv/cv_ru_1page.pdf" download="Mohamed-Hany-Reda-CV-RU-1page.pdf"
          data-i18n-attr="aria-label:cv.aria.ru1" onclick="trackContact('CV-RU-1page')">RU</a>
+    </span>
+    <span class="cv-onepage cv-targeted">
+      <span data-i18n="cv.targeted"></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.fs"></span>
+        <a href="cv/cv_fullstack_en.pdf" download="Mohamed-Hany-Reda-CV-FullStack-EN.pdf" onclick="trackContact('CV-FS-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_fullstack_ru.pdf" download="Mohamed-Hany-Reda-CV-FullStack-RU.pdf" onclick="trackContact('CV-FS-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.ai"></span>
+        <a href="cv/cv_ai_en.pdf" download="Mohamed-Hany-Reda-CV-AI-EN.pdf" onclick="trackContact('CV-AI-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_ai_ru.pdf" download="Mohamed-Hany-Reda-CV-AI-RU.pdf" onclick="trackContact('CV-AI-RU')">RU</a></span>
     </span>
   </div>
   </div>

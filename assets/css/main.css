@@ -835,6 +835,9 @@ html[dir="rtl"] .adv-list li::before{
 }
 .cv-onepage a:hover{text-decoration:underline;}
 .cv-onepage .sep{color:var(--border);}
+/* role-targeted CV line: each set is one label + its EN/RU links, kept together */
+.cv-targeted .cv-tset{display:inline-flex;align-items:center;gap:2px;}
+.cv-targeted .cv-tlabel{color:var(--dim);margin-inline-end:2px;}
 
 /* stack line directly under the hero role — the concrete keywords a
    recruiter scans for, kept separate from the role itself */

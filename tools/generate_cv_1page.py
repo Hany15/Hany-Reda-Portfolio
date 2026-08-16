@@ -34,7 +34,9 @@ S1 = {
                            spaceBefore=3, spaceAfter=0),
  "meta":    ParagraphStyle("m1", fontName="CV-I", fontSize=7.2, leading=9.4, textColor=MUTED, spaceAfter=1),
  "bullet":  ParagraphStyle("bu1", fontName="CV", fontSize=7.6, leading=10.2, textColor=INK,
-                           leftIndent=8, bulletIndent=1, spaceAfter=0.8),
+                           leftIndent=8, bulletIndent=1, bulletFontName="CV", spaceAfter=0.8),
+ "skill":   ParagraphStyle("sk1", fontName="CV", fontSize=7.6, leading=10.2, textColor=INK,
+                           leftIndent=10, firstLineIndent=-10, spaceAfter=1.2),
  "small":   ParagraphStyle("s1", fontName="CV", fontSize=7.2, leading=9.8, textColor=MUTED, spaceAfter=1),
 }
 
@@ -52,14 +54,9 @@ def bl(items):
 
 
 def skills1(rows):
-    data = [[Paragraph("<b>%s</b>" % k, S1["small"]), Paragraph(v, S1["body"])] for k, v in rows]
-    t = Table(data, colWidths=[30 * mm, 142 * mm])
-    t.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 0.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.5),
-    ]))
-    return t
+    # Single "Label: value" line per row (not a two-column table) so ATS text
+    # extraction keeps each label with its value instead of interleaving them.
+    return [Paragraph("<b>%s:</b> %s" % (k, v), S1["skill"]) for k, v in rows]
 
 
 def build_one(c, path):
@@ -79,7 +76,7 @@ def build_one(c, path):
 
     f += sec(c["l_profile"]);  f.append(Paragraph(c["profile"], S1["body"]))
     f += sec(c["l_highlights"]); f += bl(c["highlights"])
-    f += sec(c["l_skills"]);   f.append(skills1(c["skills"]))
+    f += sec(c["l_skills"]);   f += skills1(c["skills"])
     f += sec(c["l_exp"])
     for e in c["exp"]:
         f.append(Paragraph(e["role"], S1["role"]))

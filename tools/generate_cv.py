@@ -51,7 +51,10 @@ S = {
                            textColor=MUTED, spaceAfter=2),
  "bullet":  ParagraphStyle("bullet", fontName="CV", fontSize=8.55, leading=12,
                            textColor=INK, leftIndent=9, bulletIndent=1,
-                           spaceAfter=1.5),
+                           bulletFontName="CV", spaceAfter=1.5),
+ "skill":   ParagraphStyle("skill", fontName="CV", fontSize=8.55, leading=12,
+                           textColor=INK, leftIndent=11, firstLineIndent=-11,
+                           spaceAfter=2.5),
  "note":    ParagraphStyle("note", fontName="CV-I", fontSize=7.7, leading=10.5,
                            textColor=MUTED, leftIndent=9, spaceAfter=2),
 }
@@ -72,16 +75,10 @@ def bullets(items, style="bullet"):
 
 
 def skills_table(rows):
-    data = [[Paragraph(f"<b>{k}</b>", S["small"]), Paragraph(v, S["body"])] for k, v in rows]
-    t = Table(data, colWidths=[33 * mm, 139 * mm])
-    t.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 1),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5),
-    ]))
-    return t
+    # Single column, one "Label: value" line per row. A two-column table lets
+    # ATS text extraction interleave labels and values (all labels first, then
+    # all values); a colon-delimited single line always reads in order.
+    return [Paragraph(f"<b>{k}:</b> {v}", S["skill"]) for k, v in rows]
 
 
 def job(role_line, meta_line, points, note=None):
@@ -130,7 +127,7 @@ def build(content, path):
     f.append(Paragraph(content["summary"], S["body"]))
 
     f += section(content["l_skills"])
-    f.append(skills_table(content["skills"]))
+    f += skills_table(content["skills"])
 
     f += section(content["l_projects"])
     for p in content["projects"]:

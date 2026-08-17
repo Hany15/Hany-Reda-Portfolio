@@ -230,6 +230,10 @@ def build():
         <a href="cv/cv_intl_en.pdf" download="Mohamed-Hany-Reda-CV-International-EN.pdf" onclick="trackContact('CV-INTL-EN')">EN</a>
         <span class="sep" aria-hidden="true">·</span>
         <a href="cv/cv_intl_ru.pdf" download="Mohamed-Hany-Reda-CV-International-RU.pdf" onclick="trackContact('CV-INTL-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.bd"></span>
+        <a href="cv/cv_bd_en.pdf" download="Mohamed-Hany-Reda-CV-BizDev-EN.pdf" onclick="trackContact('CV-BD-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_bd_ru.pdf" download="Mohamed-Hany-Reda-CV-BizDev-RU.pdf" onclick="trackContact('CV-BD-RU')">RU</a></span>
     </span>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll"></span><span class="chev"></span></div>
@@ -689,6 +693,10 @@ def build():
         <a href="cv/cv_intl_en.pdf" download="Mohamed-Hany-Reda-CV-International-EN.pdf" onclick="trackContact('CV-INTL-EN')">EN</a>
         <span class="sep" aria-hidden="true">·</span>
         <a href="cv/cv_intl_ru.pdf" download="Mohamed-Hany-Reda-CV-International-RU.pdf" onclick="trackContact('CV-INTL-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.bd"></span>
+        <a href="cv/cv_bd_en.pdf" download="Mohamed-Hany-Reda-CV-BizDev-EN.pdf" onclick="trackContact('CV-BD-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_bd_ru.pdf" download="Mohamed-Hany-Reda-CV-BizDev-RU.pdf" onclick="trackContact('CV-BD-RU')">RU</a></span>
     </span>
   </div>
   </div>

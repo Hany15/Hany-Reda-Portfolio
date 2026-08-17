@@ -274,6 +274,109 @@ INTL_RU = variant(BASE_RU, {
 })
 
 
+# ════════════════════════════════════════════════════════════════════════════
+# BUSINESS DEVELOPMENT / ACCOUNT MANAGEMENT — the trilingual, technically fluent
+# bridge that takes a software product into MENA, the Gulf and CIS markets.
+# Leads with languages, client-facing delivery and market knowledge; the
+# engineering background becomes "I understand and can demo what I sell".
+# ════════════════════════════════════════════════════════════════════════════
+BD_EN = variant(BASE_EN, {
+ "pdf_title": "Mohamed Hany Reda - CV (Business Development)",
+ "pdf_subject": "Technical Business Development & Account Management",
+ "title": "Technical Business Development / Account Manager &nbsp;&middot;&nbsp; MENA · CIS · EN · AR · RU",
+ "profile":
+   "Technical business developer and account manager who bridges software products into new markets. Native "
+   "Arabic, C2 English, B2 Russian — I speak directly to clients across MENA, the GCC, CIS and English-speaking "
+   "markets. With a software-engineering background I understand the product, run demos, turn client needs into "
+   "clear requirements, and own the relationship end to end. Ideal for teams expanding into the Arab or Russian-"
+   "speaking markets. Remote worldwide; open to relocation.",
+ "l_highlights": "Selected Highlights",
+ "highlights": [
+   "<b>Trilingual</b> — Arabic (native), English (C2), Russian (B2): sell and support directly across MENA, the "
+   "GCC, CIS and English-speaking markets.",
+   "<b>Engineering background</b> — I speak the product's language, run technical demos, and translate client "
+   "needs into requirements engineers can build.",
+   "Ran the full client lifecycle on freelance projects: discovery, requirements (SRS), proposal, delivery and handover.",
+   "Deep <b>MENA/Gulf market</b> knowledge — Saudi ZATCA e-invoicing, Arabic/RTL products, regional compliance.",
+   "Led teams of up to <b>10</b> and owned project budgets — comfortable with stakeholders, timelines and numbers.",
+ ],
+ "l_skills": "Skills",
+ "skills": [
+   ("Business development", "Lead qualification, discovery calls, demos, proposals, pipeline, market entry (MENA/GCC/CIS)"),
+   ("Account management", "Client relationship ownership, onboarding, requirements, stakeholder communication, retention"),
+   ("Technical fluency", "SaaS, APIs, full-stack products, ERP, e-commerce, AI — I understand and demo what I sell"),
+   ("Languages", "Arabic — native · English — C2, full professional · Russian — B2"),
+   ("Also", "Requirements/SRS, agile, localization (Arabic/English RTL, ZATCA), team leadership up to 10"),
+ ],
+ "exp": [
+  {"role": "Technical Owner / Client-Facing Delivery &nbsp;|&nbsp; HMS", "meta": "January 2024 &mdash; Present",
+   "points": ["Own the corporate web product and the relationship with internal stakeholders — gather requirements, align priorities, demo progress, deliver releases."]},
+  {"role": "Product Delivery Owner &nbsp;|&nbsp; AuraGift", "meta": "January 2024 &mdash; Present",
+   "points": ["Own client-facing delivery and UX of a live e-commerce product, from requirements through QA to production."]},
+  {"role": "Technical Project Manager / Client Lead &nbsp;|&nbsp; Freelance", "meta": "June 2022 &mdash; Present",
+   "points": ["Single point of contact between client and delivery — discovery calls, requirements (SRS), proposals and handover.",
+              "Led a team of 10 on a ~$13,000 project over 11 months."]},
+  {"role": "Technical Project Lead &nbsp;|&nbsp; HMS", "meta": "January 2023 &mdash; June 2023",
+   "points": ["Led a team of 8 and a ~$10,000 budget; coordinated stakeholders, schedule and delivery."]},
+  {"role": "Media Team Lead &nbsp;|&nbsp; Resala Charity Organization, Egypt", "meta": "January 2020 &mdash; December 2020",
+   "points": ["Led the media function at one of Egypt's largest charities; completed a six-month leadership and management programme."]},
+ ],
+ "l_projects": "Products I Delivered (understand &amp; demo)",
+ "projects": [
+   "<b>HMS — Multi-Tenant ERP</b> — inventory, sales/CRM, finance; Saudi ZATCA e-invoicing and Arabic/English RTL. Built for a regional market.",
+   "<b>AuraGift — Live E-Commerce</b> — a premium digital-gifting platform in production, client side and UX.",
+   "<b>Fracture Detection AI</b> — a shipped AI product (90.21% accuracy) delivered as an app and a Telegram bot.",
+ ],
+})
+
+BD_RU = variant(BASE_RU, {
+ "pdf_title": "Мохамед Хани Реда - Резюме (Development бизнеса)",
+ "pdf_subject": "Развитие бизнеса и работа с клиентами (техническое)",
+ "title": "Менеджер по развитию бизнеса / аккаунт-менеджер (техн.) &nbsp;&middot;&nbsp; MENA · СНГ · EN · AR · RU",
+ "profile":
+   "Технический менеджер по развитию бизнеса и работе с клиентами — вывожу программные продукты на новые рынки. "
+   "Арабский (родной), английский (C2), русский (B2): общаюсь напрямую с клиентами MENA, GCC, СНГ и англоязычных "
+   "рынков. С инженерным бэкграундом я понимаю продукт, провожу демо, превращаю потребности клиента в чёткие "
+   "требования и веду отношения от первого контакта до передачи. Идеален для команд, выходящих на арабский или "
+   "русскоязычный рынок. Удалённо; готов к переезду.",
+ "l_highlights": "Ключевые достижения",
+ "highlights": [
+   "<b>Три языка</b> — арабский (родной), английский (C2), русский (B2): продажи и поддержка напрямую на рынках MENA, GCC, СНГ и англоязычных.",
+   "<b>Инженерный бэкграунд</b> — говорю на языке продукта, провожу технические демо, перевожу потребности клиента в требования для разработки.",
+   "Вёл полный цикл работы с клиентом на фриланс-проектах: выявление, требования (ТЗ), предложение, поставка и передача.",
+   "Глубокое знание рынка <b>MENA/Залив</b> — ZATCA (Саудовская Аравия), арабский/RTL, региональный комплаенс.",
+   "Руководил командами до <b>10</b> человек и отвечал за бюджеты — уверенно работаю со стейкхолдерами, сроками и цифрами.",
+ ],
+ "l_skills": "Навыки",
+ "skills": [
+   ("Развитие бизнеса", "Квалификация лидов, discovery-звонки, демо, предложения, пайплайн, выход на рынки (MENA/GCC/СНГ)"),
+   ("Работа с клиентами", "Ведение клиента, онбординг, сбор требований, коммуникация со стейкхолдерами, удержание"),
+   ("Техническая база", "SaaS, API, full-stack продукты, ERP, e-commerce, AI — понимаю и демонстрирую то, что продаю"),
+   ("Языки", "Арабский — родной · Английский — C2 · Русский — B2"),
+   ("Также", "Требования/ТЗ, agile, локализация (арабский/английский RTL, ZATCA), руководство командами до 10"),
+ ],
+ "exp": [
+  {"role": "Технический владелец / работа с клиентом &nbsp;|&nbsp; HMS", "meta": "Январь 2024 &mdash; настоящее время",
+   "points": ["Отвечаю за корпоративный веб-продукт и отношения со стейкхолдерами — сбор требований, приоритеты, демо, релизы."]},
+  {"role": "Владелец поставки продукта &nbsp;|&nbsp; AuraGift", "meta": "Январь 2024 &mdash; настоящее время",
+   "points": ["Отвечаю за клиентскую поставку и UX работающего e-commerce продукта — от требований через QA до продакшена."]},
+  {"role": "Technical PM / ведущий по работе с клиентом &nbsp;|&nbsp; Фриланс", "meta": "Июнь 2022 &mdash; настоящее время",
+   "points": ["Единая точка контакта между клиентом и командой — discovery, требования (ТЗ), предложения и передача.",
+              "Руководил командой из 10 человек на проекте ~$13&nbsp;000 в течение 11 месяцев."]},
+  {"role": "Технический руководитель проекта &nbsp;|&nbsp; HMS", "meta": "Январь 2023 &mdash; июнь 2023",
+   "points": ["Руководил командой из 8 человек и бюджетом ~$10&nbsp;000; координировал стейкхолдеров, сроки и поставку."]},
+  {"role": "Руководитель медианаправления &nbsp;|&nbsp; Resala Charity Organization, Египет", "meta": "Январь 2020 &mdash; декабрь 2020",
+   "points": ["Руководил медианаправлением в одной из крупнейших благотворительных организаций Египта; прошёл шестимесячную программу лидерства."]},
+ ],
+ "l_projects": "Продукты, которые я поставил (понимаю и демонстрирую)",
+ "projects": [
+   "<b>HMS — мультиарендная ERP</b> — склад, продажи/CRM, финансы; ZATCA и арабский/английский RTL. Под региональный рынок.",
+   "<b>AuraGift — e-commerce</b> — работающая премиальная платформа цифровых подарков, клиентская часть и UX.",
+   "<b>Fracture Detection AI</b> — выпущенный AI-продукт (точность 90,21%) в виде приложения и Telegram-бота.",
+ ],
+})
+
+
 if __name__ == "__main__":
     out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "cv")
     os.makedirs(out, exist_ok=True)
@@ -282,6 +385,7 @@ if __name__ == "__main__":
         (FS_EN, "cv_fullstack_en.pdf"), (FS_RU, "cv_fullstack_ru.pdf"),
         (AI_EN, "cv_ai_en.pdf"),        (AI_RU, "cv_ai_ru.pdf"),
         (INTL_EN, "cv_intl_en.pdf"),    (INTL_RU, "cv_intl_ru.pdf"),
+        (BD_EN, "cv_bd_en.pdf"),        (BD_RU, "cv_bd_ru.pdf"),
     )
     for c, fn in jobs:
         p = build_one(c, os.path.join(out, fn))

@@ -194,6 +194,85 @@ AI_RU = variant(BASE_RU, {
  ],
 })
 
+# ════════════════════════════════════════════════════════════════════════════
+# INTERNATIONAL — leads with the trilingual, client-facing bridge: an engineer
+# who ships AND talks to international clients in their own language. Aimed at
+# Russian/CIS outsourcing firms serving English-speaking clients and at teams
+# expanding into MENA/GCC.
+# ════════════════════════════════════════════════════════════════════════════
+INTL_EN = variant(BASE_EN, {
+ "pdf_title": "Mohamed Hany Reda - CV (International)",
+ "pdf_subject": "International Full-Stack Software Engineer",
+ "title": "International Full-Stack Engineer &nbsp;&middot;&nbsp; Client-Facing · EN · AR · RU",
+ "profile":
+   "Full-stack software engineer who works directly with international clients in their own language — "
+   "fluent in Arabic (native), English (C2) and Russian (B2). I take products end to end (FastAPI, React, "
+   "PostgreSQL) and own the client side too: discovery, requirements, demos and handover. A natural bridge "
+   "for teams serving English-speaking or MENA/GCC markets — an engineer who ships and speaks to the client. "
+   "Available remotely worldwide; open to relocation.",
+ "l_highlights": "Selected Highlights",
+ "highlights": [
+   "<b>Trilingual</b> — Arabic (native), English (C2, full professional), Russian (B2): work directly with "
+   "clients across MENA, the GCC, CIS and English-speaking markets.",
+   "Single point of accountability on freelance projects — from client discovery and requirements (SRS) "
+   "through architecture, build and handover.",
+   "Sole owner of a <b>multi-tenant ERP</b> (FastAPI, PostgreSQL RLS, React) with Saudi ZATCA e-invoicing and "
+   "full Arabic/English RTL — built for a specific regional market.",
+   "Own the client side and UX of a <b>live e-commerce platform</b>, with zero-downtime releases.",
+   "Led teams of up to <b>10</b>, translating between client needs and technical delivery.",
+ ],
+ "l_skills": "Skills",
+ "skills": [
+   ("Engineering", "JavaScript, React, Node.js, Python, FastAPI, PostgreSQL, Docker, Flutter/Dart, REST APIs"),
+   ("Client &amp; delivery", "Discovery interviews, requirements/SRS, demos, stakeholder communication, agile, release and handover"),
+   ("Languages", "Arabic — native · English — C2, full professional · Russian — B2"),
+   ("Localization", "Arabic/English RTL, Saudi ZATCA e-invoicing, multi-market products"),
+   ("Also", "PyTorch, computer vision, reinforcement learning; team leadership up to 10"),
+ ],
+ "l_projects": "Key Projects",
+ "projects": [
+   "<b>HMS — Multi-Tenant ERP</b> — FastAPI · PostgreSQL (RLS) · React · Docker; ZATCA Phase 1 e-invoicing, RBAC, Arabic/English RTL.",
+   "<b>AuraGift — Live E-Commerce</b> — JavaScript · Node.js · Firebase Cloud Functions; serverless orders/payments, zero-downtime deploys.",
+   "<b>High-Throughput Sorting-Center Digital Twin</b> — Python · Three.js · discrete-event simulation; ~96,400 items/hour, 530+ tests.",
+   "<b>Fracture Detection AI</b> — EfficientNet-B0 + Grad-CAM; 90.21% accuracy. Research software, not a certified medical device.",
+ ],
+})
+
+INTL_RU = variant(BASE_RU, {
+ "pdf_title": "Мохамед Хани Реда - Резюме (International)",
+ "pdf_subject": "Full-Stack инженер-программист · международные проекты",
+ "title": "Full-Stack инженер · международные проекты &nbsp;&middot;&nbsp; EN · AR · RU",
+ "profile":
+   "Full-Stack разработчик (инженер-программист), работаю напрямую с международными клиентами на их языке — "
+   "арабский (родной), английский (C2), русский (B2). Веду продукты по полному циклу (FastAPI, React, "
+   "PostgreSQL) и отвечаю за работу с клиентом: сбор требований, демо, передача. Естественный мост для команд, "
+   "работающих с англоязычными или ближневосточными рынками. Готов к удалённой работе и переезду.",
+ "l_highlights": "Ключевые достижения",
+ "highlights": [
+   "<b>Три языка</b> — арабский (родной), английский (C2), русский (B2): работа напрямую с клиентами MENA, "
+   "GCC, СНГ и англоязычных рынков.",
+   "Единая точка ответственности на фриланс-проектах — от сбора требований (ТЗ) до архитектуры, разработки и передачи.",
+   "Единственный владелец <b>мультиарендной ERP</b> (FastAPI, PostgreSQL RLS, React) с ZATCA и арабским/английским RTL — под конкретный региональный рынок.",
+   "Отвечаю за клиентскую часть и UX <b>работающей e-commerce платформы</b>; релизы без простоев.",
+   "Руководил командами до <b>10</b> человек, переводя между потребностями клиента и технической реализацией.",
+ ],
+ "l_skills": "Навыки",
+ "skills": [
+   ("Инженерия", "JavaScript, React, Node.js, Python, FastAPI, PostgreSQL, Docker, Flutter/Dart, REST API"),
+   ("Клиент и поставка", "Сбор требований/ТЗ, интервью, демо, коммуникация со стейкхолдерами, agile, релиз и передача"),
+   ("Языки", "Арабский — родной · Английский — C2 · Русский — B2"),
+   ("Локализация", "Арабский/английский RTL, ZATCA (Саудовская Аравия), мультирыночные продукты"),
+   ("Также", "PyTorch, компьютерное зрение, обучение с подкреплением; руководство командами до 10"),
+ ],
+ "l_projects": "Ключевые проекты",
+ "projects": [
+   "<b>HMS — мультиарендная ERP</b> — FastAPI · PostgreSQL (RLS) · React · Docker; ZATCA Phase 1, RBAC, арабский/английский и RTL.",
+   "<b>AuraGift — e-commerce</b> — JavaScript · Node.js · Firebase Cloud Functions; бессерверные заказы/платежи, деплой без простоев.",
+   "<b>Цифровой двойник сортировочного центра</b> — Python · Three.js · дискретно-событийное моделирование; ~96&nbsp;400 ед./час, 530+ тестов.",
+   "<b>Fracture Detection AI</b> — EfficientNet-B0 + Grad-CAM; точность 90,21%. Исследовательское ПО, не медицинское изделие.",
+ ],
+})
+
 
 if __name__ == "__main__":
     out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "cv")
@@ -202,6 +281,7 @@ if __name__ == "__main__":
     jobs = (
         (FS_EN, "cv_fullstack_en.pdf"), (FS_RU, "cv_fullstack_ru.pdf"),
         (AI_EN, "cv_ai_en.pdf"),        (AI_RU, "cv_ai_ru.pdf"),
+        (INTL_EN, "cv_intl_en.pdf"),    (INTL_RU, "cv_intl_ru.pdf"),
     )
     for c, fn in jobs:
         p = build_one(c, os.path.join(out, fn))

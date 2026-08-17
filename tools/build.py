@@ -226,6 +226,10 @@ def build():
         <a href="cv/cv_ai_en.pdf" download="Mohamed-Hany-Reda-CV-AI-EN.pdf" onclick="trackContact('CV-AI-EN')">EN</a>
         <span class="sep" aria-hidden="true">·</span>
         <a href="cv/cv_ai_ru.pdf" download="Mohamed-Hany-Reda-CV-AI-RU.pdf" onclick="trackContact('CV-AI-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.intl"></span>
+        <a href="cv/cv_intl_en.pdf" download="Mohamed-Hany-Reda-CV-International-EN.pdf" onclick="trackContact('CV-INTL-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_intl_ru.pdf" download="Mohamed-Hany-Reda-CV-International-RU.pdf" onclick="trackContact('CV-INTL-RU')">RU</a></span>
     </span>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll"></span><span class="chev"></span></div>
@@ -681,6 +685,10 @@ def build():
         <a href="cv/cv_ai_en.pdf" download="Mohamed-Hany-Reda-CV-AI-EN.pdf" onclick="trackContact('CV-AI-EN')">EN</a>
         <span class="sep" aria-hidden="true">·</span>
         <a href="cv/cv_ai_ru.pdf" download="Mohamed-Hany-Reda-CV-AI-RU.pdf" onclick="trackContact('CV-AI-RU')">RU</a></span>
+      <span class="cv-tset"><span class="cv-tlabel" data-i18n="cv.intl"></span>
+        <a href="cv/cv_intl_en.pdf" download="Mohamed-Hany-Reda-CV-International-EN.pdf" onclick="trackContact('CV-INTL-EN')">EN</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="cv/cv_intl_ru.pdf" download="Mohamed-Hany-Reda-CV-International-RU.pdf" onclick="trackContact('CV-INTL-RU')">RU</a></span>
     </span>
   </div>
   </div>
